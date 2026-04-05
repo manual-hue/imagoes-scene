@@ -25,34 +25,47 @@ function getServiceAccount() {
   const privateKey = process.env.FIREBASE_ADMIN_PRIVATE_KEY?.replace(/\\n/g, '\n');
 
   if (!projectId || !clientEmail || !privateKey) {
-    throw new Error(
-      'Firebase admin credentials are missing. Set FIREBASE_ADMIN_SERVICE_ACCOUNT_BASE64 or FIREBASE_ADMIN_PROJECT_ID, FIREBASE_ADMIN_CLIENT_EMAIL, and FIREBASE_ADMIN_PRIVATE_KEY.',
-    );
+    return null;
   }
 
-  return {
-    projectId,
-    clientEmail,
-    privateKey,
-  };
+  return { projectId, clientEmail, privateKey };
 }
 
-const adminApp: App =
-  getApps().length > 0
-    ? getApps()[0]!
-    : initializeApp({
-        credential: cert(getServiceAccount()),
-        ...(process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL?.trim()
-          ? { databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL.trim() }
-          : {}),
-        ...(process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET?.trim()
-          ? { storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET.trim() }
-          : {}),
-      });
+function getAdminApp(): App | null {
+  const serviceAccount = getServiceAccount();
+  if (!serviceAccount) return null;
 
-const adminAuth: Auth = getAuth(adminApp);
-const adminFirestore: Firestore = getFirestore(adminApp);
-const adminDb: Database = getDatabase(adminApp);
-const adminStorage: Storage = getStorage(adminApp);
+  if (getApps().length > 0) return getApps()[0]!;
 
-export { adminApp, adminAuth, adminFirestore, adminDb, adminStorage };
+  return initializeApp({
+    credential: cert(serviceAccount),
+    ...(process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL?.trim()
+      ? { databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL.trim() }
+      : {}),
+    ...(process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET?.trim()
+      ? { storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET.trim() }
+      : {}),
+  });
+}
+
+let _app: App | null | undefined;
+function app() {
+  if (_app === undefined) _app = getAdminApp();
+  return _app;
+}
+
+export const adminApp = new Proxy({} as App, {
+  get: (_, prop) => { const a = app(); if (!a) throw new Error('Firebase Admin not configured'); return (a as unknown as Record<string | symbol, unknown>)[prop]; },
+});
+export const adminAuth = new Proxy({} as Auth, {
+  get: (_, prop) => { const a = app(); if (!a) throw new Error('Firebase Admin not configured'); return (getAuth(a) as unknown as Record<string | symbol, unknown>)[prop]; },
+});
+export const adminFirestore = new Proxy({} as Firestore, {
+  get: (_, prop) => { const a = app(); if (!a) throw new Error('Firebase Admin not configured'); return (getFirestore(a) as unknown as Record<string | symbol, unknown>)[prop]; },
+});
+export const adminDb = new Proxy({} as Database, {
+  get: (_, prop) => { const a = app(); if (!a) throw new Error('Firebase Admin not configured'); return (getDatabase(a) as unknown as Record<string | symbol, unknown>)[prop]; },
+});
+export const adminStorage = new Proxy({} as Storage, {
+  get: (_, prop) => { const a = app(); if (!a) throw new Error('Firebase Admin not configured'); return (getStorage(a) as unknown as Record<string | symbol, unknown>)[prop]; },
+});
