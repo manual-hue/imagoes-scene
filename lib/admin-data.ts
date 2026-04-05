@@ -113,7 +113,7 @@ export async function getAdminSessionDetail(sessionId: string): Promise<AdminSes
         config: {
           intervalMinutes: Number(process.env.NEXT_PUBLIC_CHECKPOINT_INTERVAL_MIN ?? 20),
           totalIntervals: 5,
-          accessCode: process.env.NEXT_PUBLIC_ACCESS_CODE ?? 'imagoes',
+          accessCode: process.env.NEXT_PUBLIC_ACCESS_CODE ?? '',
           maxPlayers: 20,
         },
       },

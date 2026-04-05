@@ -7,7 +7,7 @@ import { sha256 } from '@/lib/crypto';
 import { CodeInput } from '@/components/gate/CodeInput';
 import { LockTimer } from '@/components/gate/LockTimer';
 
-const CODE_LENGTH = 7; // 'imagoes'
+const CODE_LENGTH = (process.env.NEXT_PUBLIC_ACCESS_CODE ?? '').length || 7;
 const MAX_ATTEMPTS = 3;
 const LOCK_DURATION_MS = 30_000;
 

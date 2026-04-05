@@ -69,7 +69,7 @@ export default async function NewAdminSessionPage() {
     const intervalMinutes = Number(formData.get('intervalMinutes') ?? 20);
     const totalIntervals = Number(formData.get('totalIntervals') ?? 5);
     const maxPlayers = Number(formData.get('maxPlayers') ?? 20);
-    const accessCode = String(formData.get('accessCode') ?? process.env.NEXT_PUBLIC_ACCESS_CODE ?? 'imagoes').trim();
+    const accessCode = String(formData.get('accessCode') ?? process.env.NEXT_PUBLIC_ACCESS_CODE ?? '').trim();
     const roomsInput = String(formData.get('rooms') ?? '');
 
     if (!name) {
@@ -148,7 +148,7 @@ export default async function NewAdminSessionPage() {
   return (
     <NewSessionForm
       adminEmail={adminSession.email}
-      defaultAccessCode={process.env.NEXT_PUBLIC_ACCESS_CODE ?? 'imagoes'}
+      defaultAccessCode={process.env.NEXT_PUBLIC_ACCESS_CODE ?? ''}
       createAction={createSessionAction}
     />
   );
