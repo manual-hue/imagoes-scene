@@ -25,8 +25,8 @@ const tabs: Tab[] = [
   {
     label: 'Clues',
     icon: 'D',
-    href: (sid, rid) => (rid ? `/room/${sid}/${rid}` : `/hub/${sid}`),
-    match: (p) => p.startsWith('/room/'),
+    href: (sid, rid) => (rid ? `/object/${sid}/${rid}` : `/hub/${sid}`),
+    match: (p) => p.startsWith('/object/') || p.startsWith('/room/'),
   },
   {
     label: 'Evidence',

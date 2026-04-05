@@ -1,11 +1,17 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { getVisited } from '@/lib/visited';
 import { getLocalRooms, getLocalPhones, getLocalSession } from '@/lib/mock-data';
 import { BottomTabBar } from '@/components/navigation/BottomTabBar';
+
+const QRScanner = dynamic(
+  () => import('@/components/scanner/QRScanner').then((m) => m.QRScanner),
+  { ssr: false },
+);
 
 export default function HubPage() {
   const params = useParams<{ sessionId: string }>();
@@ -17,6 +23,7 @@ export default function HubPage() {
 
   const [visitedRooms, setVisitedRooms] = useState<string[]>([]);
   const [visitedPhones, setVisitedPhones] = useState<string[]>([]);
+  const [scannerOpen, setScannerOpen] = useState(false);
 
   useEffect(() => {
     const visited = getVisited(sessionId);
@@ -68,7 +75,7 @@ export default function HubPage() {
                     {rooms.map((room) => (
                       <Link
                         key={room.id}
-                        href={`/room/${sessionId}/${room.id}`}
+                        href={`/object/${sessionId}/${room.id}`}
                         className="flex min-h-[52px] items-center justify-between gap-3 rounded-sm border border-[var(--border-dim)] bg-[var(--bg-secondary)] px-4 py-3 transition-colors active:border-[var(--accent-teal)]/40 hover:border-[var(--border-mid)]"
                       >
                         <div className="flex min-w-0 items-center gap-3">
@@ -98,7 +105,7 @@ export default function HubPage() {
                     {phones.map((phone) => (
                       <Link
                         key={phone.id}
-                        href={`/phones/${phone.id}`}
+                        href={`/object/${sessionId}/${phone.id}`}
                         className="flex min-h-[52px] items-center justify-between gap-3 rounded-sm border border-[var(--border-dim)] bg-[var(--bg-secondary)] px-4 py-3 transition-colors active:border-[var(--accent-amber)]/40 hover:border-[var(--border-mid)]"
                       >
                         <div className="flex min-w-0 items-center gap-3">
@@ -126,9 +133,21 @@ export default function HubPage() {
           )}
         </div>
 
+        {/* QR Scan Button */}
+        <div className="flex justify-center pb-2">
+          <button
+            onClick={() => setScannerOpen(true)}
+            className="flex items-center gap-2 rounded-full border border-[var(--accent-teal)]/30 bg-[var(--accent-teal)]/10 px-5 py-2.5 font-mono text-xs tracking-[0.2em] text-[var(--accent-teal)] transition-colors hover:bg-[var(--accent-teal)]/20"
+          >
+            QR SCAN
+          </button>
+        </div>
+
         {/* Bottom Tab Bar */}
         <BottomTabBar sessionId={sessionId} />
       </div>
+
+      {scannerOpen && <QRScanner onClose={() => setScannerOpen(false)} />}
     </div>
   );
 }

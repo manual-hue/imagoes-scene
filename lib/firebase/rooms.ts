@@ -2,6 +2,7 @@ import 'server-only';
 
 import type { QueryDocumentSnapshot } from 'firebase-admin/firestore';
 import { getLocalSessionQRPayload, resolveLocalRoomByCode } from '@/lib/mock-data';
+import caseZero from '@/data/cases/case-zero.json';
 import type { Room } from '@/types/room';
 import type { Session } from '@/types/session';
 
@@ -19,11 +20,20 @@ export interface QRPrintableRoom {
   order: number;
 }
 
+export interface QRPrintableObject {
+  id: string;
+  name: string;
+  shortCode: string;
+  order: number;
+  type: string;
+}
+
 export interface SessionQRPayload {
   sessionId: string;
   sessionName: string;
   sessionCode: string;
   rooms: QRPrintableRoom[];
+  objects: QRPrintableObject[];
 }
 
 function normalizeSessionCode(sessionCode: string): string {
@@ -95,10 +105,25 @@ export async function resolveRoomByCode(
   };
 }
 
+function getLocalObjects(sessionId: string): QRPrintableObject[] {
+  const caseData = caseZero as { sessionId: string; objects: Array<{ id: string; name: string; shortCode: string; order: number; type: string }> };
+  if (caseData.sessionId !== sessionId) return [];
+  return caseData.objects.map((o) => ({
+    id: o.id,
+    name: o.name,
+    shortCode: o.shortCode,
+    order: o.order,
+    type: o.type,
+  }));
+}
+
 export async function getSessionQRPayload(sessionId: string): Promise<SessionQRPayload | null> {
   const localPayload = getLocalSessionQRPayload(sessionId);
   if (localPayload) {
-    return localPayload;
+    return {
+      ...localPayload,
+      objects: getLocalObjects(sessionId),
+    };
   }
 
   const { adminFirestore } = await import('@/lib/firebase-admin');
@@ -111,10 +136,12 @@ export async function getSessionQRPayload(sessionId: string): Promise<SessionQRP
   const session = sessionDoc.data() as Session;
   const roomsSnapshot = await sessionDoc.ref.collection('rooms').orderBy('order', 'asc').get();
 
+  const rooms = roomsSnapshot.docs.map(mapRoom);
   return {
     sessionId: sessionDoc.id,
     sessionName: session.name,
     sessionCode: session.sessionCode,
-    rooms: roomsSnapshot.docs.map(mapRoom),
+    rooms,
+    objects: rooms.map((r) => ({ ...r, type: 'room' })),
   };
 }

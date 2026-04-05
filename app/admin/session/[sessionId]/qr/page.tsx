@@ -51,7 +51,7 @@ export default async function QRPrintPage({ params }: QRPrintPageProps) {
         </div>
         <div className={styles.meta}>
           <p>세션 코드 {payload.sessionCode}</p>
-          <p>{payload.rooms.length}개 방 카드</p>
+          <p>{payload.objects.length}개 오브젝트 카드</p>
         </div>
       </header>
 
@@ -59,6 +59,7 @@ export default async function QRPrintPage({ params }: QRPrintPageProps) {
         baseUrl={baseUrl}
         sessionCode={payload.sessionCode}
         rooms={payload.rooms}
+        objects={payload.objects}
       />
     </main>
   );
