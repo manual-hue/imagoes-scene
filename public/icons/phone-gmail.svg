@@ -1,0 +1,13 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gmailBg" x1="18" y1="14" x2="110" y2="118" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF4F4"/>
+      <stop offset="1" stop-color="#F3E2E2"/>
+    </linearGradient>
+  </defs>
+  <rect x="12" y="12" width="104" height="104" rx="30" fill="url(#gmailBg)"/>
+  <rect x="28" y="34" width="72" height="60" rx="16" fill="white"/>
+  <path d="M36 48.5L64 68.5L92 48.5" stroke="#E0483C" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M36 86V50.5L52.5 62.5V86" stroke="#C43D32" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M92 86V50.5L75.5 62.5V86" stroke="#E0483C" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

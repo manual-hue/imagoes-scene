@@ -1,0 +1,29 @@
+/* styles/typography.css — Font imports & typographic rules */
+
+/* Font variables are set by next/font in layout.tsx via CSS custom properties.
+   Fallback stacks defined here for non-JS / SSR contexts. */
+:root {
+  --font-body: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --font-mono: 'Source Code Pro', 'Consolas', 'Courier New', monospace;
+}
+
+/* 적용 규칙 */
+.font-body { font-family: var(--font-body); }
+.font-mono { font-family: var(--font-mono); }
+
+/* 글로우 텍스트 (터미널 그린 텍스트에 적용) */
+.terminal-glow {
+  color: var(--text-mono);
+  text-shadow: var(--phosphor-glow);
+}
+
+/* 타이핑 커서 */
+.cursor-blink::after {
+  content: '▌';
+  color: var(--text-mono);
+  animation: cursor-blink 1.1s step-end infinite;
+}
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}

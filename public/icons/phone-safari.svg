@@ -1,0 +1,14 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="safariBg" x1="18" y1="14" x2="110" y2="118" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BDE4FF"/>
+      <stop offset="1" stop-color="#2F83FF"/>
+    </linearGradient>
+  </defs>
+  <rect x="12" y="12" width="104" height="104" rx="30" fill="url(#safariBg)"/>
+  <circle cx="64" cy="64" r="31" fill="white"/>
+  <circle cx="64" cy="64" r="26" fill="#73C6FF"/>
+  <path d="M64 40L70.8 61.2L92 64L70.8 66.8L64 88L57.2 66.8L36 64L57.2 61.2L64 40Z" fill="white" fill-opacity="0.88"/>
+  <path d="M64 44L73 64L64 84L55 64L64 44Z" fill="#FF5E58"/>
+  <path d="M64 84L73 64L84 64L64 84Z" fill="#2563EB"/>
+</svg>

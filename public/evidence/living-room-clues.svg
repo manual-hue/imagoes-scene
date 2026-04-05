@@ -1,0 +1,18 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" fill="#181214"/>
+  <rect x="72" y="56" width="1056" height="788" rx="24" fill="#B89E82"/>
+  <rect x="100" y="86" width="1000" height="728" rx="18" fill="#C9AF93"/>
+  <rect x="140" y="122" width="320" height="232" rx="12" fill="#F7F3ED" stroke="#5A4D4D" stroke-width="10"/>
+  <rect x="504" y="124" width="228" height="164" rx="12" fill="#FBF8F1" stroke="#5A4D4D" stroke-width="8"/>
+  <rect x="790" y="118" width="250" height="204" rx="12" fill="#F6F0E8" stroke="#5A4D4D" stroke-width="10"/>
+  <rect x="166" y="416" width="238" height="164" rx="12" fill="#FCFAF6" stroke="#6A5746" stroke-width="8"/>
+  <rect x="454" y="364" width="362" height="280" rx="12" fill="#FBF8F0" stroke="#6A5746" stroke-width="10"/>
+  <rect x="844" y="420" width="192" height="134" rx="12" fill="#F2E8D7" stroke="#6A5746" stroke-width="8"/>
+  <circle cx="312" cy="264" r="34" fill="#8D2020"/>
+  <path d="M312 298C348 350 384 408 428 480" stroke="#8D2020" stroke-width="14" stroke-linecap="round"/>
+  <path d="M650 430C698 404 734 398 772 410" stroke="#3C516A" stroke-width="12" stroke-linecap="round"/>
+  <path d="M942 214L846 436" stroke="#7B2020" stroke-width="8"/>
+  <path d="M402 208L504 184" stroke="#7B2020" stroke-width="8"/>
+  <path d="M406 474L454 474" stroke="#7B2020" stroke-width="8"/>
+  <text x="142" y="744" fill="#332518" font-size="34" font-family="monospace">LIVING ROOM EVIDENCE BOARD</text>
+</svg>

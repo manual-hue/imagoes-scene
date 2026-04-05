@@ -1,0 +1,15 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="camBg" x1="18" y1="14" x2="110" y2="118" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E4E7EC"/>
+      <stop offset="1" stop-color="#8A909A"/>
+    </linearGradient>
+  </defs>
+  <rect x="12" y="12" width="104" height="104" rx="30" fill="url(#camBg)"/>
+  <rect x="28" y="40" width="72" height="50" rx="16" fill="#1F2937"/>
+  <rect x="38" y="34" width="16" height="10" rx="5" fill="#D8DDE5"/>
+  <circle cx="64" cy="65" r="18" fill="#C8D2E0"/>
+  <circle cx="64" cy="65" r="12" fill="#314155"/>
+  <circle cx="64" cy="65" r="6" fill="#9ED4FF"/>
+  <circle cx="87" cy="52" r="4" fill="#F9FAFB"/>
+</svg>

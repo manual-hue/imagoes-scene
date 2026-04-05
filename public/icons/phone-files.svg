@@ -1,0 +1,18 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="filesBg" x1="18" y1="14" x2="110" y2="118" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE89A"/>
+      <stop offset="1" stop-color="#F5A623"/>
+    </linearGradient>
+    <linearGradient id="filesTab" x1="32" y1="24" x2="58" y2="46" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF5C9"/>
+      <stop offset="1" stop-color="#FFD86A"/>
+    </linearGradient>
+  </defs>
+  <rect x="12" y="12" width="104" height="104" rx="30" fill="url(#filesBg)"/>
+  <path d="M28 41C28 35.4772 32.4772 31 38 31H49.8773C53.0609 31 56.0493 32.5179 57.9275 35.0849L60.0725 37.9151C61.9507 40.4821 64.9391 42 68.1227 42H90C95.5228 42 100 46.4772 100 52V84C100 89.5228 95.5228 94 90 94H38C32.4772 94 28 89.5228 28 84V41Z" fill="#C67A00"/>
+  <path d="M28 48C28 42.4772 32.4772 38 38 38H55.1743C58.3593 38 61.3491 39.5192 63.2272 42.0878L64.7728 44.2122C66.6509 46.7808 69.6407 48.3 72.8257 48.3H90C95.5228 48.3 100 52.7771 100 58.3V84C100 89.5228 95.5228 94 90 94H38C32.4772 94 28 89.5228 28 84V48Z" fill="#F7C64B"/>
+  <path d="M28 48C28 42.4772 32.4772 38 38 38H55.1743C58.3593 38 61.3491 39.5192 63.2272 42.0878L64.7728 44.2122C66.6509 46.7808 69.6407 48.3 72.8257 48.3H90C95.5228 48.3 100 52.7771 100 58.3V63H28V48Z" fill="url(#filesTab)"/>
+  <rect x="36" y="69" width="56" height="8" rx="4" fill="#FFF7D5" fill-opacity="0.9"/>
+  <rect x="36" y="81" width="38" height="8" rx="4" fill="#FFF1B9" fill-opacity="0.9"/>
+</svg>

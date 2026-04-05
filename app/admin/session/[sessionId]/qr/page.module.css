@@ -1,0 +1,130 @@
+.page {
+  min-height: 100dvh;
+  padding: 32px;
+  background:
+    radial-gradient(circle at top, rgba(233, 201, 126, 0.12), transparent 32%),
+    linear-gradient(180deg, #f3efe2 0%, #e9e2d0 100%);
+  color: #1b1712;
+}
+
+.header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0 auto 24px;
+  max-width: 1120px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(27, 23, 18, 0.18);
+}
+
+.kicker {
+  margin: 0 0 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  color: rgba(27, 23, 18, 0.55);
+}
+
+.title {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.1;
+}
+
+.meta {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: rgba(27, 23, 18, 0.72);
+}
+
+.meta p {
+  margin: 0;
+}
+
+.sheet {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.card {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 330px;
+  padding: 22px;
+  background: rgba(255, 252, 245, 0.96);
+  border: 1px solid rgba(27, 23, 18, 0.18);
+  box-shadow: 0 16px 40px rgba(49, 40, 26, 0.08);
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.cardHeader {
+  margin-bottom: 16px;
+}
+
+.cardCode {
+  margin: 0 0 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: rgba(27, 23, 18, 0.52);
+}
+
+.cardName {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.cardQr {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background: #fff;
+  border: 1px solid rgba(27, 23, 18, 0.12);
+}
+
+.cardUrl {
+  margin: 16px 0 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  word-break: break-all;
+  color: rgba(27, 23, 18, 0.75);
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+
+  .page {
+    min-height: auto;
+    padding: 0;
+    background: #ffffff;
+  }
+
+  .header {
+    max-width: none;
+    margin-bottom: 12mm;
+  }
+
+  .sheet {
+    max-width: none;
+    gap: 8mm;
+  }
+
+  .card {
+    min-height: 82mm;
+    padding: 6mm;
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,19 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" fill="#11161B"/>
+  <rect x="70" y="60" width="1060" height="780" rx="24" fill="#CBBE98"/>
+  <rect x="96" y="88" width="1008" height="724" rx="18" fill="#D9CCAA"/>
+  <rect x="132" y="126" width="304" height="220" rx="12" fill="#EEF2F4" stroke="#6B7D88" stroke-width="10"/>
+  <rect x="470" y="126" width="258" height="164" rx="12" fill="#FCFAF1" stroke="#6B7D88" stroke-width="8"/>
+  <rect x="770" y="126" width="280" height="240" rx="12" fill="#E8EDF0" stroke="#6B7D88" stroke-width="10"/>
+  <rect x="150" y="404" width="270" height="182" rx="12" fill="#FEFBF4" stroke="#7C5C46" stroke-width="8"/>
+  <rect x="462" y="352" width="318" height="286" rx="12" fill="#FAF7EE" stroke="#7C5C46" stroke-width="10"/>
+  <rect x="822" y="420" width="202" height="148" rx="12" fill="#F3EFE3" stroke="#7C5C46" stroke-width="8"/>
+  <path d="M286 215C326 180 370 180 392 206" stroke="#B53A3A" stroke-width="16" stroke-linecap="round"/>
+  <path d="M904 224C942 246 970 284 988 326" stroke="#D24A4A" stroke-width="18" stroke-linecap="round"/>
+  <path d="M304 480L362 528" stroke="#2F4F63" stroke-width="12" stroke-linecap="round"/>
+  <path d="M580 470C604 432 642 406 694 398" stroke="#2F4F63" stroke-width="12" stroke-linecap="round"/>
+  <path d="M810 250L768 420" stroke="#8D1D1D" stroke-width="8"/>
+  <path d="M410 216L470 212" stroke="#8D1D1D" stroke-width="8"/>
+  <path d="M420 500L462 500" stroke="#8D1D1D" stroke-width="8"/>
+  <text x="148" y="742" fill="#3A2F1E" font-size="34" font-family="monospace">BATHROOM EVIDENCE BOARD</text>
+</svg>

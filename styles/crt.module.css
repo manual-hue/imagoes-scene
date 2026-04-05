@@ -1,0 +1,50 @@
+/* styles/crt.module.css — CRT scanline & vignette effects */
+
+/* 스캔라인 (성능 우선: fixed pseudo-element) */
+.crtOverlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    var(--scan-line) 3px,
+    var(--scan-line) 4px
+  );
+  pointer-events: none;
+  z-index: 9990;
+}
+
+/* 비네트 효과 */
+.crtOverlay::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 60%,
+    rgba(0,0,0,0.4) 100%
+  );
+  pointer-events: none;
+  z-index: 9989;
+}
+
+/* 노이즈 텍스처 (SVG 인라인) */
+.noiseLayer {
+  position: fixed;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9988;
+}
+
+/* 사이렌 플래시 */
+@keyframes sirenFlash {
+  0%, 100% { box-shadow: inset 0 0 0 0 transparent; }
+  50%       { box-shadow: inset 0 0 60px 20px rgba(200,53,42,0.12); }
+}
+.sirenPulsing {
+  animation: sirenFlash 0.9s ease-in-out infinite;
+}

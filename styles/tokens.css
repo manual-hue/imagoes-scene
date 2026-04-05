@@ -1,0 +1,31 @@
+/* styles/tokens.css — Color & Design Tokens */
+:root {
+  /* ── 배경 계층 ── */
+  --bg-base:      #080808;   /* 최하층: 거의 완전한 검정 */
+  --bg-primary:   #0C0C0F;   /* 기본 페이지 배경 */
+  --bg-secondary: #131318;   /* 카드, 패널 */
+  --bg-elevated:  #1C1C24;   /* 모달, 드롭다운 */
+
+  /* ── 텍스트 ── */
+  --text-primary:   #DDD8C8;   /* 바랜 흰색 (낡은 종이) */
+  --text-secondary: #8A8679;   /* 보조 정보 */
+  --text-dim:       #4A4840;   /* 비활성, 플레이스홀더 */
+  --text-mono:      #6FCF97;   /* 터미널 그린 (코드, ID, 타임스탬프) */
+
+  /* ── 액센트 ── */
+  --accent-red:     #C8352A;   /* 위험, 사이렌, 중요 단서 */
+  --accent-amber:   #D4932A;   /* 경고, 타이머 카운트다운 */
+  --accent-teal:    #2DC4B0;   /* 완료, 활성, 확인 */
+  --accent-yellow:  #F0C93A;   /* 폴리스 테이프, 강조 */
+
+  /* ── 보더/구분선 ── */
+  --border-dim:     rgba(255,255,255,0.08);
+  --border-mid:     rgba(255,255,255,0.18);
+  --border-bright:  rgba(255,255,255,0.40);
+
+  /* ── 특수 효과 ── */
+  --siren-red:      #FF1A1A;
+  --evidence-tape:  #F5C518;
+  --scan-line:      rgba(255,255,255,0.025);
+  --phosphor-glow:  0 0 8px currentColor, 0 0 20px rgba(111,207,151,0.3);
+}
