@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Noto_Sans_KR, Source_Code_Pro } from "next/font/google";
+import { Noto_Sans_KR, Source_Code_Pro, Nanum_Pen_Script } from "next/font/google";
 import "@/styles/globals.css";
 import { ViewportHeightProvider } from "@/components/ViewportHeightProvider";
 import { CRTOverlay } from "@/components/ui/CRTOverlay";
@@ -15,6 +15,13 @@ const sourceCodePro = Source_Code_Pro({
   subsets: ["latin"],
   weight: ["400", "600", "700"],
   variable: "--font-mono",
+  display: "swap",
+});
+
+const nanumPenScript = Nanum_Pen_Script({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-handwriting",
   display: "swap",
 });
 
@@ -39,10 +46,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={`${notoSansKR.variable} ${sourceCodePro.variable}`}>
+    <html lang="ko" className={`${notoSansKR.variable} ${sourceCodePro.variable} ${nanumPenScript.variable}`}>
       <body className="font-body antialiased">
         <ViewportHeightProvider />
-        {children}
+        <div className="app-viewport">
+          <div className="app-frame">{children}</div>
+        </div>
 
         {/* CRT 효과 레이어 (전역) */}
         <CRTOverlay />
