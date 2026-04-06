@@ -58,7 +58,6 @@ export default async function QRPrintPage({ params }: QRPrintPageProps) {
       <QRGenerator
         baseUrl={baseUrl}
         sessionCode={payload.sessionCode}
-        rooms={payload.rooms}
         objects={payload.objects}
       />
     </main>

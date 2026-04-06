@@ -1,12 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { PhotoGallery } from '@/components/evidence/PhotoGallery';
 import { CameraCapture } from '@/components/evidence/CameraCapture';
 import { BottomTabBar } from '@/components/navigation/BottomTabBar';
 import { useEvidencePhotos } from '@/hooks/useEvidencePhotos';
-import { getLastVisitedRoom } from '@/lib/visited';
+import { getLastVisited, getLastVisitedRoom } from '@/lib/visited';
 
 export default function EvidencePage() {
   const params = useParams<{ sessionId: string }>();
@@ -14,11 +14,23 @@ export default function EvidencePage() {
     params.sessionId,
   );
   const [mode, setMode] = useState<'gallery' | 'camera'>('gallery');
-  const lastRoom = getLastVisitedRoom(params.sessionId);
+  const [captureTarget, setCaptureTarget] = useState<{ id: string; name: string } | null>(null);
+
+  useEffect(() => {
+    const lastObject = getLastVisited(params.sessionId);
+    if (lastObject) {
+      setCaptureTarget({ id: lastObject.objectId, name: lastObject.objectName });
+      return;
+    }
+    const legacy = getLastVisitedRoom(params.sessionId);
+    if (legacy) {
+      setCaptureTarget({ id: legacy.roomId, name: legacy.roomName });
+    }
+  }, [params.sessionId]);
 
   return (
     <main className="full-screen flex flex-col bg-bg-primary">
-      {mode === 'camera' && lastRoom ? (
+      {mode === 'camera' && captureTarget ? (
         /* ── 카메라 모드 ── */
         <div className="relative flex-1">
           <div className="absolute left-0 right-0 top-0 z-10 flex items-center justify-between px-4 py-4">
@@ -30,14 +42,14 @@ export default function EvidencePage() {
               BACK
             </button>
             <span className="font-mono text-[10px] tracking-[0.2em] text-white/40">
-              {lastRoom.roomName}
+              {captureTarget.name}
             </span>
           </div>
 
           <CameraCapture
             sessionId={params.sessionId}
-            roomId={lastRoom.roomId}
-            roomName={lastRoom.roomName}
+            roomId={captureTarget.id}
+            roomName={captureTarget.name}
             onCaptured={() => {
               setMode('gallery');
               void refresh();
@@ -49,21 +61,23 @@ export default function EvidencePage() {
         <div className="flex-1 overflow-y-auto px-4 pb-4 pt-6 md:px-8">
           <div className="mx-auto max-w-6xl">
             <header className="mb-6">
-              <p className="font-mono text-[11px] tracking-[0.28em] text-text-mono terminal-glow">
+              <p className="font-mono text-xs tracking-[0.28em] text-text-mono terminal-glow">
+                사건 수첩
+              </p>
+              <p className="mt-1 font-mono text-[10px] tracking-[0.2em] text-[var(--text-dim)]">
                 FORENSIC ARCHIVE
               </p>
-              <h1 className="mt-2 font-body text-2xl font-bold text-white">Evidence Locker</h1>
             </header>
 
             {loading ? (
               <div className="flex min-h-[300px] items-center justify-center rounded-sm border border-white/10 bg-black/20">
                 <p className="font-mono text-sm tracking-[0.2em] text-text-mono terminal-glow">
-                  LOADING EVIDENCE...
+                  증거 수집 중...
                 </p>
               </div>
             ) : error ? (
               <div className="rounded-sm border border-accent-red/25 bg-black/25 px-5 py-4">
-                <p className="font-mono text-sm tracking-[0.2em] text-accent-red">LOCKER ERROR</p>
+                <p className="font-mono text-sm tracking-[0.2em] text-accent-red">수집 중 오류가 발생하였습니다.</p>
                 <p className="mt-2 font-body text-sm text-white/70">{error}</p>
               </div>
             ) : (
@@ -76,7 +90,7 @@ export default function EvidencePage() {
           </div>
 
           {/* 카메라 FAB */}
-          {lastRoom && (
+          {captureTarget && (
             <button
               type="button"
               onClick={() => setMode('camera')}

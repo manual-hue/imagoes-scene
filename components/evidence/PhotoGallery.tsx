@@ -1,8 +1,8 @@
 'use client';
 
+import Image from 'next/image';
 import { useMemo, useState } from 'react';
 import { MemoEditor } from '@/components/evidence/MemoEditor';
-import { PhotoCard } from '@/components/evidence/PhotoCard';
 import type { EvidencePhotoView } from '@/hooks/useEvidencePhotos';
 
 interface PhotoGalleryProps {
@@ -52,9 +52,6 @@ export function PhotoGallery({
       <section className="rounded-sm border border-white/10 bg-black/25 p-4">
         <div className="mb-5 flex flex-wrap items-end justify-between gap-3 border-b border-white/10 pb-3">
           <div>
-            <p className="font-mono text-[11px] tracking-[0.26em] text-text-mono terminal-glow">
-              EVIDENCE LOCKER
-            </p>
             <p className="mt-1 font-body text-sm text-white/66">{summary}</p>
           </div>
         </div>
@@ -62,22 +59,40 @@ export function PhotoGallery({
         {photos.length === 0 ? (
           <div className="flex min-h-[240px] items-center justify-center border border-dashed border-white/10 bg-black/20 px-6 text-center">
             <p className="max-w-sm font-body text-sm leading-relaxed text-white/58">
-              No evidence photos yet. Capture one from a room camera page to start your locker.
+              수집된 증거가 없습니다.
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
-            {photos.map((photo, index) => (
-              <div
+          <div className="grid grid-cols-3 gap-2">
+            {photos.map((photo) => (
+              <button
                 key={photo.id}
-                className={index % 3 === 1 ? 'translate-y-3' : index % 3 === 2 ? '-translate-y-2' : ''}
+                type="button"
+                onClick={() => setEditingPhoto(photo)}
+                onContextMenu={(e) => {
+                  e.preventDefault();
+                  void handleDelete(photo);
+                }}
+                className="relative aspect-square overflow-hidden border border-white/10 bg-black/40"
               >
-                <PhotoCard
-                  photo={photo}
-                  onEditMemo={setEditingPhoto}
-                  onDelete={handleDelete}
-                />
-              </div>
+                {photo.imageUrl ? (
+                  <Image
+                    src={photo.imageUrl}
+                    alt={photo.memo || photo.roomName}
+                    fill
+                    unoptimized
+                    sizes="33vw"
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center font-mono text-[9px] tracking-[0.2em] text-white/45">
+                    NO IMG
+                  </div>
+                )}
+                <span className="absolute left-1 top-1 bg-black/70 px-1 py-0.5 font-mono text-[8px] tracking-[0.1em] text-white/85">
+                  {photo.roomName}
+                </span>
+              </button>
             ))}
           </div>
         )}

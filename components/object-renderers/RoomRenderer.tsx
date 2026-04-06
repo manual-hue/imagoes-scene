@@ -9,30 +9,25 @@ import type { Room, RoomSceneClue, RoomSceneHotspot } from '@/types/room';
 
 interface RoomRendererProps {
   objectId: string;
-  sessionId: string;
   content: RoomContent;
   name: string;
   shortCode: string;
   order: number;
 }
 
-export function RoomRenderer({ objectId, sessionId, content, name, shortCode, order }: RoomRendererProps) {
+export function RoomRenderer({ objectId, content, name, shortCode, order }: RoomRendererProps) {
   const scene = content.scene;
   const [selectedClue, setSelectedClue] = useState<RoomSceneClue | null>(null);
 
   // Build a Room-shaped object for existing RoomBackground/RoomHeader
   const roomShim: Room = {
     id: objectId,
-    sessionId,
     name,
     shortCode,
     description: content.description,
     backgroundImage: content.backgroundImage,
     clues: content.clues,
     order,
-    isAccessible: content.isAccessible,
-    visitCount: content.visitCount,
-    createdAt: null as never,
   };
 
   return (

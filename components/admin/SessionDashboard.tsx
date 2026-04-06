@@ -1,10 +1,10 @@
 'use client';
 
 import { useEffect, useMemo, useState, useTransition } from 'react';
-import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import { collection, onSnapshot } from 'firebase/firestore';
 import { subscribeTimer } from '@/lib/firebase/realtime';
 import { firestore, hasFirebaseClientConfig } from '@/lib/firebase';
-import type { AdminCheckpointSummary, AdminRoomSummary, AdminSessionDetail } from '@/types/admin';
+import type { AdminCheckpointSummary, AdminSessionDetail } from '@/types/admin';
 import type { TimerState } from '@/types/timer';
 
 interface SessionDashboardProps {
@@ -40,7 +40,6 @@ async function parseJsonResponse(response: Response) {
 export function SessionDashboard({ sessionId, initialDetail }: SessionDashboardProps) {
   const [timerState, setTimerState] = useState<TimerState | null>(initialDetail.timerState);
   const [playerCount, setPlayerCount] = useState(initialDetail.session.playerCount);
-  const [rooms, setRooms] = useState(initialDetail.rooms);
   const [checkpoints, setCheckpoints] = useState<AdminCheckpointSummary[]>(initialDetail.checkpoints);
   const [resumeMessage, setResumeMessage] = useState('');
   const [feedback, setFeedback] = useState<string | null>(null);
@@ -54,33 +53,13 @@ export function SessionDashboard({ sessionId, initialDetail }: SessionDashboardP
     }
 
     const playersQuery = collection(firestore, `sessions/${sessionId}/players`);
-    const roomsQuery = query(collection(firestore, `sessions/${sessionId}/rooms`), orderBy('order', 'asc'));
 
     const unsubscribePlayers = onSnapshot(playersQuery, (snapshot) => {
       setPlayerCount(snapshot.size);
     });
 
-    const unsubscribeRooms = onSnapshot(roomsQuery, (snapshot) => {
-      setRooms(
-        snapshot.docs.map((doc, index) => {
-          const data = doc.data() as Partial<AdminRoomSummary>;
-
-          return {
-            id: doc.id,
-            name: data.name ?? doc.id,
-            shortCode: data.shortCode ?? '',
-            order: typeof data.order === 'number' ? data.order : index + 1,
-            description: data.description ?? '',
-            isAccessible: data.isAccessible ?? true,
-            visitCount: typeof data.visitCount === 'number' ? data.visitCount : 0,
-          };
-        }),
-      );
-    });
-
     return () => {
       unsubscribePlayers();
-      unsubscribeRooms();
     };
   }, [sessionId]);
 
@@ -148,37 +127,6 @@ export function SessionDashboard({ sessionId, initialDetail }: SessionDashboardP
         setFeedback('중간점검 재개 완료');
       } catch (error) {
         setFeedback(error instanceof Error ? error.message : '중간점검 재개 실패');
-      }
-    });
-  }
-
-  function toggleRoomAccess(roomId: string, isAccessible: boolean) {
-    startTransition(async () => {
-      try {
-        setFeedback(null);
-        const response = await fetch(`/api/room/${sessionId}/${roomId}`, {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            isAccessible: !isAccessible,
-          }),
-        });
-
-        await parseJsonResponse(response);
-        setRooms((current) =>
-          current.map((room) =>
-            room.id === roomId
-              ? {
-                  ...room,
-                  isAccessible: !isAccessible,
-                }
-              : room,
-          ),
-        );
-      } catch (error) {
-        setFeedback(error instanceof Error ? error.message : '방 상태 변경 실패');
       }
     });
   }
@@ -277,57 +225,6 @@ export function SessionDashboard({ sessionId, initialDetail }: SessionDashboardP
                 &gt; {feedback}
               </p>
             ) : null}
-          </div>
-        </section>
-
-        {/* Room Access */}
-        <section className="border border-black/12">
-          <div className="border-b border-black/8 px-5 py-3">
-            <h2 className="font-mono text-[11px] tracking-[0.2em] text-black/40 uppercase">
-              Room Access
-            </h2>
-          </div>
-
-          <div className="divide-y divide-black/[0.06]">
-            {rooms.map((room) => (
-              <div
-                key={room.id}
-                className="flex items-center justify-between gap-4 px-5 py-3"
-              >
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono text-[11px] tracking-wider text-black/35">
-                      {room.shortCode}
-                    </span>
-                    <span className="text-sm text-black">{room.name}</span>
-                  </div>
-                  {room.description ? (
-                    <p className="mt-0.5 text-xs text-black/30 truncate">{room.description}</p>
-                  ) : null}
-                </div>
-
-                <div className="flex items-center gap-3 shrink-0">
-                  <span className="flex items-center gap-1.5">
-                    <span
-                      className={`inline-block h-1.5 w-1.5 rounded-full ${
-                        room.isAccessible ? 'bg-black' : 'bg-black/15'
-                      }`}
-                    />
-                    <span className="font-mono text-[10px] tracking-wider text-black/35">
-                      {room.isAccessible ? 'OPEN' : 'LOCKED'}
-                    </span>
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => toggleRoomAccess(room.id, room.isAccessible)}
-                    disabled={isPending}
-                    className="min-h-[32px] border border-black/15 px-3 font-mono text-[10px] tracking-wider text-black/50 transition hover:bg-black hover:text-white disabled:cursor-not-allowed disabled:opacity-30"
-                  >
-                    {room.isAccessible ? 'LOCK' : 'OPEN'}
-                  </button>
-                </div>
-              </div>
-            ))}
           </div>
         </section>
       </div>

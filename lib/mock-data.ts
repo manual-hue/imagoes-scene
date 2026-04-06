@@ -1,14 +1,9 @@
 import mockCase from '@/data/mock-case.json';
-import type { Room } from '@/types/room';
 
 interface MockSessionData {
   id: string;
   name: string;
   sessionCode: string;
-}
-
-interface MockRoomData extends Omit<Room, 'createdAt' | 'clues'> {
-  createdAt: string;
 }
 
 interface MockPhoneRef {
@@ -18,9 +13,16 @@ interface MockPhoneRef {
   device: string;
 }
 
+interface MockRoomRef {
+  id: string;
+  name: string;
+  shortCode: string;
+  order: number;
+}
+
 interface MockCaseData {
   session: MockSessionData;
-  rooms: MockRoomData[];
+  rooms: MockRoomRef[];
   phones?: MockPhoneRef[];
 }
 
@@ -36,42 +38,6 @@ export function isLocalSessionCode(sessionCode: string) {
 
 export function getLocalSession() {
   return localCase.session;
-}
-
-export function getLocalRoom(sessionId: string, roomId: string) {
-  if (!isLocalSessionId(sessionId)) {
-    return null;
-  }
-
-  const room = localCase.rooms.find((item) => item.id === roomId);
-  if (!room) {
-    return null;
-  }
-
-  return {
-    room,
-  };
-}
-
-export function resolveLocalRoomByCode(sessionCode: string, roomCode: string) {
-  if (!isLocalSessionCode(sessionCode)) {
-    return null;
-  }
-
-  const room = localCase.rooms.find(
-    (item) => item.shortCode.trim().toUpperCase() === roomCode.trim().toUpperCase(),
-  );
-
-  if (!room) {
-    return null;
-  }
-
-  return {
-    sessionId: localCase.session.id,
-    roomId: room.id,
-    sessionCode: localCase.session.sessionCode,
-    roomCode: room.shortCode,
-  };
 }
 
 export function getLocalRooms(sessionId: string) {
@@ -103,13 +69,5 @@ export function getLocalSessionQRPayload(sessionId: string) {
     sessionId: localCase.session.id,
     sessionName: localCase.session.name,
     sessionCode: localCase.session.sessionCode,
-    rooms: localCase.rooms
-      .map((room) => ({
-        id: room.id,
-        name: room.name,
-        shortCode: room.shortCode,
-        order: room.order,
-      }))
-      .sort((a, b) => a.order - b.order),
   };
 }

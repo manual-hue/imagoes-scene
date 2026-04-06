@@ -153,14 +153,14 @@ export function CameraCapture({
 
           <div className="border-t border-white/10 bg-bg-secondary p-4">
             <label className="mb-2 block font-mono text-[11px] tracking-[0.22em] text-white/52">
-              MEMO {memo.length}/{MEMO_MAX_LENGTH}
+              메모 {memo.length}/{MEMO_MAX_LENGTH}
             </label>
             <textarea
               value={memo}
               onChange={(event) => setMemo(event.target.value.slice(0, MEMO_MAX_LENGTH))}
               rows={4}
               maxLength={MEMO_MAX_LENGTH}
-              placeholder="Write what matters about this evidence..."
+              placeholder="증거에 대한 메모를 기록합니다."
               className="w-full resize-none rounded-sm border border-white/10 bg-bg-elevated px-3 py-3 font-body text-sm leading-relaxed text-text-primary outline-none transition-colors placeholder:text-white/22 focus:border-accent-teal"
             />
           </div>
@@ -171,7 +171,7 @@ export function CameraCapture({
               onClick={() => setPreviewSrc(null)}
               className="flex-1 border border-white/20 px-4 py-3 font-mono text-sm tracking-[0.2em] text-white/68"
             >
-              RETAKE
+              다시 찍기
             </button>
             <button
               type="button"
@@ -179,7 +179,7 @@ export function CameraCapture({
               disabled={saving}
               className="flex-1 bg-accent-teal px-4 py-3 font-mono text-sm font-bold tracking-[0.2em] text-black disabled:opacity-50"
             >
-              {saving ? 'SAVING...' : 'CONFIRM'}
+              {saving ? '저장 중...' : '저장'}
             </button>
           </div>
         </>

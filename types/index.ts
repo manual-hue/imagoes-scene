@@ -6,7 +6,6 @@ export type { EvidencePhoto } from './evidence';
 export type { Checkpoint } from './checkpoint';
 export type {
   AdminSessionSummary,
-  AdminRoomSummary,
   AdminCheckpointSummary,
   AdminSessionDetail,
 } from './admin';

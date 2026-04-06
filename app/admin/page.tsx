@@ -35,7 +35,7 @@ export default async function AdminSessionsPage() {
             게임 세션
           </h1>
           <p className="mt-1 text-xs text-black/40">
-            타이머, 방 접근, QR, 중간점검 관리
+            타이머, QR, 중간점검 관리
           </p>
         </div>
 
@@ -83,10 +83,6 @@ export default async function AdminSessionsPage() {
 
                 {/* Stats: vertical on mobile, horizontal on md+ */}
                 <div className="mt-4 flex flex-col gap-1.5 font-mono text-xs sm:flex-row sm:gap-6">
-                  <div className="flex justify-between sm:block">
-                    <span className="text-black/30">ROOMS</span>
-                    <span className="text-black sm:ml-2">{session.roomCount}</span>
-                  </div>
                   <div className="flex justify-between sm:block">
                     <span className="text-black/30">PLAYERS</span>
                     <span className="text-black sm:ml-2">{session.playerCount}</span>

@@ -3,34 +3,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-interface RoomEntry {
-  key: string;
-  shortCode: string;
-  name: string;
-  description: string;
-}
-
-let roomKeyCounter = 0;
-
-function createRoom(index: number): RoomEntry {
-  roomKeyCounter += 1;
-  return {
-    key: `room-${roomKeyCounter}`,
-    shortCode: `R${String(index).padStart(2, '0')}`,
-    name: '',
-    description: '',
-  };
-}
-
-function nextShortCode(rooms: RoomEntry[]): string {
-  const used = new Set(rooms.map((r) => r.shortCode.toUpperCase()));
-  for (let i = 1; i <= 99; i++) {
-    const code = `R${String(i).padStart(2, '0')}`;
-    if (!used.has(code)) return code;
-  }
-  return `R${String(rooms.length + 1).padStart(2, '0')}`;
-}
-
 interface NewSessionFormProps {
   adminEmail: string;
   defaultAccessCode: string;
@@ -38,35 +10,7 @@ interface NewSessionFormProps {
 }
 
 export function NewSessionForm({ adminEmail, defaultAccessCode, createAction }: NewSessionFormProps) {
-  const [rooms, setRooms] = useState<RoomEntry[]>(() => [createRoom(1)]);
   const [errors, setErrors] = useState<string[]>([]);
-
-  function addRoom() {
-    setRooms((prev) => {
-      const code = nextShortCode(prev);
-      roomKeyCounter += 1;
-      return [
-        ...prev,
-        {
-          key: `room-${roomKeyCounter}`,
-          shortCode: code,
-          name: '',
-          description: '',
-        },
-      ];
-    });
-  }
-
-  function removeRoom(key: string) {
-    if (rooms.length <= 1) return;
-    setRooms((prev) => prev.filter((r) => r.key !== key));
-  }
-
-  function updateRoom(key: string, field: keyof Omit<RoomEntry, 'key'>, value: string) {
-    setRooms((prev) =>
-      prev.map((r) => (r.key === key ? { ...r, [field]: value } : r)),
-    );
-  }
 
   function validate(): boolean {
     const errs: string[] = [];
@@ -75,40 +19,9 @@ export function NewSessionForm({ adminEmail, defaultAccessCode, createAction }: 
     const nameValue = form?.querySelector<HTMLInputElement>('[name="name"]')?.value.trim();
     if (!nameValue) errs.push('세션 이름을 입력해주세요');
 
-    if (rooms.length === 0) {
-      errs.push('최소 1개의 방을 추가해주세요');
-    }
-
-    const codes = new Set<string>();
-    for (const room of rooms) {
-      if (!room.shortCode.trim()) {
-        errs.push('방 코드를 입력해주세요');
-        break;
-      }
-      if (!room.name.trim()) {
-        errs.push('방 이름을 입력해주세요');
-        break;
-      }
-      const upper = room.shortCode.trim().toUpperCase();
-      if (codes.has(upper)) {
-        errs.push('중복된 방 코드가 있습니다');
-        break;
-      }
-      codes.add(upper);
-    }
-
     setErrors(errs);
     return errs.length === 0;
   }
-
-  const roomsJson = JSON.stringify(
-    rooms.map((r, i) => ({
-      shortCode: r.shortCode.trim().toUpperCase(),
-      name: r.name.trim(),
-      description: r.description.trim(),
-      order: i + 1,
-    })),
-  );
 
   return (
     <main className="mx-auto w-full max-w-2xl px-5 py-8">
@@ -135,8 +48,6 @@ export function NewSessionForm({ adminEmail, defaultAccessCode, createAction }: 
         }}
         className="space-y-6"
       >
-        <input type="hidden" name="rooms" value={roomsJson} />
-
         {/* Section 1: Basic Info */}
         <section className="border border-black/12">
           <div className="border-b border-black/8 px-5 py-3">
@@ -227,77 +138,6 @@ export function NewSessionForm({ adminEmail, defaultAccessCode, createAction }: 
                 className="min-h-[36px] w-full border border-black/12 bg-transparent px-3 font-mono text-sm text-black outline-none transition focus:border-black/30"
               />
             </label>
-          </div>
-        </section>
-
-        {/* Section 3: Rooms */}
-        <section className="border border-black/12">
-          <div className="flex items-center justify-between border-b border-black/8 px-5 py-3">
-            <h2 className="font-mono text-[11px] tracking-[0.2em] text-black/40 uppercase">
-              Rooms
-              <span className="ml-2 text-black/20">{rooms.length}</span>
-            </h2>
-            <button
-              type="button"
-              onClick={addRoom}
-              className="border border-black/25 px-3 py-1 font-mono text-[10px] tracking-wider text-black/50 transition hover:bg-black hover:text-white"
-            >
-              + ADD
-            </button>
-          </div>
-
-          <div className="divide-y divide-black/[0.06]">
-            {rooms.map((room, index) => (
-              <div key={room.key} className="px-5 py-4">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="font-mono text-[10px] tracking-[0.2em] text-black/20">
-                    #{String(index + 1).padStart(2, '0')}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => removeRoom(room.key)}
-                    disabled={rooms.length <= 1}
-                    className="font-mono text-[10px] text-black/20 tracking-wider transition hover:text-black disabled:cursor-not-allowed disabled:opacity-30"
-                  >
-                    DEL
-                  </button>
-                </div>
-
-                <div className="grid gap-2 sm:grid-cols-[80px_1fr]">
-                  <label className="flex flex-col gap-1">
-                    <span className="font-mono text-[10px] text-black/25 uppercase">Code</span>
-                    <input
-                      type="text"
-                      value={room.shortCode}
-                      onChange={(e) => updateRoom(room.key, 'shortCode', e.target.value)}
-                      maxLength={4}
-                      className="min-h-[36px] w-full border border-black/12 bg-transparent px-2 font-mono text-sm uppercase text-black outline-none transition focus:border-black/30"
-                    />
-                  </label>
-                  <label className="flex flex-col gap-1">
-                    <span className="font-mono text-[10px] text-black/25 uppercase">Name</span>
-                    <input
-                      type="text"
-                      value={room.name}
-                      onChange={(e) => updateRoom(room.key, 'name', e.target.value)}
-                      placeholder="101호 — 피해자 침실"
-                      className="min-h-[36px] w-full border border-black/12 bg-transparent px-3 text-sm text-black outline-none transition placeholder:text-black/20 focus:border-black/30"
-                    />
-                  </label>
-                </div>
-
-                <label className="mt-2 flex flex-col gap-1">
-                  <span className="font-mono text-[10px] text-black/25 uppercase">Desc</span>
-                  <input
-                    type="text"
-                    value={room.description}
-                    onChange={(e) => updateRoom(room.key, 'description', e.target.value)}
-                    placeholder="방에 대한 간략한 설명"
-                    className="min-h-[36px] w-full border border-black/12 bg-transparent px-3 text-sm text-black outline-none transition placeholder:text-black/20 focus:border-black/30"
-                  />
-                </label>
-              </div>
-            ))}
           </div>
         </section>
 

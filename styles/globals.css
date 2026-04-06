@@ -39,6 +39,40 @@ body {
   min-height: -webkit-fill-available;
 }
 
+/* ── 전역 모바일 뷰포트 강제 ── */
+.app-viewport {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.04), transparent 40%),
+    linear-gradient(180deg, #050608 0%, #0b0c11 100%);
+  overflow: hidden;
+}
+
+.app-frame {
+  position: relative;
+  width: min(100vw, 430px);
+  height: 100dvh;
+  height: calc(var(--vh, 1vh) * 100);
+  min-height: -webkit-fill-available;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  isolation: isolate;
+}
+
+@media (min-width: 431px) {
+  .app-frame {
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.04),
+      0 24px 80px rgba(0, 0, 0, 0.45);
+  }
+}
+
 .safe-bottom {
   padding-bottom: calc(env(safe-area-inset-bottom, 16px) + 16px);
 }
@@ -52,11 +86,9 @@ body {
 .room-layout {
   display: flex;
   justify-content: center;
-  height: 100dvh;
-  height: calc(var(--vh, 1vh) * 100);
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  position: fixed;
-  inset: 0;
   background:
     radial-gradient(circle at top, rgba(255, 255, 255, 0.06), transparent 32%),
     linear-gradient(180deg, #090a0d 0%, #12141a 100%);
@@ -64,20 +96,8 @@ body {
 
 .room-shell {
   position: relative;
-  width: min(100vw, 430px);
-  height: 100dvh;
-  height: calc(var(--vh, 1vh) * 100);
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   background-color: var(--bg-primary);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04);
-}
-
-@media (min-width: 431px) {
-  .room-shell {
-    border-left: 1px solid rgba(255, 255, 255, 0.08);
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow:
-      0 0 0 1px rgba(255, 255, 255, 0.04),
-      0 24px 80px rgba(0, 0, 0, 0.45);
-  }
 }

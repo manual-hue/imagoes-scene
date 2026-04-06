@@ -1,20 +1,11 @@
 import { QRCodeSVG } from 'qrcode.react';
-import type { QRPrintableRoom } from '@/lib/firebase/rooms';
+import type { QRPrintableObject } from '@/lib/firebase/rooms';
 import styles from '@/app/admin/session/[sessionId]/qr/page.module.css';
-
-export interface QRPrintableObject {
-  id: string;
-  name: string;
-  shortCode: string;
-  order: number;
-  type?: string;
-}
 
 interface QRGeneratorProps {
   baseUrl: string;
   sessionCode: string;
-  rooms: QRPrintableRoom[];
-  objects?: QRPrintableObject[];
+  objects: QRPrintableObject[];
 }
 
 const TYPE_COLORS: Record<string, string> = {
@@ -29,13 +20,10 @@ function buildObjectUrl(baseUrl: string, sessionCode: string, objectCode: string
   return `${normalizedBaseUrl}/o/${sessionCode}/${objectCode}`;
 }
 
-export function QRGenerator({ baseUrl, sessionCode, rooms, objects }: QRGeneratorProps) {
-  // Use objects if provided, otherwise fall back to rooms for backwards compat
-  const items: QRPrintableObject[] = objects ?? rooms.map((r) => ({ ...r, type: 'room' }));
-
+export function QRGenerator({ baseUrl, sessionCode, objects }: QRGeneratorProps) {
   return (
     <div className={styles.sheet}>
-      {items.map((item) => {
+      {objects.map((item) => {
         const url = buildObjectUrl(baseUrl, sessionCode, item.shortCode);
         const accentColor = TYPE_COLORS[item.type ?? 'room'] ?? '#22d3ee';
 

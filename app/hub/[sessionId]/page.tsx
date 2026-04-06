@@ -41,7 +41,7 @@ export default function HubPage() {
         {/* Header */}
         <header className="shrink-0 border-b border-[var(--border-dim)] px-5 pb-4 pt-6">
           <p className="font-mono text-xs tracking-[0.3em] text-[var(--text-mono)] terminal-glow">
-            CRIME SCENE ZERO
+            IMAGOES SCENE ZERO
           </p>
           <p className="mt-1 font-mono text-[10px] tracking-[0.2em] text-[var(--text-dim)]">
             SESSION · {session.sessionCode}
@@ -56,7 +56,7 @@ export default function HubPage() {
               <p className="font-body text-sm leading-relaxed text-[var(--text-secondary)]">
                 QR 코드를 스캔하여
                 <br />
-                수사를 시작하세요
+                수사를 시작합니다.
               </p>
               <p className="font-mono text-[10px] tracking-[0.24em] text-[var(--text-dim)]">
                 SCAN QR TO BEGIN INVESTIGATION

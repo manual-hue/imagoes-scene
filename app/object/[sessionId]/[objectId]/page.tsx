@@ -69,7 +69,6 @@ export default function ObjectPage() {
         <>
           <RoomRenderer
             objectId={obj.id}
-            sessionId={sessionId}
             content={obj.content as RoomContent}
             name={obj.name}
             shortCode={obj.shortCode}

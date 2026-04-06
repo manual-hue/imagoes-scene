@@ -7,7 +7,6 @@ import {
 } from 'firebase/firestore';
 import { firestore } from './index';
 import type { Session } from '@/types/session';
-import type { Room, Clue } from '@/types/room';
 import type { Player } from '@/types/player';
 import type { Checkpoint } from '@/types/checkpoint';
 
@@ -27,26 +26,6 @@ export function sessionsRef(): CollectionReference<Session> {
 
 export function sessionDoc(sessionId: string): DocumentReference<Session> {
   return typedDoc<Session>(`sessions/${sessionId}`);
-}
-
-// ── Rooms ──
-
-export function roomsRef(sessionId: string): CollectionReference<Room> {
-  return typedCollection<Room>(`sessions/${sessionId}/rooms`);
-}
-
-export function roomDoc(sessionId: string, roomId: string): DocumentReference<Room> {
-  return typedDoc<Room>(`sessions/${sessionId}/rooms/${roomId}`);
-}
-
-// ── Clues ──
-
-export function cluesRef(sessionId: string, roomId: string): CollectionReference<Clue> {
-  return typedCollection<Clue>(`sessions/${sessionId}/rooms/${roomId}/clues`);
-}
-
-export function clueDoc(sessionId: string, roomId: string, clueId: string): DocumentReference<Clue> {
-  return typedDoc<Clue>(`sessions/${sessionId}/rooms/${roomId}/clues/${clueId}`);
 }
 
 // ── Players ──

@@ -1,7 +1,6 @@
 import 'server-only';
 
 import caseZero from '@/data/cases/case-zero.json';
-import { resolveRoomByCode } from '@/lib/firebase/rooms';
 
 interface ResolvedObject {
   sessionId: string;
@@ -46,22 +45,8 @@ export async function resolveObjectByCode(
 ): Promise<ResolvedObject | null> {
   const normalizedCode = objectCode.trim().toUpperCase();
 
-  // Try local case first
   const local = resolveLocal(sessionCode, normalizedCode);
   if (local) return local;
-
-  // For room-type codes (R##), fall back to existing Firebase resolver
-  if (/^R\d{2}$/.test(normalizedCode)) {
-    const resolved = await resolveRoomByCode(sessionCode, normalizedCode);
-    if (resolved) {
-      return {
-        sessionId: resolved.sessionId,
-        objectId: resolved.roomId,
-        sessionCode: resolved.sessionCode,
-        objectCode: resolved.roomCode,
-      };
-    }
-  }
 
   return null;
 }

@@ -1,5 +1,3 @@
-import { Timestamp } from 'firebase/firestore';
-
 export interface BackgroundImage {
   url: string;
   blur?: string;
@@ -9,16 +7,12 @@ export interface BackgroundImage {
 
 export interface Room {
   id: string;
-  sessionId: string;
   name: string;
   shortCode: string;
   description: string;
   backgroundImage: BackgroundImage;
   clues?: Clue[];
   order: number;
-  isAccessible: boolean;
-  visitCount: number;
-  createdAt: Timestamp;
 }
 
 export interface Clue {

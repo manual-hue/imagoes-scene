@@ -13,6 +13,7 @@ const LOCK_DURATION_MS = 30_000;
 
 const LS_KEY_ATTEMPTS = 'csz_gate_attempts';
 const LS_KEY_LOCKED = 'csz_gate_locked_until';
+const LS_KEY_PLAYER_NAME = 'csz_player_name';
 
 interface GateState {
   attempts: number;
@@ -39,7 +40,8 @@ function saveLockState(state: GateState) {
 function GateContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirectPath = searchParams.get('redirect') ?? '/';
+  const rawRedirect = searchParams.get('redirect') ?? '/';
+  const redirectPath = rawRedirect.startsWith('/') ? rawRedirect : `/${rawRedirect}`;
 
   const [code, setCode] = useState('');
   const [gateState, setGateState] = useState<GateState>({
@@ -49,6 +51,8 @@ function GateContent() {
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [step, setStep] = useState<'code' | 'name'>('code');
+  const [playerName, setPlayerName] = useState('');
 
   useEffect(() => {
     setGateState(loadLockState());
@@ -89,7 +93,12 @@ function GateContent() {
         // Firebase Anonymous Auth — will be wired in Firebase sprint
         // await signInAnonymously(auth);
 
-        router.replace(redirectPath);
+        const existingName = localStorage.getItem(LS_KEY_PLAYER_NAME)?.trim() ?? '';
+        if (existingName) {
+          router.replace(redirectPath);
+        } else {
+          setStep('name');
+        }
         return;
       }
 
@@ -119,6 +128,16 @@ function GateContent() {
     }
   };
 
+  const handleNameSubmit = () => {
+    const trimmed = playerName.trim();
+    if (!trimmed) {
+      setError('이름을 입력해주세요.');
+      return;
+    }
+    localStorage.setItem(LS_KEY_PLAYER_NAME, trimmed);
+    router.replace(redirectPath);
+  };
+
   if (!mounted) return null;
 
   return (
@@ -131,14 +150,51 @@ function GateContent() {
         className="text-center mb-10"
       >
         <h1 className="font-mono text-lg tracking-[0.25em] text-[var(--text-mono)] terminal-glow mb-2">
-          ◈ CRIME SCENE ZERO ◈
+          ◈ IMAGOES SCENE ZERO ◈
         </h1>
         <p className="font-body text-sm text-[var(--text-secondary)]">
-          신원 확인
+          {step === 'code' ? '신원 확인' : '참가 등록'}
         </p>
       </motion.div>
 
-      {/* Input area */}
+      {step === 'name' && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="w-full max-w-sm space-y-6"
+        >
+          <div className="border border-[var(--border-mid)] bg-[var(--bg-secondary)] rounded-sm p-4">
+            <p className="font-mono text-xs text-[var(--text-dim)] tracking-widest mb-3 text-center">
+              ENTER YOUR NAME
+            </p>
+            <input
+              autoFocus
+              value={playerName}
+              onChange={(e) => setPlayerName(e.target.value.slice(0, 20))}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') handleNameSubmit();
+              }}
+              placeholder="이름을 입력하세요."
+              className="w-full bg-transparent text-center font-mono text-md tracking-[0.15em] text-[var(--text-mono)] terminal-glow outline-none"
+            />
+          </div>
+          <button
+            onClick={handleNameSubmit}
+            className="w-full py-3 min-h-[44px] font-mono text-sm tracking-[0.2em] border border-[var(--border-mid)] text-[var(--text-primary)] bg-[var(--bg-elevated)] hover:border-[var(--accent-teal)] hover:text-[var(--accent-teal)] active:scale-[0.98] transition-all duration-150"
+          >
+            ENTER
+          </button>
+          {error && (
+            <p className="font-mono text-xs text-[var(--accent-red)] text-center tracking-wider">
+              {error}
+            </p>
+          )}
+        </motion.div>
+      )}
+
+      {step === 'code' && (
+      /* Input area */
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -223,6 +279,7 @@ function GateContent() {
           )}
         </AnimatePresence>
       </motion.div>
+      )}
     </div>
   );
 }
