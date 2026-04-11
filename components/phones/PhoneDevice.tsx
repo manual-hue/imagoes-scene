@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import type { MockPhone, PhoneApp, PhoneCalendarDay, PhoneMail, PhoneMapSearch, PhonePhoto, PhoneSafariSearch, PhoneThread } from '@/types/phone';
+import type { MockPhone, PhoneApp, PhoneCalendarDay, PhoneMail, PhoneMapSearch, PhoneNote, PhonePhoto, PhoneSafariSearch, PhoneThread } from '@/types/phone';
 
 interface PhoneDeviceProps {
   phone: MockPhone;
@@ -249,7 +249,7 @@ function AppContent({ app, phone }: { app: PhoneApp; phone: MockPhone }) {
   }
 
   if (app.id === 'gallery') {
-    return <GalleryView photos={app.content.photos ?? []} phoneId={phone.id} />;
+    return <GalleryView photos={app.content.photos ?? []} deletedPhotos={app.content.deletedPhotos ?? []} phoneId={phone.id} />;
   }
 
   if (app.id === 'gmail') {
@@ -270,6 +270,10 @@ function AppContent({ app, phone }: { app: PhoneApp; phone: MockPhone }) {
 
   if (app.id === 'maps') {
     return <MapsView searches={app.content.mapSearches ?? []} />;
+  }
+
+  if (app.id === 'notes') {
+    return <NotesView notes={app.content.notes ?? []} fallback={app.content.note} />;
   }
 
   return (
@@ -387,30 +391,99 @@ function MessagesView({ threads }: { threads: PhoneThread[] }) {
 }
 
 
-function GalleryView({ photos, phoneId }: { photos: PhonePhoto[]; phoneId: string }) {
+function GalleryView({ photos, deletedPhotos, phoneId }: { photos: PhonePhoto[]; deletedPhotos: PhonePhoto[]; phoneId: string }) {
+  const [selectedAlbum, setSelectedAlbum] = useState<'default' | 'deleted' | null>(null);
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
-  const galleryPhotos = Array.from({ length: 27 }, (_, index) => {
-    const sourcePhoto = photos[index % Math.max(photos.length, 1)];
-    const label = sourcePhoto?.title ?? `Photo ${index + 1}`;
-    const stamp = sourcePhoto?.stamp ?? `${String((index % 12) + 1).padStart(2, '0')}:${index % 2 === 0 ? '12' : '48'}`;
 
-    return {
-      title: label,
-      stamp,
-      src: `https://picsum.photos/seed/${phoneId}-gallery-${index + 1}/1200/1200`,
-    };
-  });
-  const selectedPhoto = selectedPhotoIndex === null ? null : galleryPhotos[selectedPhotoIndex];
+  const galleryPhotos = photos.map((p, index) => ({
+    title: p.title,
+    stamp: p.stamp,
+    src: `https://picsum.photos/seed/${phoneId}-gallery-${index + 1}/1200/1200`,
+  }));
+
+  const deletedPhotoList = deletedPhotos.map((p, index) => ({
+    title: p.title,
+    stamp: p.stamp,
+    src: `https://picsum.photos/seed/${phoneId}-deleted-${index + 1}/1200/1200`,
+  }));
+
+  const activePhotos = selectedAlbum === 'deleted' ? deletedPhotoList : galleryPhotos;
+  const albumTitle = selectedAlbum === 'deleted' ? '삭제된 사진' : '기본 앨범';
+  const selectedPhoto = selectedPhotoIndex === null ? null : activePhotos[selectedPhotoIndex];
+
+  const BottomNav = (
+    <div className="grid grid-cols-4 border-t border-white/10 bg-black/95 px-2 pb-7 pt-2 text-center">
+      {['Library', 'For You', 'Albums', 'Search'].map((item, index) => (
+        <div key={item} className={index === 2 ? 'text-[#0a84ff]' : 'text-white/42'}>
+          <p className="text-[11px] font-medium">{item}</p>
+        </div>
+      ))}
+    </div>
+  );
+
+  if (selectedAlbum === null) {
+    return (
+      <div className="flex h-full min-h-0 flex-col bg-black">
+        <div className="border-b border-white/8 px-4 pb-3 pt-4">
+          <p className="text-center text-[15px] font-semibold tracking-[-0.01em] text-white">앨범</p>
+        </div>
+
+        <div className="min-h-0 flex-1 overflow-y-auto px-4 py-4">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-white/40">내 앨범</p>
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              { id: 'default' as const, label: '기본 앨범', count: galleryPhotos.length, seed: `${phoneId}-gallery-1` },
+              { id: 'deleted' as const, label: '삭제된 사진', count: deletedPhotoList.length, seed: `${phoneId}-deleted-1` },
+            ].map((album) => (
+              <button
+                key={album.id}
+                type="button"
+                onClick={() => setSelectedAlbum(album.id)}
+                className="text-left"
+              >
+                {album.count === 0 ? (
+                  <div className="aspect-square w-full rounded-xl bg-neutral-800 flex flex-col gap-2 p-3">
+                    <div className="h-2 w-3/4 rounded bg-neutral-700" />
+                    <div className="flex-1 grid grid-cols-2 gap-1">
+                      {Array.from({ length: 4 }).map((_, i) => (
+                        <div key={i} className="rounded bg-neutral-700/60" />
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div
+                    className="aspect-square w-full rounded-xl bg-neutral-800"
+                    style={{ backgroundImage: `url(https://picsum.photos/seed/${album.seed}/400/400)`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+                  />
+                )}
+                <p className="mt-1.5 text-[13px] font-medium text-white">{album.label}</p>
+                <p className="text-[12px] text-white/40">{album.count}</p>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {BottomNav}
+      </div>
+    );
+  }
 
   return (
     <div className="flex h-full min-h-0 flex-col bg-black">
       <div className="border-b border-white/8 px-4 pb-3 pt-4">
-        <p className="text-center text-[15px] font-semibold tracking-[-0.01em] text-white">최근 항목</p>
+        <button
+          type="button"
+          onClick={() => { setSelectedAlbum(null); setSelectedPhotoIndex(null); }}
+          className="absolute left-4 text-[#0a84ff] text-sm"
+        >
+          ‹ 앨범
+        </button>
+        <p className="text-center text-[15px] font-semibold tracking-[-0.01em] text-white">{albumTitle}</p>
       </div>
 
       <div className="min-h-0 flex-1 overflow-y-auto px-0 pb-0 pt-0">
         <div className="grid grid-cols-3 gap-0">
-          {galleryPhotos.map((photo, index) => (
+          {activePhotos.map((photo, index) => (
             <button
               key={`${photo.title}-${photo.stamp}-${index}`}
               type="button"
@@ -425,13 +498,7 @@ function GalleryView({ photos, phoneId }: { photos: PhonePhoto[]; phoneId: strin
         </div>
       </div>
 
-      <div className="grid grid-cols-4 border-t border-white/10 bg-black/95 px-2 pb-7 pt-2 text-center">
-        {['Library', 'For You', 'Albums', 'Search'].map((item, index) => (
-          <div key={item} className={index === 0 ? 'text-[#0a84ff]' : 'text-white/42'}>
-            <p className="text-[11px] font-medium">{item}</p>
-          </div>
-        ))}
-      </div>
+      {BottomNav}
 
       {selectedPhoto && (
         <div className="absolute inset-0 z-20 flex flex-col bg-black">
@@ -912,6 +979,72 @@ function MapsView({ searches }: { searches: PhoneMapSearch[] }) {
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+function NotesView({ notes, fallback }: { notes: PhoneNote[]; fallback?: string }) {
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const selected = notes.find((n) => n.id === selectedId) ?? null;
+
+  if (notes.length === 0) {
+    return (
+      <div className="p-5">
+        <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
+          <p className="font-mono text-[11px] tracking-[0.18em] text-slate-400">NOTES</p>
+          <p className="mt-3 text-sm leading-relaxed text-slate-700">{fallback ?? '메모 없음'}</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (selected) {
+    return (
+      <div className="flex h-full flex-col bg-[#faf9f5]">
+        <div className="flex items-center gap-3 border-b border-slate-200 bg-[#faf9f5] px-4 pb-3 pt-4">
+          <button
+            type="button"
+            onClick={() => setSelectedId(null)}
+            className="rounded-full border border-slate-300 px-3 py-1.5 text-sm text-slate-700"
+          >
+            메모
+          </button>
+          <p className="flex-1 truncate text-center text-sm font-semibold text-slate-900">{selected.title}</p>
+          <span className="w-16" />
+        </div>
+        <div className="flex-1 overflow-y-auto px-5 py-4">
+          <p className="mb-3 font-mono text-[10px] tracking-[0.18em] text-slate-400">{selected.updatedAt}</p>
+          <h2 className="mb-3 text-xl font-bold text-slate-900">{selected.title}</h2>
+          {Array.isArray(selected.body)
+            ? selected.body.map((para, i) => (
+                <p key={i} className="mb-3 whitespace-pre-wrap text-sm leading-relaxed text-slate-800">{para}</p>
+              ))
+            : <p className="whitespace-pre-wrap text-sm leading-relaxed text-slate-800">{selected.body}</p>
+          }
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-[#faf9f5] p-4">
+      <p className="mb-3 px-1 font-mono text-[11px] tracking-[0.2em] text-slate-400">메모</p>
+      <div className="space-y-2">
+        {notes.map((note) => (
+          <button
+            key={note.id}
+            type="button"
+            onClick={() => setSelectedId(note.id)}
+            className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-left shadow-sm"
+          >
+            <p className="text-sm font-semibold text-slate-900">{note.title}</p>
+            <div className="mt-1 flex items-center gap-2">
+              <span className="font-mono text-[10px] text-slate-400">{note.updatedAt}</span>
+              <span className="truncate text-[11px] text-slate-500">{(() => { const t = Array.isArray(note.body) ? note.body[0] ?? '' : note.body; return t.slice(0, 40) + (t.length > 40 ? '…' : ''); })()}</span>
+            </div>
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

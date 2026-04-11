@@ -88,11 +88,20 @@ export interface PhoneMapSearch {
   timestamp: string;
 }
 
+export interface PhoneNote {
+  id: string;
+  title: string;
+  body: string | string[];
+  updatedAt: string;
+}
+
 export interface PhoneAppContent {
   note?: string;
+  notes?: PhoneNote[];
   sections?: PhoneAppSectionContent[];
   threads?: PhoneThread[];
   photos?: PhonePhoto[];
+  deletedPhotos?: PhonePhoto[];
   mails?: PhoneMail[];
   voiceMemos?: PhoneVoiceMemo[];
   recentSearches?: PhoneSafariSearch[];

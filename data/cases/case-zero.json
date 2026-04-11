@@ -136,11 +136,11 @@
     {
       "id": "phone-kim-soyeon",
       "type": "phone",
-      "name": "김소연의 핸드폰",
+      "name": "윤노의 핸드폰",
       "shortCode": "P01",
       "order": 4,
       "content": {
-        "owner": "김소연",
+        "owner": "윤노",
         "device": "iPhone 15 Pro",
         "phoneDataId": "phone-kim-soyeon"
       }
@@ -148,13 +148,73 @@
     {
       "id": "phone-hong-seyoung",
       "type": "phone",
-      "name": "홍세영의 핸드폰",
+      "name": "마오의 핸드폰",
       "shortCode": "P02",
       "order": 5,
       "content": {
-        "owner": "홍세영",
+        "owner": "마오",
         "device": "iPhone 14",
         "phoneDataId": "phone-hong-seyoung"
+      }
+    },
+    {
+      "id": "phone-jeong-gwa",
+      "type": "phone",
+      "name": "정과의 핸드폰",
+      "shortCode": "P03",
+      "order": 6,
+      "content": {
+        "owner": "정과",
+        "device": "iPhone 15",
+        "phoneDataId": "phone-jeong-gwa"
+      }
+    },
+    {
+      "id": "phone-man-gyeong",
+      "type": "phone",
+      "name": "만경의 핸드폰",
+      "shortCode": "P04",
+      "order": 7,
+      "content": {
+        "owner": "만경",
+        "device": "iPhone 15",
+        "phoneDataId": "phone-man-gyeong"
+      }
+    },
+    {
+      "id": "phone-mo-weing",
+      "type": "phone",
+      "name": "모웨잉의 핸드폰",
+      "shortCode": "P05",
+      "order": 8,
+      "content": {
+        "owner": "모웨잉",
+        "device": "iPhone 15",
+        "phoneDataId": "phone-mo-weing"
+      }
+    },
+    {
+      "id": "phone-sim-an",
+      "type": "phone",
+      "name": "심안의 핸드폰",
+      "shortCode": "P06",
+      "order": 9,
+      "content": {
+        "owner": "심안",
+        "device": "iPhone 15",
+        "phoneDataId": "phone-sim-an"
+      }
+    },
+    {
+      "id": "phone-pink-princess",
+      "type": "phone",
+      "name": "핑크공주의 핸드폰",
+      "shortCode": "P07",
+      "order": 10,
+      "content": {
+        "owner": "핑크공주",
+        "device": "iPhone 15",
+        "phoneDataId": "phone-pink-princess"
       }
     }
   ]

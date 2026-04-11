@@ -1,8 +1,8 @@
 [
   {
     "id": "phone-kim-soyeon",
-    "name": "김소연의 핸드폰",
-    "owner": "김소연",
+    "name": "윤노의 핸드폰",
+    "owner": "윤노",
     "device": "iPhone 15 Pro",
     "screen": {
       "time": "22:14",
@@ -14,7 +14,7 @@
       "notifications": [
         {
           "app": "메세지",
-          "sender": "홍세영",
+          "sender": "마오",
           "preview": "지금 바로 통화 가능해?",
           "time": "21:48"
         },
@@ -25,8 +25,22 @@
           "time": "21:07"
         }
       ],
-      "homeApps": ["files", "messages", "gallery", "gmail", "calendar", "notes", "voice-memos", "settings"],
-      "dockApps": ["phone", "safari", "messages", "camera"]
+      "homeApps": [
+        "files",
+        "messages",
+        "gallery",
+        "gmail",
+        "calendar",
+        "notes",
+        "voice-memos",
+        "settings"
+      ],
+      "dockApps": [
+        "phone",
+        "safari",
+        "messages",
+        "camera"
+      ]
     },
     "apps": [
       {
@@ -38,11 +52,20 @@
           "sections": [
             {
               "title": "최근 항목",
-              "items": ["통화녹음_편집본.m4a", "영수증_주차장.pdf", "미팅메모_0403.txt"]
+              "items": [
+                "통화녹음_편집본.m4a",
+                "영수증_주차장.pdf",
+                "미팅메모_0403.txt"
+              ]
             },
             {
               "title": "폴더",
-              "items": ["개인 서류", "증거 백업", "음성 메모", "스크린샷 모음"]
+              "items": [
+                "개인 서류",
+                "증거 백업",
+                "음성 메모",
+                "스크린샷 모음"
+              ]
             }
           ]
         }
@@ -55,37 +78,91 @@
         "content": {
           "threads": [
             {
-              "name": "홍세영",
+              "name": "마오",
               "time": "21:48",
               "unread": true,
               "preview": "지금 바로 통화 가능해?",
               "messages": [
-                { "id": "soyeon-seyoung-1", "sender": "them", "text": "오늘 저녁에 시간 돼?", "time": "20:30" },
-                { "id": "soyeon-seyoung-2", "sender": "me", "text": "응 괜찮아. 몇 시?", "time": "20:35" },
-                { "id": "soyeon-seyoung-3", "sender": "them", "text": "10시쯤 도착할 것 같아.", "time": "20:42" },
-                { "id": "soyeon-seyoung-4", "sender": "me", "text": "알겠어. 도착하면 연락해.", "time": "20:50" },
-                { "id": "soyeon-seyoung-5", "sender": "them", "text": "지금 바로 통화 가능해?", "time": "21:48" }
+                {
+                  "id": "soyeon-seyoung-1",
+                  "sender": "them",
+                  "text": "오늘 저녁에 시간 돼?",
+                  "time": "20:30"
+                },
+                {
+                  "id": "soyeon-seyoung-2",
+                  "sender": "me",
+                  "text": "응 괜찮아. 몇 시?",
+                  "time": "20:35"
+                },
+                {
+                  "id": "soyeon-seyoung-3",
+                  "sender": "them",
+                  "text": "10시쯤 도착할 것 같아.",
+                  "time": "20:42"
+                },
+                {
+                  "id": "soyeon-seyoung-4",
+                  "sender": "me",
+                  "text": "알겠어. 도착하면 연락해.",
+                  "time": "20:50"
+                },
+                {
+                  "id": "soyeon-seyoung-5",
+                  "sender": "them",
+                  "text": "지금 바로 통화 가능해?",
+                  "time": "21:48"
+                }
               ]
             },
             {
-              "name": "민재",
+              "name": "정과",
               "time": "20:14",
               "unread": false,
-              "preview": "사진은 내가 지웠어. 걱정하지 마.",
+              "preview": "와서 얘기해~ 준비는 여러모로 단단히 해 두고 있으니 걱정 말고 ^^",
               "messages": [
-                { "id": "soyeon-minjae-1", "sender": "me", "text": "아까 그 사진 어떻게 됐어?", "time": "19:50" },
-                { "id": "soyeon-minjae-2", "sender": "them", "text": "사진은 내가 지웠어. 걱정하지 마.", "time": "20:14" }
-              ]
-            },
-            {
-              "name": "엄마",
-              "time": "19:02",
-              "unread": false,
-              "preview": "오늘 늦는다고 했지?",
-              "messages": [
-                { "id": "soyeon-mom-1", "sender": "them", "text": "저녁 먹었어?", "time": "18:30" },
-                { "id": "soyeon-mom-2", "sender": "me", "text": "아직이요. 약속 있어서 늦을 것 같아요.", "time": "18:45" },
-                { "id": "soyeon-mom-3", "sender": "them", "text": "오늘 늦는다고 했지?", "time": "19:02" }
+                {
+                  "id": "soyeon-jeongwa-1",
+                  "sender": "me",
+                  "text": "자기야 오늘 늦지 마",
+                  "time": "19:50"
+                },
+                {
+                  "id": "soyeon-jeongwa-2",
+                  "sender": "them",
+                  "text": "정확하게 n분의 1이야?",
+                  "time": "20:14"
+                },
+                {
+                  "id": "soyeon-jeongwa-2",
+                  "sender": "me",
+                  "text": "ㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
+                  "time": "20:14"
+                },
+                {
+                  "id": "soyeon-jeongwa-2",
+                  "sender": "me",
+                  "text": "삭제된 메시지입니다.",
+                  "time": "20:14"
+                },
+                {
+                  "id": "soyeon-jeongwa-2",
+                  "sender": "them",
+                  "text": "미쳤냐?",
+                  "time": "20:14"
+                },
+                {
+                  "id": "soyeon-jeongwa-3",
+                  "sender": "me",
+                  "text": "실수ㅎ",
+                  "time": "20:14"
+                },
+                {
+                  "id": "soyeon-jeongwa-4",
+                  "sender": "me",
+                  "text": "와서 얘기해~ 준비는 여러모로 단단히 해 두고 있으니 걱정 말고 ^^",
+                  "time": "20:14"
+                }
               ]
             },
             {
@@ -94,8 +171,18 @@
               "unread": false,
               "preview": "도착 전에 다시 확인.",
               "messages": [
-                { "id": "soyeon-unknown-1", "sender": "them", "text": "장소 변경 없지?", "time": "17:40" },
-                { "id": "soyeon-unknown-2", "sender": "them", "text": "도착 전에 다시 확인.", "time": "18:12" }
+                {
+                  "id": "soyeon-unknown-1",
+                  "sender": "them",
+                  "text": "장소 변경 없지?",
+                  "time": "17:40"
+                },
+                {
+                  "id": "soyeon-unknown-2",
+                  "sender": "them",
+                  "text": "도착 전에 다시 확인.",
+                  "time": "18:12"
+                }
               ]
             }
           ]
@@ -108,14 +195,38 @@
         "theme": "pink",
         "content": {
           "photos": [
-            { "title": "거실 거울 셀카", "stamp": "21:03" },
-            { "title": "와인잔 클로즈업", "stamp": "20:41" },
-            { "title": "복도 전신샷", "stamp": "20:12" },
-            { "title": "주차장 출입구", "stamp": "19:56" },
-            { "title": "테이블 메모", "stamp": "19:44" },
-            { "title": "차 안 대시보드", "stamp": "18:51" },
-            { "title": "엘리베이터 반사", "stamp": "18:22" },
-            { "title": "출입문 손잡이", "stamp": "17:58" }
+            {
+              "title": "거실 거울 셀카",
+              "stamp": "21:03"
+            },
+            {
+              "title": "와인잔 클로즈업",
+              "stamp": "20:41"
+            },
+            {
+              "title": "복도 전신샷",
+              "stamp": "20:12"
+            },
+            {
+              "title": "주차장 출입구",
+              "stamp": "19:56"
+            },
+            {
+              "title": "테이블 메모",
+              "stamp": "19:44"
+            },
+            {
+              "title": "차 안 대시보드",
+              "stamp": "18:51"
+            },
+            {
+              "title": "엘리베이터 반사",
+              "stamp": "18:22"
+            },
+            {
+              "title": "출입문 손잡이",
+              "stamp": "17:58"
+            }
           ]
         }
       },
@@ -177,30 +288,76 @@
               "date": "4월 3일",
               "dayOfWeek": "목",
               "events": [
-                { "id": "sy-cal-1", "title": "팀 미팅", "time": "10:00", "endTime": "11:00", "location": "회의실 A", "color": "#4285f4" },
-                { "id": "sy-cal-2", "title": "점심 약속 (민재)", "time": "12:30", "endTime": "13:30", "location": "성수동 파스타집", "color": "#0f9d58" },
-                { "id": "sy-cal-3", "title": "private meeting", "time": "22:30", "color": "#db4437" }
+                {
+                  "id": "sy-cal-1",
+                  "title": "팀 미팅",
+                  "time": "10:00",
+                  "endTime": "11:00",
+                  "location": "회의실 A",
+                  "color": "#4285f4"
+                },
+                {
+                  "id": "sy-cal-2",
+                  "title": "점심 약속 (민재)",
+                  "time": "12:30",
+                  "endTime": "13:30",
+                  "location": "성수동 파스타집",
+                  "color": "#0f9d58"
+                },
+                {
+                  "id": "sy-cal-3",
+                  "title": "private meeting",
+                  "time": "22:30",
+                  "color": "#db4437"
+                }
               ]
             },
             {
               "date": "4월 2일",
               "dayOfWeek": "수",
               "events": [
-                { "id": "sy-cal-4", "title": "헬스장", "time": "07:00", "endTime": "08:00", "color": "#f4b400" },
-                { "id": "sy-cal-5", "title": "프로젝트 마감", "time": "18:00", "color": "#4285f4", "isAllDay": false }
+                {
+                  "id": "sy-cal-4",
+                  "title": "헬스장",
+                  "time": "07:00",
+                  "endTime": "08:00",
+                  "color": "#f4b400"
+                },
+                {
+                  "id": "sy-cal-5",
+                  "title": "프로젝트 마감",
+                  "time": "18:00",
+                  "color": "#4285f4",
+                  "isAllDay": false
+                }
               ]
             },
             {
               "date": "4월 1일",
               "dayOfWeek": "화",
               "events": [
-                { "id": "sy-cal-6", "title": "치과 예약", "time": "14:00", "endTime": "15:00", "location": "서울치과의원", "color": "#0f9d58" }
+                {
+                  "id": "sy-cal-6",
+                  "title": "치과 예약",
+                  "time": "14:00",
+                  "endTime": "15:00",
+                  "location": "서울치과의원",
+                  "color": "#0f9d58"
+                }
               ]
             }
           ]
         }
       },
-      { "id": "notes", "label": "메모", "icon": "notes", "theme": "yellow", "content": { "note": "세영과 대화 내용 정리 필요. 사진 백업 확인." } },
+      {
+        "id": "notes",
+        "label": "메모",
+        "icon": "notes",
+        "theme": "yellow",
+        "content": {
+          "note": "세영과 대화 내용 정리 필요. 사진 백업 확인."
+        }
+      },
       {
         "id": "voice-memos",
         "label": "음성 메모",
@@ -209,15 +366,55 @@
         "content": {
           "note": "새 녹음 2개",
           "voiceMemos": [
-            { "id": "soyeon-vm-1", "title": "녹음 04/03 #1", "duration": "0:03", "recordedAt": "오늘 21:14", "src": "https://samplelib.com/mp3/sample-3s.mp3" },
-            { "id": "soyeon-vm-2", "title": "녹음 04/03 #2", "duration": "0:06", "recordedAt": "오늘 20:41", "src": "https://samplelib.com/mp3/sample-6s.mp3" },
-            { "id": "soyeon-vm-3", "title": "통화 메모", "duration": "0:09", "recordedAt": "어제 18:22", "src": "https://samplelib.com/mp3/sample-9s.mp3" },
-            { "id": "soyeon-vm-4", "title": "주차장 소리", "duration": "0:12", "recordedAt": "어제 17:58", "src": "https://samplelib.com/mp3/sample-12s.mp3" }
+            {
+              "id": "soyeon-vm-1",
+              "title": "녹음 04/03 #1",
+              "duration": "0:03",
+              "recordedAt": "오늘 21:14",
+              "src": "https://samplelib.com/mp3/sample-3s.mp3"
+            },
+            {
+              "id": "soyeon-vm-2",
+              "title": "녹음 04/03 #2",
+              "duration": "0:06",
+              "recordedAt": "오늘 20:41",
+              "src": "https://samplelib.com/mp3/sample-6s.mp3"
+            },
+            {
+              "id": "soyeon-vm-3",
+              "title": "통화 메모",
+              "duration": "0:09",
+              "recordedAt": "어제 18:22",
+              "src": "https://samplelib.com/mp3/sample-9s.mp3"
+            },
+            {
+              "id": "soyeon-vm-4",
+              "title": "주차장 소리",
+              "duration": "0:12",
+              "recordedAt": "어제 17:58",
+              "src": "https://samplelib.com/mp3/sample-12s.mp3"
+            }
           ]
         }
       },
-      { "id": "settings", "label": "설정", "icon": "gear", "theme": "gray", "content": { "note": "Face ID, 집중 모드, 알림" } },
-      { "id": "phone", "label": "전화", "icon": "phone", "theme": "green", "content": { "note": "최근 통화 8건" } },
+      {
+        "id": "settings",
+        "label": "설정",
+        "icon": "gear",
+        "theme": "gray",
+        "content": {
+          "note": "Face ID, 집중 모드, 알림"
+        }
+      },
+      {
+        "id": "phone",
+        "label": "전화",
+        "icon": "phone",
+        "theme": "green",
+        "content": {
+          "note": "최근 통화 8건"
+        }
+      },
       {
         "id": "safari",
         "label": "Safari",
@@ -226,21 +423,49 @@
         "content": {
           "note": "열린 탭 11개",
           "recentSearches": [
-            { "id": "soyeon-search-1", "term": "성수동 카페", "timestamp": "방금 전" },
-            { "id": "soyeon-search-2", "term": "서울 지하철 노선도", "timestamp": "12분 전" },
-            { "id": "soyeon-search-3", "term": "아이클라우드 데이터 삭제하는 방법", "timestamp": "35분 전" },
-            { "id": "soyeon-search-4", "term": "한강공원 주차장", "timestamp": "1시간 전" },
-            { "id": "soyeon-search-5", "term": "분실물 센터", "timestamp": "어제" }
+            {
+              "id": "soyeon-search-1",
+              "term": "성수동 카페",
+              "timestamp": "방금 전"
+            },
+            {
+              "id": "soyeon-search-2",
+              "term": "서울 지하철 노선도",
+              "timestamp": "12분 전"
+            },
+            {
+              "id": "soyeon-search-3",
+              "term": "아이클라우드 데이터 삭제하는 방법",
+              "timestamp": "35분 전"
+            },
+            {
+              "id": "soyeon-search-4",
+              "term": "한강공원 주차장",
+              "timestamp": "1시간 전"
+            },
+            {
+              "id": "soyeon-search-5",
+              "term": "분실물 센터",
+              "timestamp": "어제"
+            }
           ]
         }
       },
-      { "id": "camera", "label": "카메라", "icon": "camera", "theme": "gray", "content": { "note": "최근 촬영본 보기" } }
+      {
+        "id": "camera",
+        "label": "카메라",
+        "icon": "camera",
+        "theme": "gray",
+        "content": {
+          "note": "최근 촬영본 보기"
+        }
+      }
     ]
   },
   {
     "id": "phone-hong-seyoung",
-    "name": "홍세영의 핸드폰",
-    "owner": "홍세영",
+    "name": "마오의 핸드폰",
+    "owner": "마오",
     "device": "iPhone 14",
     "screen": {
       "time": "22:16",
@@ -252,7 +477,7 @@
       "notifications": [
         {
           "app": "메세지",
-          "sender": "김소연",
+          "sender": "윤노",
           "preview": "아직 집 안이야. 문자로 해.",
           "time": "21:50"
         },
@@ -263,8 +488,22 @@
           "time": "20:00"
         }
       ],
-      "homeApps": ["files", "messages", "gallery", "gmail", "maps", "notes", "calendar", "settings"],
-      "dockApps": ["phone", "gmail", "messages", "camera"]
+      "homeApps": [
+        "files",
+        "messages",
+        "gallery",
+        "gmail",
+        "maps",
+        "notes",
+        "calendar",
+        "settings"
+      ],
+      "dockApps": [
+        "phone",
+        "gmail",
+        "messages",
+        "camera"
+      ]
     },
     "apps": [
       {
@@ -276,11 +515,20 @@
           "sections": [
             {
               "title": "최근 항목",
-              "items": ["대화요약.docx", "택시영수증.jpg", "위치기록.csv"]
+              "items": [
+                "대화요약.docx",
+                "택시영수증.jpg",
+                "위치기록.csv"
+              ]
             },
             {
               "title": "공유 폴더",
-              "items": ["행사 자료", "임시 백업", "삭제 예정", "개인 메모"]
+              "items": [
+                "행사 자료",
+                "임시 백업",
+                "삭제 예정",
+                "개인 메모"
+              ]
             }
           ]
         }
@@ -293,13 +541,23 @@
         "content": {
           "threads": [
             {
-              "name": "김소연",
+              "name": "윤노",
               "time": "21:50",
               "unread": true,
               "preview": "아직 집 안이야. 문자로 해.",
               "messages": [
-                { "id": "seyoung-soyeon-1", "sender": "me", "text": "지금 어디야? 전화 좀 받아.", "time": "21:40" },
-                { "id": "seyoung-soyeon-2", "sender": "them", "text": "아직 집 안이야. 문자로 해.", "time": "21:50" }
+                {
+                  "id": "seyoung-soyeon-1",
+                  "sender": "me",
+                  "text": "지금 어디야? 전화 좀 받아.",
+                  "time": "21:40"
+                },
+                {
+                  "id": "seyoung-soyeon-2",
+                  "sender": "them",
+                  "text": "아직 집 안이야. 문자로 해.",
+                  "time": "21:50"
+                }
               ]
             },
             {
@@ -308,8 +566,18 @@
               "unread": false,
               "preview": "들어가기 전에 다시 연락.",
               "messages": [
-                { "id": "seyoung-unknown-1", "sender": "them", "text": "준비 다 됐어?", "time": "20:55" },
-                { "id": "seyoung-unknown-2", "sender": "them", "text": "들어가기 전에 다시 연락.", "time": "21:11" }
+                {
+                  "id": "seyoung-unknown-1",
+                  "sender": "them",
+                  "text": "준비 다 됐어?",
+                  "time": "20:55"
+                },
+                {
+                  "id": "seyoung-unknown-2",
+                  "sender": "them",
+                  "text": "들어가기 전에 다시 연락.",
+                  "time": "21:11"
+                }
               ]
             },
             {
@@ -318,9 +586,24 @@
               "unread": false,
               "preview": "내일 회의 자료 업로드 부탁드립니다.",
               "messages": [
-                { "id": "seyoung-team-1", "sender": "them", "text": "내일 오전 회의 참석자 확인 부탁드립니다.", "time": "17:50" },
-                { "id": "seyoung-team-2", "sender": "me", "text": "확인했습니다.", "time": "18:10" },
-                { "id": "seyoung-team-3", "sender": "them", "text": "내일 회의 자료 업로드 부탁드립니다.", "time": "18:25" }
+                {
+                  "id": "seyoung-team-1",
+                  "sender": "them",
+                  "text": "내일 오전 회의 참석자 확인 부탁드립니다.",
+                  "time": "17:50"
+                },
+                {
+                  "id": "seyoung-team-2",
+                  "sender": "me",
+                  "text": "확인했습니다.",
+                  "time": "18:10"
+                },
+                {
+                  "id": "seyoung-team-3",
+                  "sender": "them",
+                  "text": "내일 회의 자료 업로드 부탁드립니다.",
+                  "time": "18:25"
+                }
               ]
             },
             {
@@ -329,8 +612,18 @@
               "unread": false,
               "preview": "도착 3분 전입니다.",
               "messages": [
-                { "id": "seyoung-driver-1", "sender": "them", "text": "배차 완료되었습니다. 잠시만 기다려 주세요.", "time": "17:30" },
-                { "id": "seyoung-driver-2", "sender": "them", "text": "도착 3분 전입니다.", "time": "17:42" }
+                {
+                  "id": "seyoung-driver-1",
+                  "sender": "them",
+                  "text": "배차 완료되었습니다. 잠시만 기다려 주세요.",
+                  "time": "17:30"
+                },
+                {
+                  "id": "seyoung-driver-2",
+                  "sender": "them",
+                  "text": "도착 3분 전입니다.",
+                  "time": "17:42"
+                }
               ]
             }
           ]
@@ -343,14 +636,38 @@
         "theme": "pink",
         "content": {
           "photos": [
-            { "title": "엘리베이터 거울", "stamp": "21:40" },
-            { "title": "문 앞 복도", "stamp": "21:37" },
-            { "title": "회의실 셀카", "stamp": "20:08" },
-            { "title": "명함 사진", "stamp": "19:59" },
-            { "title": "차량 번호판", "stamp": "19:16" },
-            { "title": "택시 뒷좌석", "stamp": "18:43" },
-            { "title": "핸드백 내부", "stamp": "18:19" },
-            { "title": "건물 로비", "stamp": "17:55" }
+            {
+              "title": "엘리베이터 거울",
+              "stamp": "21:40"
+            },
+            {
+              "title": "문 앞 복도",
+              "stamp": "21:37"
+            },
+            {
+              "title": "회의실 셀카",
+              "stamp": "20:08"
+            },
+            {
+              "title": "명함 사진",
+              "stamp": "19:59"
+            },
+            {
+              "title": "차량 번호판",
+              "stamp": "19:16"
+            },
+            {
+              "title": "택시 뒷좌석",
+              "stamp": "18:43"
+            },
+            {
+              "title": "핸드백 내부",
+              "stamp": "18:19"
+            },
+            {
+              "title": "건물 로비",
+              "stamp": "17:55"
+            }
           ]
         }
       },
@@ -408,15 +725,48 @@
         "content": {
           "note": "최근 목적지 3건",
           "mapSearches": [
-            { "id": "sy-map-1", "name": "성수동 카페거리", "address": "서울특별시 성동구 성수이로 12길 21", "timestamp": "오늘 18:30" },
-            { "id": "sy-map-2", "name": "Urban Mall", "address": "서울특별시 강남구 테헤란로 152", "timestamp": "오늘 17:45" },
-            { "id": "sy-map-3", "name": "강남역 3번 출구", "address": "서울특별시 강남구 강남대로 396", "timestamp": "오늘 17:20" },
-            { "id": "sy-map-4", "name": "한강공원 주차장", "address": "서울특별시 영등포구 여의동로 330", "timestamp": "어제" },
-            { "id": "sy-map-5", "name": "서울경찰청", "address": "서울특별시 종로구 사직로8길 31", "timestamp": "4월 1일" }
+            {
+              "id": "sy-map-1",
+              "name": "성수동 카페거리",
+              "address": "서울특별시 성동구 성수이로 12길 21",
+              "timestamp": "오늘 18:30"
+            },
+            {
+              "id": "sy-map-2",
+              "name": "Urban Mall",
+              "address": "서울특별시 강남구 테헤란로 152",
+              "timestamp": "오늘 17:45"
+            },
+            {
+              "id": "sy-map-3",
+              "name": "강남역 3번 출구",
+              "address": "서울특별시 강남구 강남대로 396",
+              "timestamp": "오늘 17:20"
+            },
+            {
+              "id": "sy-map-4",
+              "name": "한강공원 주차장",
+              "address": "서울특별시 영등포구 여의동로 330",
+              "timestamp": "어제"
+            },
+            {
+              "id": "sy-map-5",
+              "name": "서울경찰청",
+              "address": "서울특별시 종로구 사직로8길 31",
+              "timestamp": "4월 1일"
+            }
           ]
         }
       },
-      { "id": "notes", "label": "메모", "icon": "notes", "theme": "yellow", "content": { "note": "김소연과 시간차 두고 이동." } },
+      {
+        "id": "notes",
+        "label": "메모",
+        "icon": "notes",
+        "theme": "yellow",
+        "content": {
+          "note": "윤노과 시간차 두고 이동."
+        }
+      },
       {
         "id": "calendar",
         "label": "캘린더",
@@ -429,32 +779,965 @@
               "date": "4월 3일",
               "dayOfWeek": "목",
               "events": [
-                { "id": "hs-cal-1", "title": "오전 회의", "time": "09:00", "endTime": "10:00", "location": "본사 3층", "color": "#4285f4" },
-                { "id": "hs-cal-2", "title": "택시 예약", "time": "17:20", "color": "#f4b400" },
-                { "id": "hs-cal-3", "title": "private meeting", "time": "22:30", "color": "#db4437" }
+                {
+                  "id": "hs-cal-1",
+                  "title": "오전 회의",
+                  "time": "09:00",
+                  "endTime": "10:00",
+                  "location": "본사 3층",
+                  "color": "#4285f4"
+                },
+                {
+                  "id": "hs-cal-2",
+                  "title": "택시 예약",
+                  "time": "17:20",
+                  "color": "#f4b400"
+                },
+                {
+                  "id": "hs-cal-3",
+                  "title": "private meeting",
+                  "time": "22:30",
+                  "color": "#db4437"
+                }
               ]
             },
             {
               "date": "4월 2일",
               "dayOfWeek": "수",
               "events": [
-                { "id": "hs-cal-4", "title": "거래처 미팅", "time": "14:00", "endTime": "16:00", "location": "강남 오피스", "color": "#0f9d58" },
-                { "id": "hs-cal-5", "title": "저녁 (소연)", "time": "19:00", "endTime": "21:00", "location": "이태원", "color": "#ab47bc" }
+                {
+                  "id": "hs-cal-4",
+                  "title": "거래처 미팅",
+                  "time": "14:00",
+                  "endTime": "16:00",
+                  "location": "강남 오피스",
+                  "color": "#0f9d58"
+                },
+                {
+                  "id": "hs-cal-5",
+                  "title": "저녁 (소연)",
+                  "time": "19:00",
+                  "endTime": "21:00",
+                  "location": "이태원",
+                  "color": "#ab47bc"
+                }
               ]
             },
             {
               "date": "4월 1일",
               "dayOfWeek": "화",
               "events": [
-                { "id": "hs-cal-6", "title": "분기 보고", "time": "11:00", "endTime": "12:00", "color": "#4285f4" }
+                {
+                  "id": "hs-cal-6",
+                  "title": "분기 보고",
+                  "time": "11:00",
+                  "endTime": "12:00",
+                  "color": "#4285f4"
+                }
               ]
             }
           ]
         }
       },
-      { "id": "settings", "label": "설정", "icon": "gear", "theme": "gray", "content": { "note": "저전력 모드 켜짐" } },
-      { "id": "phone", "label": "전화", "icon": "phone", "theme": "green", "content": { "note": "부재중 2건" } },
-      { "id": "camera", "label": "카메라", "icon": "camera", "theme": "gray", "content": { "note": "인물 사진 모드" } }
+      {
+        "id": "settings",
+        "label": "설정",
+        "icon": "gear",
+        "theme": "gray",
+        "content": {
+          "note": "저전력 모드 켜짐"
+        }
+      },
+      {
+        "id": "phone",
+        "label": "전화",
+        "icon": "phone",
+        "theme": "green",
+        "content": {
+          "note": "부재중 2건"
+        }
+      },
+      {
+        "id": "camera",
+        "label": "카메라",
+        "icon": "camera",
+        "theme": "gray",
+        "content": {
+          "note": "인물 사진 모드"
+        }
+      }
+    ]
+  },
+  {
+    "id": "phone-jeong-gwa",
+    "name": "정과의 핸드폰",
+    "owner": "정과",
+    "device": "iPhone 15",
+    "screen": {
+      "time": "00:00",
+      "date": "4월 3일 목요일",
+      "carrier": "SKT",
+      "battery": 100,
+      "wallpaper": "warm-gray-gradient",
+      "lockState": "unlocked",
+      "notifications": [],
+      "homeApps": [
+        "files",
+        "messages",
+        "gallery",
+        "gmail",
+        "calendar",
+        "notes",
+        "voice-memos",
+        "settings"
+      ],
+      "dockApps": [
+        "phone",
+        "safari",
+        "messages",
+        "camera"
+      ]
+    },
+    "apps": [
+      {
+        "id": "files",
+        "label": "내 파일",
+        "icon": "folder",
+        "theme": "amber",
+        "content": {
+          "sections": [
+            {
+              "title": "최근 항목",
+              "items": []
+            },
+            {
+              "title": "폴더",
+              "items": []
+            }
+          ]
+        }
+      },
+      {
+        "id": "messages",
+        "label": "메세지",
+        "icon": "bubble",
+        "theme": "green",
+        "content": {
+          "threads": [
+            {
+              "name": "윤노",
+              "time": "21:50",
+              "unread": false,
+              "preview": "와서 얘기해~ 준비는 여러모로 단단히 해 두고 있으니 걱정 말고 ^^",
+              "messages": [
+                {
+                  "id": "soyeon-jeongwa-1",
+                  "sender": "them",
+                  "text": "자기야 오늘 늦지 마",
+                  "time": "19:50"
+                },
+                {
+                  "id": "soyeon-jeongwa-2",
+                  "sender": "me",
+                  "text": "정확하게 n분의 1이야?",
+                  "time": "20:14"
+                },
+                {
+                  "id": "soyeon-jeongwa-2",
+                  "sender": "them",
+                  "text": "ㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
+                  "time": "20:14"
+                },
+                {
+                  "id": "soyeon-jeongwa-2",
+                  "sender": "them",
+                  "text": "삭제된 메시지입니다.",
+                  "time": "20:14"
+                },
+                {
+                  "id": "soyeon-jeongwa-2",
+                  "sender": "me",
+                  "text": "미쳤냐?",
+                  "time": "20:14"
+                },
+                {
+                  "id": "soyeon-jeongwa-3",
+                  "sender": "them",
+                  "text": "실수ㅎ",
+                  "time": "20:14"
+                },
+                {
+                  "id": "soyeon-jeongwa-4",
+                  "sender": "them",
+                  "text": "와서 얘기해~ 준비는 여러모로 단단히 해 두고 있으니 걱정 말고 ^^",
+                  "time": "20:14"
+                }
+              ]
+            },
+            {
+              "name": "심안",
+              "time": "21:50",
+              "unread": false,
+              "preview": "순애에 가슴이 다 떨리네. 너희 둘 다 실수하는거야.",
+              "messages": [
+                {
+                  "id": "siman-jeongwa-1",
+                  "sender": "them",
+                  "text": "너네 진짜 웃긴다. 나 갖고 노니까 재밌냐? 이게 진짜라고?",
+                  "time": "20:14"
+                },
+                {
+                  "id": "siman-jeongwa-2",
+                  "sender": "them",
+                  "text": "순애에 가슴이 다 떨리네. 너희 둘 다 실수하는거야.",
+                  "time": "20:14"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "gallery",
+        "label": "갤러리",
+        "icon": "photos",
+        "theme": "blue",
+        "content": {
+          "albums": [
+            {
+              "title": "최근 항목",
+              "count": 0,
+              "photos": []
+            }
+          ],
+          "deletedPhotos": [
+            {
+              "title": "삭제된 사진 1",
+              "stamp": "21:03"
+            },
+            {
+              "title": "삭제된 사진 2",
+              "stamp": "21:05"
+            },
+            {
+              "title": "삭제된 사진 3",
+              "stamp": "21:07"
+            }
+          ]
+        }
+      },
+      {
+        "id": "gmail",
+        "label": "Gmail",
+        "icon": "mail",
+        "theme": "red",
+        "content": {
+          "mails": []
+        }
+      },
+      {
+        "id": "calendar",
+        "label": "캘린더",
+        "icon": "calendar",
+        "theme": "white",
+        "content": {
+          "days": []
+        }
+      },
+      {
+        "id": "notes",
+        "label": "메모",
+        "icon": "notes",
+        "theme": "yellow",
+        "content": {
+          "notes": [
+            {
+              "id": "note-1",
+              "title": "메모 제목",
+              "body": "장부 확보\n만경 원본 먼저\n윤노 대응\n\n\n필요하면......",
+              "updatedAt": "오늘 21:14"
+            }
+          ]
+        }
+      },
+      {
+        "id": "voice-memos",
+        "label": "음성 메모",
+        "icon": "wave",
+        "theme": "black",
+        "content": {
+          "recordings": []
+        }
+      },
+      {
+        "id": "safari",
+        "label": "Safari",
+        "icon": "safari",
+        "theme": "blue",
+        "content": {
+          "searches": []
+        }
+      },
+      {
+        "id": "maps",
+        "label": "지도",
+        "icon": "map",
+        "theme": "green",
+        "content": {
+          "searches": []
+        }
+      },
+      {
+        "id": "settings",
+        "label": "설정",
+        "icon": "gear",
+        "theme": "gray",
+        "content": {
+          "note": ""
+        }
+      },
+      {
+        "id": "phone",
+        "label": "전화",
+        "icon": "phone",
+        "theme": "green",
+        "content": {
+          "note": ""
+        }
+      },
+      {
+        "id": "camera",
+        "label": "카메라",
+        "icon": "camera",
+        "theme": "gray",
+        "content": {
+          "note": ""
+        }
+      }
+    ]
+  },
+  {
+    "id": "phone-man-gyeong",
+    "name": "만경의 핸드폰",
+    "owner": "만경",
+    "device": "iPhone 15",
+    "screen": {
+      "time": "00:00",
+      "date": "4월 3일 목요일",
+      "carrier": "SKT",
+      "battery": 100,
+      "wallpaper": "warm-gray-gradient",
+      "lockState": "unlocked",
+      "notifications": [],
+      "homeApps": [
+        "files",
+        "messages",
+        "gallery",
+        "gmail",
+        "calendar",
+        "notes",
+        "voice-memos",
+        "settings"
+      ],
+      "dockApps": [
+        "phone",
+        "safari",
+        "messages",
+        "camera"
+      ]
+    },
+    "apps": [
+      {
+        "id": "files",
+        "label": "내 파일",
+        "icon": "folder",
+        "theme": "amber",
+        "content": {
+          "sections": [
+            {
+              "title": "최근 항목",
+              "items": []
+            },
+            {
+              "title": "폴더",
+              "items": []
+            }
+          ]
+        }
+      },
+      {
+        "id": "messages",
+        "label": "메세지",
+        "icon": "bubble",
+        "theme": "green",
+        "content": {
+          "threads": []
+        }
+      },
+      {
+        "id": "gallery",
+        "label": "갤러리",
+        "icon": "photos",
+        "theme": "blue",
+        "content": {
+          "albums": [
+            {
+              "title": "최근 항목",
+              "count": 0,
+              "photos": []
+            }
+          ]
+        }
+      },
+      {
+        "id": "gmail",
+        "label": "Gmail",
+        "icon": "mail",
+        "theme": "red",
+        "content": {
+          "mails": []
+        }
+      },
+      {
+        "id": "calendar",
+        "label": "캘린더",
+        "icon": "calendar",
+        "theme": "white",
+        "content": {
+          "days": []
+        }
+      },
+      {
+        "id": "notes",
+        "label": "메모",
+        "icon": "notes",
+        "theme": "yellow",
+        "content": {
+          "notes": []
+        }
+      },
+      {
+        "id": "voice-memos",
+        "label": "음성 메모",
+        "icon": "wave",
+        "theme": "black",
+        "content": {
+          "recordings": []
+        }
+      },
+      {
+        "id": "safari",
+        "label": "Safari",
+        "icon": "safari",
+        "theme": "blue",
+        "content": {
+          "searches": []
+        }
+      },
+      {
+        "id": "maps",
+        "label": "지도",
+        "icon": "map",
+        "theme": "green",
+        "content": {
+          "searches": []
+        }
+      },
+      {
+        "id": "settings",
+        "label": "설정",
+        "icon": "gear",
+        "theme": "gray",
+        "content": {
+          "note": ""
+        }
+      },
+      {
+        "id": "phone",
+        "label": "전화",
+        "icon": "phone",
+        "theme": "green",
+        "content": {
+          "note": ""
+        }
+      },
+      {
+        "id": "camera",
+        "label": "카메라",
+        "icon": "camera",
+        "theme": "gray",
+        "content": {
+          "note": ""
+        }
+      }
+    ]
+  },
+  {
+    "id": "phone-mo-weing",
+    "name": "모웨잉의 핸드폰",
+    "owner": "모웨잉",
+    "device": "iPhone 15",
+    "screen": {
+      "time": "00:00",
+      "date": "4월 3일 목요일",
+      "carrier": "SKT",
+      "battery": 100,
+      "wallpaper": "warm-gray-gradient",
+      "lockState": "unlocked",
+      "notifications": [],
+      "homeApps": [
+        "files",
+        "messages",
+        "gallery",
+        "gmail",
+        "calendar",
+        "notes",
+        "voice-memos",
+        "settings"
+      ],
+      "dockApps": [
+        "phone",
+        "safari",
+        "messages",
+        "camera"
+      ]
+    },
+    "apps": [
+      {
+        "id": "files",
+        "label": "내 파일",
+        "icon": "folder",
+        "theme": "amber",
+        "content": {
+          "sections": [
+            {
+              "title": "최근 항목",
+              "items": []
+            },
+            {
+              "title": "폴더",
+              "items": []
+            }
+          ]
+        }
+      },
+      {
+        "id": "messages",
+        "label": "메세지",
+        "icon": "bubble",
+        "theme": "green",
+        "content": {
+          "threads": []
+        }
+      },
+      {
+        "id": "gallery",
+        "label": "갤러리",
+        "icon": "photos",
+        "theme": "blue",
+        "content": {
+          "albums": [
+            {
+              "title": "최근 항목",
+              "count": 0,
+              "photos": []
+            }
+          ]
+        }
+      },
+      {
+        "id": "gmail",
+        "label": "Gmail",
+        "icon": "mail",
+        "theme": "red",
+        "content": {
+          "mails": []
+        }
+      },
+      {
+        "id": "calendar",
+        "label": "캘린더",
+        "icon": "calendar",
+        "theme": "white",
+        "content": {
+          "days": []
+        }
+      },
+      {
+        "id": "notes",
+        "label": "메모",
+        "icon": "notes",
+        "theme": "yellow",
+        "content": {
+          "notes": []
+        }
+      },
+      {
+        "id": "voice-memos",
+        "label": "음성 메모",
+        "icon": "wave",
+        "theme": "black",
+        "content": {
+          "recordings": []
+        }
+      },
+      {
+        "id": "safari",
+        "label": "Safari",
+        "icon": "safari",
+        "theme": "blue",
+        "content": {
+          "searches": []
+        }
+      },
+      {
+        "id": "maps",
+        "label": "지도",
+        "icon": "map",
+        "theme": "green",
+        "content": {
+          "searches": []
+        }
+      },
+      {
+        "id": "settings",
+        "label": "설정",
+        "icon": "gear",
+        "theme": "gray",
+        "content": {
+          "note": ""
+        }
+      },
+      {
+        "id": "phone",
+        "label": "전화",
+        "icon": "phone",
+        "theme": "green",
+        "content": {
+          "note": ""
+        }
+      },
+      {
+        "id": "camera",
+        "label": "카메라",
+        "icon": "camera",
+        "theme": "gray",
+        "content": {
+          "note": ""
+        }
+      }
+    ]
+  },
+  {
+    "id": "phone-sim-an",
+    "name": "심안의 핸드폰",
+    "owner": "심안",
+    "device": "iPhone 15",
+    "screen": {
+      "time": "00:00",
+      "date": "4월 3일 목요일",
+      "carrier": "SKT",
+      "battery": 100,
+      "wallpaper": "warm-gray-gradient",
+      "lockState": "unlocked",
+      "notifications": [],
+      "homeApps": [
+        "files",
+        "messages",
+        "gallery",
+        "gmail",
+        "calendar",
+        "notes",
+        "voice-memos",
+        "settings"
+      ],
+      "dockApps": [
+        "phone",
+        "safari",
+        "messages",
+        "camera"
+      ]
+    },
+    "apps": [
+      {
+        "id": "files",
+        "label": "내 파일",
+        "icon": "folder",
+        "theme": "amber",
+        "content": {
+          "sections": [
+            {
+              "title": "최근 항목",
+              "items": []
+            },
+            {
+              "title": "폴더",
+              "items": []
+            }
+          ]
+        }
+      },
+      {
+        "id": "messages",
+        "label": "메세지",
+        "icon": "bubble",
+        "theme": "green",
+        "content": {
+          "threads": []
+        }
+      },
+      {
+        "id": "gallery",
+        "label": "갤러리",
+        "icon": "photos",
+        "theme": "blue",
+        "content": {
+          "albums": [
+            {
+              "title": "최근 항목",
+              "count": 0,
+              "photos": []
+            }
+          ]
+        }
+      },
+      {
+        "id": "gmail",
+        "label": "Gmail",
+        "icon": "mail",
+        "theme": "red",
+        "content": {
+          "mails": []
+        }
+      },
+      {
+        "id": "calendar",
+        "label": "캘린더",
+        "icon": "calendar",
+        "theme": "white",
+        "content": {
+          "days": []
+        }
+      },
+      {
+        "id": "notes",
+        "label": "메모",
+        "icon": "notes",
+        "theme": "yellow",
+        "content": {
+          "notes": []
+        }
+      },
+      {
+        "id": "voice-memos",
+        "label": "음성 메모",
+        "icon": "wave",
+        "theme": "black",
+        "content": {
+          "recordings": []
+        }
+      },
+      {
+        "id": "safari",
+        "label": "Safari",
+        "icon": "safari",
+        "theme": "blue",
+        "content": {
+          "searches": []
+        }
+      },
+      {
+        "id": "maps",
+        "label": "지도",
+        "icon": "map",
+        "theme": "green",
+        "content": {
+          "searches": []
+        }
+      },
+      {
+        "id": "settings",
+        "label": "설정",
+        "icon": "gear",
+        "theme": "gray",
+        "content": {
+          "note": ""
+        }
+      },
+      {
+        "id": "phone",
+        "label": "전화",
+        "icon": "phone",
+        "theme": "green",
+        "content": {
+          "note": ""
+        }
+      },
+      {
+        "id": "camera",
+        "label": "카메라",
+        "icon": "camera",
+        "theme": "gray",
+        "content": {
+          "note": ""
+        }
+      }
+    ]
+  },
+  {
+    "id": "phone-pink-princess",
+    "name": "핑크공주의 핸드폰",
+    "owner": "핑크공주",
+    "device": "iPhone 15",
+    "screen": {
+      "time": "00:00",
+      "date": "4월 3일 목요일",
+      "carrier": "SKT",
+      "battery": 100,
+      "wallpaper": "warm-gray-gradient",
+      "lockState": "unlocked",
+      "notifications": [],
+      "homeApps": [
+        "files",
+        "messages",
+        "gallery",
+        "gmail",
+        "calendar",
+        "notes",
+        "voice-memos",
+        "settings"
+      ],
+      "dockApps": [
+        "phone",
+        "safari",
+        "messages",
+        "camera"
+      ]
+    },
+    "apps": [
+      {
+        "id": "files",
+        "label": "내 파일",
+        "icon": "folder",
+        "theme": "amber",
+        "content": {
+          "sections": [
+            {
+              "title": "최근 항목",
+              "items": []
+            },
+            {
+              "title": "폴더",
+              "items": []
+            }
+          ]
+        }
+      },
+      {
+        "id": "messages",
+        "label": "메세지",
+        "icon": "bubble",
+        "theme": "green",
+        "content": {
+          "threads": []
+        }
+      },
+      {
+        "id": "gallery",
+        "label": "갤러리",
+        "icon": "photos",
+        "theme": "blue",
+        "content": {
+          "albums": [
+            {
+              "title": "최근 항목",
+              "count": 0,
+              "photos": []
+            }
+          ]
+        }
+      },
+      {
+        "id": "gmail",
+        "label": "Gmail",
+        "icon": "mail",
+        "theme": "red",
+        "content": {
+          "mails": []
+        }
+      },
+      {
+        "id": "calendar",
+        "label": "캘린더",
+        "icon": "calendar",
+        "theme": "white",
+        "content": {
+          "days": []
+        }
+      },
+      {
+        "id": "notes",
+        "label": "메모",
+        "icon": "notes",
+        "theme": "yellow",
+        "content": {
+          "notes": []
+        }
+      },
+      {
+        "id": "voice-memos",
+        "label": "음성 메모",
+        "icon": "wave",
+        "theme": "black",
+        "content": {
+          "recordings": []
+        }
+      },
+      {
+        "id": "safari",
+        "label": "Safari",
+        "icon": "safari",
+        "theme": "blue",
+        "content": {
+          "searches": []
+        }
+      },
+      {
+        "id": "maps",
+        "label": "지도",
+        "icon": "map",
+        "theme": "green",
+        "content": {
+          "searches": []
+        }
+      },
+      {
+        "id": "settings",
+        "label": "설정",
+        "icon": "gear",
+        "theme": "gray",
+        "content": {
+          "note": ""
+        }
+      },
+      {
+        "id": "phone",
+        "label": "전화",
+        "icon": "phone",
+        "theme": "green",
+        "content": {
+          "note": ""
+        }
+      },
+      {
+        "id": "camera",
+        "label": "카메라",
+        "icon": "camera",
+        "theme": "gray",
+        "content": {
+          "note": ""
+        }
+      }
     ]
   }
 ]

@@ -23,12 +23,6 @@ const tabs: Tab[] = [
     match: (p) => p.startsWith('/hub/'),
   },
   {
-    label: 'Clues',
-    icon: 'D',
-    href: (sid, rid) => (rid ? `/object/${sid}/${rid}` : `/hub/${sid}`),
-    match: (p) => p.startsWith('/object/') || p.startsWith('/room/'),
-  },
-  {
     label: 'Evidence',
     icon: 'E',
     href: (sid) => `/evidence/${sid}`,
