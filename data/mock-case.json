@@ -360,8 +360,8 @@
   "phones": [
     {
       "id": "phone-kim-soyeon",
-      "name": "김소연의 핸드폰",
-      "owner": "김소연",
+      "name": "윤노의 핸드폰",
+      "owner": "윤노",
       "device": "iPhone 15 Pro",
       "screen": {
         "time": "22:14",
@@ -373,7 +373,7 @@
         "notifications": [
           {
             "app": "Messages",
-            "sender": "홍세영",
+            "sender": "마오",
             "preview": "지금 바로 통화 가능해?",
             "time": "21:48"
           },
@@ -399,8 +399,8 @@
     },
     {
       "id": "phone-hong-seyoung",
-      "name": "홍세영의 핸드폰",
-      "owner": "홍세영",
+      "name": "마오의 핸드폰",
+      "owner": "마오",
       "device": "iPhone 14",
       "screen": {
         "time": "22:16",
@@ -412,7 +412,7 @@
         "notifications": [
           {
             "app": "Messages",
-            "sender": "김소연",
+            "sender": "윤노",
             "preview": "아직 집 안이야. 문자로 해.",
             "time": "21:50"
           },

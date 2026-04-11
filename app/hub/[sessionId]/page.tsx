@@ -5,8 +5,10 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { getVisited } from '@/lib/visited';
-import { getLocalRooms, getLocalPhones, getLocalSession } from '@/lib/mock-data';
+import { getLocalSession } from '@/lib/mock-data';
+import { loadCase } from '@/lib/case-loader';
 import { BottomTabBar } from '@/components/navigation/BottomTabBar';
+import type { SceneObject, PhoneContent } from '@/types/scene-object';
 
 const QRScanner = dynamic(
   () => import('@/components/scanner/QRScanner').then((m) => m.QRScanner),
@@ -18,12 +20,14 @@ export default function HubPage() {
   const sessionId = params.sessionId;
   const session = getLocalSession();
 
-  const allRooms = getLocalRooms(sessionId);
-  const allPhones = getLocalPhones(sessionId);
-
+  const [allObjects, setAllObjects] = useState<SceneObject[]>([]);
   const [visitedRooms, setVisitedRooms] = useState<string[]>([]);
   const [visitedPhones, setVisitedPhones] = useState<string[]>([]);
   const [scannerOpen, setScannerOpen] = useState(false);
+
+  useEffect(() => {
+    void loadCase('case-zero').then((c) => setAllObjects(c.objects));
+  }, []);
 
   useEffect(() => {
     const visited = getVisited(sessionId);
@@ -31,8 +35,15 @@ export default function HubPage() {
     setVisitedPhones(visited.phones);
   }, [sessionId]);
 
-  const rooms = allRooms.filter((r) => visitedRooms.includes(r.id));
-  const phones = allPhones.filter((p) => visitedPhones.includes(p.id));
+  const rooms = allObjects
+    .filter((o) => o.type === 'room' && visitedRooms.includes(o.id))
+    .map((o) => ({ id: o.id, name: o.name, shortCode: o.shortCode, order: o.order }));
+  const phones = allObjects
+    .filter((o) => o.type === 'phone' && visitedPhones.includes(o.id))
+    .map((o) => {
+      const c = o.content as PhoneContent;
+      return { id: o.id, name: o.name, owner: c.owner, device: c.device };
+    });
   const isEmpty = rooms.length === 0 && phones.length === 0;
 
   return (
@@ -41,7 +52,7 @@ export default function HubPage() {
         {/* Header */}
         <header className="shrink-0 border-b border-[var(--border-dim)] px-5 pb-4 pt-6">
           <p className="font-mono text-xs tracking-[0.3em] text-[var(--text-mono)] terminal-glow">
-            IMAGOES SCENE ZERO
+            CRIME SCENE
           </p>
           <p className="mt-1 font-mono text-[10px] tracking-[0.2em] text-[var(--text-dim)]">
             SESSION · {session.sessionCode}

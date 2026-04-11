@@ -150,7 +150,7 @@ function GateContent() {
         className="text-center mb-10"
       >
         <h1 className="font-mono text-lg tracking-[0.25em] text-[var(--text-mono)] terminal-glow mb-2">
-          ◈ IMAGOES SCENE ZERO ◈
+          ◈ CRIME SCENE ◈
         </h1>
         <p className="font-body text-sm text-[var(--text-secondary)]">
           {step === 'code' ? '신원 확인' : '참가 등록'}

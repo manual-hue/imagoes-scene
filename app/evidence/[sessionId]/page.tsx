@@ -6,7 +6,7 @@ import { PhotoGallery } from '@/components/evidence/PhotoGallery';
 import { CameraCapture } from '@/components/evidence/CameraCapture';
 import { BottomTabBar } from '@/components/navigation/BottomTabBar';
 import { useEvidencePhotos } from '@/hooks/useEvidencePhotos';
-import { getLastVisited, getLastVisitedRoom } from '@/lib/visited';
+import { getLastVisited, getLastVisitedRoom, markObjectVisited } from '@/lib/visited';
 
 export default function EvidencePage() {
   const params = useParams<{ sessionId: string }>();
@@ -27,6 +27,17 @@ export default function EvidencePage() {
       setCaptureTarget({ id: legacy.roomId, name: legacy.roomName });
     }
   }, [params.sessionId]);
+
+  useEffect(() => {
+    if (loading || photos.length === 0) return;
+    const seen = new Set<string>();
+    for (const photo of photos) {
+      if (!seen.has(photo.roomId)) {
+        seen.add(photo.roomId);
+        markObjectVisited(params.sessionId, photo.roomId, photo.roomName, 'room');
+      }
+    }
+  }, [loading, photos, params.sessionId]);
 
   return (
     <main className="full-screen flex flex-col bg-bg-primary">
