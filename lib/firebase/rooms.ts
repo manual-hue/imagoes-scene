@@ -19,9 +19,8 @@ export interface SessionQRPayload {
   objects: QRPrintableObject[];
 }
 
-function getLocalObjects(sessionId: string): QRPrintableObject[] {
-  const caseData = caseZero as { sessionId: string; objects: Array<{ id: string; name: string; shortCode: string; order: number; type: string }> };
-  if (caseData.sessionId !== sessionId) return [];
+function getLocalObjects(): QRPrintableObject[] {
+  const caseData = caseZero as { objects: Array<{ id: string; name: string; shortCode: string; order: number; type: string }> };
   return caseData.objects.map((o) => ({
     id: o.id,
     name: o.name,
@@ -38,7 +37,7 @@ export async function getSessionQRPayload(sessionId: string): Promise<SessionQRP
       sessionId: localPayload.sessionId,
       sessionName: localPayload.sessionName,
       sessionCode: localPayload.sessionCode,
-      objects: getLocalObjects(sessionId),
+      objects: getLocalObjects(),
     };
   }
 
@@ -55,6 +54,6 @@ export async function getSessionQRPayload(sessionId: string): Promise<SessionQRP
     sessionId: sessionDoc.id,
     sessionName: session.name,
     sessionCode: session.sessionCode,
-    objects: getLocalObjects(sessionId),
+    objects: getLocalObjects(),
   };
 }
