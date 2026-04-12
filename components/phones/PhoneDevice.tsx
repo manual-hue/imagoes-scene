@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import type { MockPhone, PhoneApp, PhoneCalendarDay, PhoneMail, PhoneMapSearch, PhoneNote, PhonePhoto, PhoneSafariSearch, PhoneThread } from '@/types/phone';
+import type { MockPhone, PhoneApp, PhoneCall, PhoneCalendarDay, PhoneMail, PhoneMapSearch, PhoneNote, PhonePhoto, PhoneSafariSearch, PhoneThread } from '@/types/phone';
 
 interface PhoneDeviceProps {
   phone: MockPhone;
@@ -276,6 +276,10 @@ function AppContent({ app, phone }: { app: PhoneApp; phone: MockPhone }) {
     return <NotesView notes={app.content.notes ?? []} fallback={app.content.note} />;
   }
 
+  if (app.id === 'phone') {
+    return <PhoneCallView calls={app.content.calls ?? []} />;
+  }
+
   return (
     <div className="p-5">
       <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
@@ -325,40 +329,54 @@ function MessagesView({ threads }: { threads: PhoneThread[] }) {
           </button>
           <div className="text-center">
             <p className="text-sm font-semibold text-slate-900">{selectedThread.name}</p>
-            <p className="text-[11px] text-slate-400">iMessage</p>
+            <p className="text-[11px] text-slate-400">
+              {selectedThread.platform === 'kakao' ? 'KakaoTalk' : selectedThread.platform === 'sms' ? 'SMS' : 'iMessage'}
+            </p>
           </div>
           <span className="w-[52px] text-right font-mono text-[11px] text-slate-400">{selectedThread.time}</span>
         </div>
 
         <div className="min-h-0 flex-1 overflow-y-auto px-3 py-4">
           <div className="space-y-3">
-            {messages.map((message) => (
-              <div
-                key={message.id}
-                className={`flex ${message.sender === 'me' ? 'justify-end' : 'justify-start'}`}
-              >
-                <div
-                  className={`max-w-[78%] rounded-[1.35rem] px-4 py-2.5 text-sm leading-relaxed shadow-sm ${
-                    message.sender === 'me'
-                      ? 'rounded-br-md bg-[#0a84ff] text-white'
-                      : 'rounded-bl-md bg-white text-slate-900'
-                  }`}
-                >
-                  <p>{message.text}</p>
-                  {message.time && (
-                    <p className={`mt-1 text-[10px] ${message.sender === 'me' ? 'text-white/70' : 'text-slate-400'}`}>
-                      {message.time}
-                    </p>
+            {messages.map((message, idx) => {
+              const prevMessage = idx > 0 ? messages[idx - 1] : null;
+              const showDateSeparator = message.date && message.date !== prevMessage?.date;
+              return (
+                <div key={message.id}>
+                  {showDateSeparator && (
+                    <div className="my-5 flex items-center gap-2">
+                      <div className="h-px flex-1 bg-slate-200" />
+                      <span className="text-[11px] text-slate-400">{message.date}</span>
+                      <div className="h-px flex-1 bg-slate-200" />
+                    </div>
                   )}
+                  <div className={`flex ${message.sender === 'me' ? 'justify-end' : 'justify-start'}`}>
+                    <div
+                      className={`max-w-[78%] rounded-[1.35rem] px-4 py-2.5 text-sm leading-relaxed shadow-sm ${
+                        message.sender === 'me'
+                          ? 'rounded-br-md bg-[#0a84ff] text-white'
+                          : 'rounded-bl-md bg-white text-slate-900'
+                      }`}
+                    >
+                      <p>{message.text}</p>
+                      {message.time && (
+                        <p className={`mt-1 text-[10px] ${message.sender === 'me' ? 'text-white/70' : 'text-slate-400'}`}>
+                          {message.time}
+                        </p>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
         <div className="border-t border-slate-200 bg-white px-3 pb-5 pt-3">
           <div className="flex items-center rounded-full border border-slate-200 bg-slate-50 px-4 py-3">
-            <span className="text-sm text-slate-400">iMessage</span>
+            <span className="text-sm text-slate-400">
+              {selectedThread.platform === 'kakao' ? 'KakaoTalk' : selectedThread.platform === 'sms' ? 'SMS' : 'iMessage'}
+            </span>
           </div>
         </div>
       </div>
@@ -1043,6 +1061,44 @@ function NotesView({ notes, fallback }: { notes: PhoneNote[]; fallback?: string 
               <span className="truncate text-[11px] text-slate-500">{(() => { const t = Array.isArray(note.body) ? note.body[0] ?? '' : note.body; return t.slice(0, 40) + (t.length > 40 ? '…' : ''); })()}</span>
             </div>
           </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PhoneCallView({ calls }: { calls: PhoneCall[] }) {
+  if (calls.length === 0) {
+    return (
+      <div className="p-5">
+        <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
+          <p className="font-mono text-[11px] tracking-[0.18em] text-slate-400">최근 통화</p>
+          <p className="mt-3 text-sm text-slate-400">통화 기록 없음</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-white">
+      <p className="px-5 pb-2 pt-5 font-mono text-[11px] tracking-[0.2em] text-slate-400">최근 통화</p>
+      <div className="divide-y divide-slate-100">
+        {calls.map((call) => (
+          <div key={call.id} className="flex items-center gap-4 px-5 py-3.5">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-slate-100">
+              <span className="text-[15px] text-slate-500">👤</span>
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className={`text-sm font-semibold ${call.type === 'missed' ? 'text-red-500' : 'text-slate-900'}`}>
+                {call.name}
+              </p>
+              <p className="mt-0.5 font-mono text-[11px] text-slate-400">
+                {call.type === 'missed' ? '부재중' : call.type === 'incoming' ? '수신' : '발신'}
+                {call.date ? ` · ${call.date}` : ''}
+              </p>
+            </div>
+            <span className="font-mono text-[11px] text-slate-400">{call.time}</span>
+          </div>
         ))}
       </div>
     </div>

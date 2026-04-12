@@ -479,7 +479,7 @@
           "app": "메세지",
           "sender": "윤노",
           "preview": "아직 집 안이야. 문자로 해.",
-          "time": "21:50"
+          "time": "21:40"
         },
         {
           "app": "Gmail",
@@ -542,7 +542,7 @@
           "threads": [
             {
               "name": "윤노",
-              "time": "21:50",
+              "time": "21:40",
               "unread": true,
               "preview": "아직 집 안이야. 문자로 해.",
               "messages": [
@@ -556,7 +556,7 @@
                   "id": "seyoung-soyeon-2",
                   "sender": "them",
                   "text": "아직 집 안이야. 문자로 해.",
-                  "time": "21:50"
+                  "time": "21:40"
                 }
               ]
             },
@@ -926,7 +926,7 @@
           "threads": [
             {
               "name": "윤노",
-              "time": "21:50",
+              "time": "21:40",
               "unread": false,
               "preview": "와서 얘기해~ 준비는 여러모로 단단히 해 두고 있으니 걱정 말고 ^^",
               "messages": [
@@ -976,7 +976,7 @@
             },
             {
               "name": "심안",
-              "time": "21:50",
+              "time": "19:40",
               "unread": false,
               "preview": "순애에 가슴이 다 떨리네. 너희 둘 다 실수하는거야.",
               "messages": [
@@ -984,13 +984,15 @@
                   "id": "siman-jeongwa-1",
                   "sender": "them",
                   "text": "너네 진짜 웃긴다. 나 갖고 노니까 재밌냐? 이게 진짜라고?",
-                  "time": "20:14"
+                  "time": "19:39",
+                  "date":  "4월 25일"
                 },
                 {
                   "id": "siman-jeongwa-2",
                   "sender": "them",
                   "text": "순애에 가슴이 다 떨리네. 너희 둘 다 실수하는거야.",
-                  "time": "20:14"
+                  "time": "19:40",
+                  "date":  "4월 25일"
                 }
               ]
             }
@@ -1075,7 +1077,6 @@
         "icon": "safari",
         "theme": "blue",
         "content": {
-          "searches": []
         }
       },
       {
@@ -1102,7 +1103,22 @@
         "icon": "phone",
         "theme": "green",
         "content": {
-          "note": ""
+          "calls": [
+            {
+              "id": "jeongwa-call-1",
+              "name": "심안",
+              "type": "missed",
+              "time": "19:38",
+              "date": "4월 25일"
+            },
+            {
+              "id": "jeongwa-call-2",
+              "name": "심안",
+              "type": "missed",
+              "time": "19:39",
+              "date": "4월 25일"
+            }
+          ]
         }
       },
       {
@@ -1327,7 +1343,82 @@
         "icon": "bubble",
         "theme": "green",
         "content": {
-          "threads": []
+          "threads": [
+            {
+              "name": "윤노",
+              "time": "15:06",
+              "unread": false,
+              "preview": "참, 어제 늦게까지 동생분이랑 마셨는데 잘 들어가셨어요?",
+              "platform": "kakao",
+              "messages": [
+                {
+                  "id": "mowing-yunno-1",
+                  "sender": "them",
+                  "text": "1차 판매 대금이 나왔습니다. 정산 하셔야죠?",
+                  "time": "15:02",
+                  "date": "4월 25일"
+                },
+                {
+                  "id": "mowing-yunno-2",
+                  "sender": "me",
+                  "text": "제 배분이 어떻게 될지 궁금하네요.",
+                  "time": "15:04",
+                  "date": "4월 25일"
+                },
+                {
+                  "id": "mowing-yunno-3",
+                  "sender": "them",
+                  "text": "다들 그거부터 물어보시네요ㅋㅋㅋ 당연히 공정하게 가야죠~",
+                  "time": "15:05",
+                  "date": "4월 25일"
+                },
+                {
+                  "id": "mowing-yunno-4",
+                  "sender": "them",
+                  "text": "참, 어제 늦게까지 동생분이랑 마셨는데 잘 들어가셨나요?",
+                  "time": "15:06",
+                  "date": "4월 25일"
+                }
+              ]
+            },
+            {
+              "name": "정과",
+              "time": "23:18",
+              "unread": false,
+              "preview": "돈 얘기 아닌데.",
+              "platform": "sms",
+              "messages": [
+                {
+                  "id": "mowing-jeongwa-1",
+                  "sender": "me",
+                  "text": "기술 담당 하나만 남기면 그림이 어떻게 될까?",
+                  "time": "23:11",
+                  "date": "4월 24일"
+                },
+                {
+                  "id": "mowing-jeongwa-2",
+                  "sender": "them",
+                  "text": "가능 여부보다 대가가 문제죠.",
+                  "time": "23:15",
+                  "date": "4월 24일"
+                },
+                {
+                  "id": "mowing-jeongwa-3",
+                  "sender": "me",
+                  "text": "돈은 문제가 아냐.",
+                  "time": "23:16",
+                  "date": "4월 24일"
+                },
+                {
+                  "id": "mowing-jeongwa-4",
+                  "sender": "them",
+                  "text": "돈 얘기 아닌데.",
+                  "time": "23:18",
+                  "date": "4월 24일"
+                }
+              ]
+            }
+          ]
         }
       },
       {
@@ -1369,7 +1460,14 @@
         "icon": "notes",
         "theme": "yellow",
         "content": {
-          "notes": []
+          "notes": [
+            {
+              "id": "note-1",
+              "title": "메모 제목",
+              "body": "실제 정산액 다시 확인\n키 확보\n마지막 1점\n만경 원본",
+              "updatedAt": "오늘 21:14"
+            }
+          ]
         }
       },
       {
@@ -1387,7 +1485,20 @@
         "icon": "safari",
         "theme": "blue",
         "content": {
-          "searches": []
+          "recentSearches": [
+            {
+              "id": "soyeon-search-1",
+              "term": "차명계좌 추적 막는 방법"
+            },
+            {
+              "id": "soyeon-search-2",
+              "term": "가족관계증명서 이복형제 표시"
+            },
+            {
+              "id": "soyeon-search-3",
+              "term": "금속 먼지 옷에서 지우는 법"
+            }
+          ]
         }
       },
       {
@@ -1483,7 +1594,65 @@
         "icon": "bubble",
         "theme": "green",
         "content": {
-          "threads": []
+          "threads": [
+            {
+              "name": "Y관리",
+              "time": "15:15",
+              "unread": false,
+              "preview": "다 보인다. 다 보여. 혼자 헛짓거리 하지 말고 이따 저택에서 보 ㅏ",
+              "messages": [
+                {
+                  "id": "siman-yunno-1",
+                  "sender": "them",
+                  "text": "오늘이네. 늦지 마.",
+                  "time": "15:08",
+                  "date": "4월 25일"
+                },
+                {
+                  "id": "siman-yunno-2",
+                  "sender": "them",
+                  "text": "그리고 숨김폴더 비밀번호 좀 바꿔. 너무 쉽더라.",
+                  "time": "15:09",
+                  "date": "4월 25일"
+                },
+                {
+                  "id": "siman-yunno-3",
+                  "sender": "them",
+                  "text": "왜 바로 읽어놓고 씹어? 또 혼자 손톱 물어 뜯고 있냐?ㅋㅋㅋㅋㅋㅋㅋ",
+                  "time": "15:15",
+                  "date": "4월 25일"
+                },
+                {
+                  "id": "siman-yunno-4",
+                  "sender": "them",
+                  "text": "다 보인다. 다 보여. 혼자 헛짓거리 하지 말고 이따 저택에서 보 ㅏ",
+                  "time": "15:15",
+                  "date": "4월 25일"
+                }
+              ]
+            },{
+              "name": "정과",
+              "time": "21:40",
+              "unread": false,
+              "preview": "순애에 가슴이 다 떨리네. 너희 둘 다 실수하는거야.",
+              "messages": [
+                {
+                  "id": "siman-jeongwa-1",
+                  "sender": "me",
+                  "text": "너네 진짜 웃긴다. 나 갖고 노니까 재밌냐? 이게 진짜라고?",
+                  "time": "19:39",
+                  "date":  "4월 25일"
+                },
+                {
+                  "id": "siman-jeongwa-2",
+                  "sender": "me",
+                  "text": "순애에 가슴이 다 떨리네. 너희 둘 다 실수하는거야.",
+                  "time": "19:40",
+                  "date":  "4월 25일"
+                }
+              ]
+            }
+          ]
         }
       },
       {
@@ -1543,7 +1712,25 @@
         "icon": "safari",
         "theme": "blue",
         "content": {
-          "searches": []
+
+          "recentSearches": [
+            {
+              "id": "soyeon-search-1",
+              "term": "동물 보호법 초범 처벌"
+            },
+            {
+              "id": "soyeon-search-2",
+              "term": "해외 미술품 개인 수수료"
+            },
+            {
+              "id": "soyeon-search-3",
+              "term": "가스라이팅 연인 특징"
+            },
+            {
+              "id": "soyeon-search-4",
+              "term": "과호흡 손발 저림"
+            }
+          ]
         }
       },
       {
@@ -1570,7 +1757,22 @@
         "icon": "phone",
         "theme": "green",
         "content": {
-          "note": ""
+          "calls": [
+            {
+              "id": "siman-call-1",
+              "name": "정과",
+              "type": "outgoing",
+              "time": "19:38",
+              "date": "4월 25일"
+            },
+            {
+              "id": "siman-call-2",
+              "name": "정과",
+              "type": "outgoing",
+              "time": "19:39",
+              "date": "4월 25일"
+            }
+          ]
         }
       },
       {
@@ -1639,7 +1841,51 @@
         "icon": "bubble",
         "theme": "green",
         "content": {
-          "threads": []
+          "threads": [
+            {
+              "name": "윤노",
+              "time": "19:27",
+              "unread": false,
+              "preview": "지금.",
+              "messages": [
+                {
+                  "id": "pink-yunno-1",
+                  "sender": "them",
+                  "text": "내일 와. 네 몫 얘기도 하고, 그날 일도 정리하자.",
+                  "time": "23:42",
+                  "date": "4월 24일"
+                },
+                {
+                  "id": "pink-yunno-2",
+                  "sender": "me",
+                  "text": "무슨 뜻이야.",
+                  "time": "23:44",
+                  "date": "4월 24일"
+                },
+                {
+                  "id": "pink-yunno-3",
+                  "sender": "them",
+                  "text": "네 손이 제일 잘 알겠지.",
+                  "time": "23:45",
+                  "date": "4월 24일"
+                },
+                {
+                  "id": "pink-yunno-4",
+                  "sender": "them",
+                  "text": "내방으로 와.",
+                  "time": "19:27",
+                  "date": "4월 25일"
+                },
+                {
+                  "id": "pink-yunno-5",
+                  "sender": "them",
+                  "text": "지금.",
+                  "time": "19:27",
+                  "date": "4월 25일"
+                }
+              ]
+            }
+          ]
         }
       },
       {

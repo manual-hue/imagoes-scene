@@ -27,6 +27,7 @@ export interface PhoneThread {
   time: string;
   unread: boolean;
   preview: string;
+  platform?: 'imessage' | 'kakao' | 'sms';
   messages?: PhoneThreadMessage[];
 }
 
@@ -35,6 +36,7 @@ export interface PhoneThreadMessage {
   sender: 'me' | 'them';
   text: string;
   time?: string;
+  date?: string;
 }
 
 export interface PhonePhoto {
@@ -95,6 +97,14 @@ export interface PhoneNote {
   updatedAt: string;
 }
 
+export interface PhoneCall {
+  id: string;
+  name: string;
+  type: 'missed' | 'incoming' | 'outgoing';
+  time: string;
+  date?: string;
+}
+
 export interface PhoneAppContent {
   note?: string;
   notes?: PhoneNote[];
@@ -107,6 +117,7 @@ export interface PhoneAppContent {
   recentSearches?: PhoneSafariSearch[];
   calendarDays?: PhoneCalendarDay[];
   mapSearches?: PhoneMapSearch[];
+  calls?: PhoneCall[];
 }
 
 export interface PhoneApp {
