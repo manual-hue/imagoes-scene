@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import type { MockPhone, PhoneApp, PhoneCall, PhoneCalendarDay, PhoneMail, PhoneMapSearch, PhoneNote, PhonePhoto, PhoneSafariSearch, PhoneThread } from '@/types/phone';
+import type { MockPhone, PhoneApp, PhoneCall, PhoneCalendarDay, PhoneContact, PhoneMail, PhoneMapSearch, PhoneNote, PhonePhoto, PhonePlantAccessLog, PhonePlantVideo, PhoneProtectedAlbum, PhoneSafariSearch, PhoneThread } from '@/types/phone';
 
 interface PhoneDeviceProps {
   phone: MockPhone;
@@ -37,6 +37,7 @@ const APP_ICON_ASSETS: Record<string, string> = {
   safari: '/icons/phone-safari.svg',
   camera: '/icons/phone-camera.svg',
   maps: '/icons/phone-maps.svg',
+  contacts: '/icons/phone-contacts.svg',
 };
 
 const THEME_STYLES: Record<string, { background: string; color: string }> = {
@@ -49,6 +50,7 @@ const THEME_STYLES: Record<string, { background: string; color: string }> = {
   black: { background: 'linear-gradient(135deg, #2a2a2a 0%, #070707 100%)', color: '#f4f4f4' },
   gray: { background: 'linear-gradient(135deg, #dfe5ec 0%, #838b96 100%)', color: '#111827' },
   blue: { background: 'linear-gradient(135deg, #b2dbff 0%, #2d86ff 100%)', color: '#071b45' },
+  plant: { background: 'linear-gradient(135deg, #d4f5d4 0%, #4caf76 100%)', color: '#0d3320' },
 };
 
 export function PhoneDevice({ phone }: PhoneDeviceProps) {
@@ -196,6 +198,15 @@ function AppIconButton({
             height={compact ? 56 : 64}
             className={`${compact ? 'h-14 w-14' : 'h-16 w-16'} rounded-[1.45rem]`}
           />
+        ) : app.icon === 'plant' ? (
+          <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="18" cy="28" rx="7" ry="4" fill="#8B5C2A" fillOpacity="0.55" />
+            <rect x="14" y="22" width="8" height="6" rx="2" fill="#A0693A" />
+            <path d="M18 22 C18 16, 12 14, 10 9 C13 10, 16 13, 18 17 C18 11, 23 7, 26 5 C24 10, 20 14, 18 18" fill="#3da85a" />
+            <circle cx="18" cy="8" r="3.5" fill="#5ecb7a" />
+            <circle cx="12" cy="13" r="3" fill="#4bbf6b" />
+            <circle cx="24" cy="11" r="3" fill="#4bbf6b" />
+          </svg>
         ) : (
           iconText
         )}
@@ -249,7 +260,7 @@ function AppContent({ app, phone }: { app: PhoneApp; phone: MockPhone }) {
   }
 
   if (app.id === 'gallery') {
-    return <GalleryView photos={app.content.photos ?? []} deletedPhotos={app.content.deletedPhotos ?? []} phoneId={phone.id} />;
+    return <GalleryView photos={app.content.photos ?? []} deletedPhotos={app.content.deletedPhotos ?? []} protectedAlbums={app.content.protectedAlbums ?? []} phoneId={phone.id} />;
   }
 
   if (app.id === 'gmail') {
@@ -277,7 +288,21 @@ function AppContent({ app, phone }: { app: PhoneApp; phone: MockPhone }) {
   }
 
   if (app.id === 'phone') {
-    return <PhoneCallView calls={app.content.calls ?? []} />;
+    return <PhoneCallView calls={app.content.calls ?? []} contacts={app.content.contacts ?? []} />;
+  }
+
+  if (app.id === 'contacts') {
+    return <ContactsView contacts={app.content.contacts ?? []} />;
+  }
+
+  if (app.id === 'plant-diary') {
+    return (
+      <PlantDiaryView
+        password={app.content.password ?? ''}
+        video={app.content.plantVideo ?? null}
+        accessLogs={app.content.plantAccessLogs ?? []}
+      />
+    );
   }
 
   return (
@@ -291,21 +316,53 @@ function AppContent({ app, phone }: { app: PhoneApp; phone: MockPhone }) {
 }
 
 function FilesView({ app }: { app: PhoneApp }) {
+  const [openFile, setOpenFile] = useState<{ name: string; content: string } | null>(null);
+
+  const sections = app.content.fileSections ?? app.content.sections ?? [];
+
+  if (openFile) {
+    return (
+      <div className="flex min-h-full flex-col bg-slate-50">
+        <div className="flex items-center gap-2 border-b border-slate-200 bg-white px-4 pb-3 pt-5">
+          <button onClick={() => setOpenFile(null)} className="text-blue-500 text-sm">‹ 내 파일</button>
+          <span className="flex-1 text-center text-sm font-medium text-slate-700 truncate pr-6">{openFile.name}</span>
+        </div>
+        <div className="flex-1 p-5">
+          <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <p className="whitespace-pre-wrap font-mono text-[12px] leading-relaxed text-slate-800">{openFile.content}</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-4 p-5">
-      {(app.content.sections ?? []).map((section) => (
-        <section key={section.title} className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
-          <p className="font-mono text-[11px] tracking-[0.18em] text-slate-400">{section.title}</p>
-          <div className="mt-3 space-y-2">
-            {section.items.map((item) => (
-              <div key={item} className="flex items-center justify-between rounded-2xl bg-slate-50 px-3 py-3">
-                <span className="text-sm text-slate-800">{item}</span>
-                <span className="font-mono text-[10px] tracking-[0.16em] text-slate-400">OPEN</span>
-              </div>
-            ))}
-          </div>
-        </section>
-      ))}
+      {sections.map((section) => {
+        const title = typeof section === 'string' ? section : section.title;
+        const items = typeof section === 'string' ? [] : section.items;
+        return (
+          <section key={title} className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
+            <p className="font-mono text-[11px] tracking-[0.18em] text-slate-400">{title}</p>
+            <div className="mt-3 space-y-2">
+              {items.map((item) => {
+                const name = typeof item === 'string' ? item : item.name;
+                const content = typeof item === 'string' ? null : (item.content ?? null);
+                return (
+                  <div
+                    key={name}
+                    onClick={() => content && setOpenFile({ name, content })}
+                    className={`flex items-center justify-between rounded-2xl bg-slate-50 px-3 py-3 ${content ? 'cursor-pointer active:bg-slate-100' : ''}`}
+                  >
+                    <span className="text-sm text-slate-800">{name}</span>
+                    <span className="font-mono text-[10px] tracking-[0.16em] text-slate-400">{content ? 'OPEN' : ''}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        );
+      })}
     </div>
   );
 }
@@ -409,9 +466,13 @@ function MessagesView({ threads }: { threads: PhoneThread[] }) {
 }
 
 
-function GalleryView({ photos, deletedPhotos, phoneId }: { photos: PhonePhoto[]; deletedPhotos: PhonePhoto[]; phoneId: string }) {
-  const [selectedAlbum, setSelectedAlbum] = useState<'default' | 'deleted' | null>(null);
+function GalleryView({ photos, deletedPhotos, protectedAlbums, phoneId }: { photos: PhonePhoto[]; deletedPhotos: PhonePhoto[]; protectedAlbums: PhoneProtectedAlbum[]; phoneId: string }) {
+  const [selectedAlbum, setSelectedAlbum] = useState<'default' | 'deleted' | number | null>(null);
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
+  const [protectedInput, setProtectedInput] = useState('');
+  const [protectedError, setProtectedError] = useState(false);
+  const [unlockedAlbums, setUnlockedAlbums] = useState<Set<number>>(new Set());
+  const [pendingProtectedIdx, setPendingProtectedIdx] = useState<number | null>(null);
 
   const galleryPhotos = photos.map((p, index) => ({
     title: p.title,
@@ -425,8 +486,26 @@ function GalleryView({ photos, deletedPhotos, phoneId }: { photos: PhonePhoto[];
     src: `https://picsum.photos/seed/${phoneId}-deleted-${index + 1}/1200/1200`,
   }));
 
-  const activePhotos = selectedAlbum === 'deleted' ? deletedPhotoList : galleryPhotos;
-  const albumTitle = selectedAlbum === 'deleted' ? '삭제된 사진' : '기본 앨범';
+  const visibleProtectedAlbums = protectedAlbums.filter((a) => a.photos.length > 0);
+
+  const activePhotos =
+    selectedAlbum === 'deleted'
+      ? deletedPhotoList
+      : typeof selectedAlbum === 'number'
+        ? protectedAlbums[selectedAlbum].photos.map((p, index) => ({
+            title: p.title,
+            stamp: p.stamp,
+            src: `https://picsum.photos/seed/${phoneId}-protected-${selectedAlbum}-${index + 1}/1200/1200`,
+          }))
+        : galleryPhotos;
+
+  const albumTitle =
+    selectedAlbum === 'deleted'
+      ? '삭제된 사진'
+      : typeof selectedAlbum === 'number'
+        ? protectedAlbums[selectedAlbum].title
+        : '기본 앨범';
+
   const selectedPhoto = selectedPhotoIndex === null ? null : activePhotos[selectedPhotoIndex];
 
   const BottomNav = (
@@ -438,6 +517,81 @@ function GalleryView({ photos, deletedPhotos, phoneId }: { photos: PhonePhoto[];
       ))}
     </div>
   );
+
+  function handleProtectedAlbumClick(idx: number) {
+    if (unlockedAlbums.has(idx)) {
+      setSelectedAlbum(idx);
+    } else {
+      setPendingProtectedIdx(idx);
+      setProtectedInput('');
+      setProtectedError(false);
+    }
+  }
+
+  function handlePasswordSubmit() {
+    if (pendingProtectedIdx === null) return;
+    if (protectedInput === protectedAlbums[pendingProtectedIdx].password) {
+      setUnlockedAlbums((prev) => new Set(prev).add(pendingProtectedIdx));
+      setSelectedAlbum(pendingProtectedIdx);
+      setPendingProtectedIdx(null);
+    } else {
+      setProtectedError(true);
+      setProtectedInput('');
+    }
+  }
+
+  if (pendingProtectedIdx !== null) {
+    return (
+      <div className="flex h-full min-h-0 flex-col bg-black">
+        <div className="border-b border-white/8 px-4 pb-3 pt-4 relative">
+          <button
+            type="button"
+            onClick={() => setPendingProtectedIdx(null)}
+            className="absolute left-4 text-[#0a84ff] text-sm top-1/2 -translate-y-1/2"
+          >
+            ‹ 앨범
+          </button>
+          <p className="text-center text-[15px] font-semibold tracking-[-0.01em] text-white">보호된 앨범</p>
+        </div>
+
+        <div className="flex flex-1 flex-col items-center justify-center gap-5 px-8">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-neutral-800">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-white/70">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+          </div>
+          <p className="text-[15px] font-semibold text-white">{protectedAlbums[pendingProtectedIdx].title}</p>
+          <p className="text-[13px] text-white/50 text-center">이 앨범은 비밀번호로 보호되어 있습니다</p>
+
+          <div className="w-full">
+            <input
+              type="password"
+              value={protectedInput}
+              onChange={(e) => { setProtectedInput(e.target.value); setProtectedError(false); }}
+              onKeyDown={(e) => e.key === 'Enter' && handlePasswordSubmit()}
+              placeholder="비밀번호 입력"
+              className="w-full rounded-xl bg-neutral-800 px-4 py-3 text-center text-[15px] text-white placeholder-white/30 outline-none border border-white/10 focus:border-[#0a84ff]/60"
+              maxLength={20}
+            />
+            {protectedError && (
+              <p className="mt-2 text-center text-[13px] text-red-400">비밀번호가 올바르지 않습니다</p>
+            )}
+          </div>
+
+          <button
+            type="button"
+            onClick={handlePasswordSubmit}
+            className="w-full rounded-xl bg-[#0a84ff] py-3 text-[15px] font-semibold text-white"
+          >
+            확인
+          </button>
+        </div>
+
+        {BottomNav}
+      </div>
+    );
+  }
 
   if (selectedAlbum === null) {
     return (
@@ -479,6 +633,34 @@ function GalleryView({ photos, deletedPhotos, phoneId }: { photos: PhonePhoto[];
               </button>
             ))}
           </div>
+
+          {visibleProtectedAlbums.length > 0 && (
+            <>
+              <p className="mb-3 mt-6 text-xs font-semibold uppercase tracking-widest text-white/40">보호된 앨범</p>
+              <div className="grid grid-cols-2 gap-3">
+                {visibleProtectedAlbums.map((album, i) => {
+                  const originalIdx = protectedAlbums.indexOf(album);
+                  return (
+                    <button
+                      key={album.title}
+                      type="button"
+                      onClick={() => handleProtectedAlbumClick(originalIdx)}
+                      className="text-left"
+                    >
+                      <div className="relative aspect-square w-full rounded-xl bg-neutral-800 overflow-hidden flex items-center justify-center">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-white/50">
+                          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                        </svg>
+                      </div>
+                      <p className="mt-1.5 text-[13px] font-medium text-white">{album.title}</p>
+                      <p className="text-[12px] text-white/40">{album.photos.length}</p>
+                    </button>
+                  );
+                })}
+              </div>
+            </>
+          )}
         </div>
 
         {BottomNav}
@@ -780,49 +962,109 @@ function SafariView({ recentSearches }: { recentSearches: PhoneSafariSearch[] })
 }
 
 function CalendarView({ days }: { days: PhoneCalendarDay[] }) {
-  // Mini calendar grid (static)
-  const calendarDays = [
-    ['일', '월', '화', '수', '목', '금', '토'],
-    ['', '', '1', '2', '3', '4', '5'],
-    ['6', '7', '8', '9', '10', '11', '12'],
-    ['13', '14', '15', '16', '17', '18', '19'],
-    ['20', '21', '22', '23', '24', '25', '26'],
-    ['27', '28', '29', '30', '', '', ''],
+  const TODAY = new Date(2026, 3, 13); // 2026-04-13
+  const [viewYear, setViewYear] = useState(TODAY.getFullYear());
+  const [viewMonth, setViewMonth] = useState(TODAY.getMonth()); // 0-indexed
+
+  const MONTH_NAMES = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+  const DOW_NAMES = ['일','월','화','수','목','금','토'];
+
+  const firstDow = new Date(viewYear, viewMonth, 1).getDay();
+  const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+
+  // Build flat array of cells: leading blanks + day numbers
+  const cells: (number | null)[] = [
+    ...Array(firstDow).fill(null),
+    ...Array.from({ length: daysInMonth }, (_, i) => i + 1),
   ];
+  // Pad to full weeks
+  while (cells.length % 7 !== 0) cells.push(null);
+
+  const rows: (number | null)[][] = [];
+  for (let i = 0; i < cells.length; i += 7) rows.push(cells.slice(i, i + 7));
+
+  // Days that have events in the current view month (keyed by day number)
+  const daysWithEvents = new Set(
+    days
+      .map(d => new Date(d.date))
+      .filter(dt => dt.getFullYear() === viewYear && dt.getMonth() === viewMonth)
+      .map(dt => dt.getDate())
+  );
+
+  // Only show schedule list entries that belong to the current view month
+  const visibleDays = days.filter(d => {
+    const dt = new Date(d.date);
+    return dt.getFullYear() === viewYear && dt.getMonth() === viewMonth;
+  });
+
+  const isToday = (d: number | null) =>
+    d !== null &&
+    viewYear === TODAY.getFullYear() &&
+    viewMonth === TODAY.getMonth() &&
+    d === TODAY.getDate();
+
+  const prevMonth = () => {
+    if (viewMonth === 0) { setViewMonth(11); setViewYear(y => y - 1); }
+    else setViewMonth(m => m - 1);
+  };
+  const nextMonth = () => {
+    if (viewMonth === 11) { setViewMonth(0); setViewYear(y => y + 1); }
+    else setViewMonth(m => m + 1);
+  };
 
   return (
     <div className="min-h-full bg-white">
       {/* Month header */}
-      <div className="px-5 pb-2 pt-4">
-        <p className="text-[26px] font-bold tracking-[-0.02em] text-slate-950">4월</p>
-        <p className="text-sm text-slate-500">2024</p>
+      <div className="flex items-center justify-between px-5 pb-2 pt-4">
+        <div>
+          <p className="text-[26px] font-bold tracking-[-0.02em] text-slate-950">{MONTH_NAMES[viewMonth]}</p>
+          <p className="text-sm text-slate-500">{viewYear}</p>
+        </div>
+        <div className="flex gap-1">
+          <button
+            type="button"
+            onClick={prevMonth}
+            className="flex h-8 w-8 items-center justify-center rounded-full text-[#007aff] hover:bg-slate-100 active:bg-slate-200"
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            onClick={nextMonth}
+            className="flex h-8 w-8 items-center justify-center rounded-full text-[#007aff] hover:bg-slate-100 active:bg-slate-200"
+          >
+            ›
+          </button>
+        </div>
       </div>
 
       {/* Mini calendar */}
       <div className="px-4 pb-3">
         <div className="grid grid-cols-7 gap-0">
-          {calendarDays.map((row, rowIndex) =>
-            row.map((day, colIndex) => {
-              const isHeader = rowIndex === 0;
-              const isToday = day === '3' && rowIndex > 0;
-              const isSunday = colIndex === 0 && !isHeader;
-
+          {DOW_NAMES.map((d, i) => (
+            <div key={d} className={`flex h-9 items-center justify-center text-[13px] font-medium ${i === 0 ? 'text-red-400' : 'text-slate-400'}`}>{d}</div>
+          ))}
+          {rows.map((row, ri) =>
+            row.map((day, ci) => {
+              const hasEvent = day !== null && daysWithEvents.has(day);
               return (
                 <div
-                  key={`${rowIndex}-${colIndex}`}
-                  className={`flex h-9 items-center justify-center text-[13px] ${
-                    isHeader ? 'font-medium text-slate-400' : ''
-                  } ${isToday ? 'relative' : ''} ${isSunday && day ? 'text-red-400' : ''}`}
+                  key={`${ri}-${ci}`}
+                  className={`relative flex flex-col h-10 items-center justify-start pt-1 text-[13px] ${ci === 0 && day ? 'text-red-400' : ''}`}
                 >
-                  {isToday && (
-                    <span className="absolute flex h-7 w-7 items-center justify-center rounded-full bg-[#007aff] text-[13px] font-semibold text-white">
+                  {isToday(day) ? (
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#007aff] text-[13px] font-semibold text-white">
                       {day}
                     </span>
+                  ) : (
+                    <span className={day ? 'text-slate-700' : ''}>{day ?? ''}</span>
                   )}
-                  {!isToday && <span className={day ? 'text-slate-700' : ''}>{day}</span>}
+                  {hasEvent && (
+                    <span className={`mt-0.5 h-1 w-1 rounded-full ${isToday(day) ? 'bg-[#007aff]' : ci === 0 ? 'bg-red-400' : 'bg-slate-400'}`} />
+                  )}
                 </div>
               );
-            }),
+            })
           )}
         </div>
       </div>
@@ -831,10 +1073,16 @@ function CalendarView({ days }: { days: PhoneCalendarDay[] }) {
 
       {/* Day schedule list */}
       <div className="px-4 pb-8 pt-3">
-        {days.map((dayData) => (
+        {visibleDays.length === 0 && (
+          <p className="text-center text-sm text-slate-400 py-6">일정 없음</p>
+        )}
+        {visibleDays.map((dayData) => {
+          const dt = new Date(dayData.date);
+          const label = `${dt.getMonth() + 1}월 ${dt.getDate()}일`;
+          return (
           <div key={dayData.date} className="mb-5">
             <div className="mb-3 flex items-baseline gap-2">
-              <p className="text-[15px] font-semibold text-slate-900">{dayData.date}</p>
+              <p className="text-[15px] font-semibold text-slate-900">{label}</p>
               <p className="text-xs text-slate-400">({dayData.dayOfWeek})</p>
             </div>
 
@@ -862,7 +1110,8 @@ function CalendarView({ days }: { days: PhoneCalendarDay[] }) {
               ))}
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
@@ -1067,40 +1316,129 @@ function NotesView({ notes, fallback }: { notes: PhoneNote[]; fallback?: string 
   );
 }
 
-function PhoneCallView({ calls }: { calls: PhoneCall[] }) {
-  if (calls.length === 0) {
+function ContactsView({ contacts }: { contacts: PhoneContact[] }) {
+  const [selected, setSelected] = useState<PhoneContact | null>(null);
+
+  if (selected) {
     return (
-      <div className="p-5">
-        <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
-          <p className="font-mono text-[11px] tracking-[0.18em] text-slate-400">최근 통화</p>
-          <p className="mt-3 text-sm text-slate-400">통화 기록 없음</p>
+      <div className="bg-white min-h-full">
+        <button
+          onClick={() => setSelected(null)}
+          className="flex items-center gap-1 px-5 pt-5 pb-3 text-blue-500 text-sm"
+        >
+          ‹ 연락처
+        </button>
+        <div className="flex flex-col items-center gap-2 py-6 border-b border-slate-100">
+          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-slate-200">
+            <span className="text-3xl text-slate-400">👤</span>
+          </div>
+          <p className="text-xl font-semibold text-slate-900">{selected.name}</p>
+        </div>
+        <div className="px-5 py-4 space-y-3">
+          <div className="rounded-xl border border-slate-200 overflow-hidden">
+            <div className="px-4 py-3 bg-white">
+              <p className="font-mono text-[10px] tracking-widest text-slate-400 uppercase">{selected.label ?? '전화'}</p>
+              <p className="mt-0.5 text-sm text-blue-500">{selected.number}</p>
+            </div>
+          </div>
+          {selected.memo && (
+            <div className="rounded-xl border border-slate-200 overflow-hidden">
+              <div className="px-4 py-3 bg-white">
+                <p className="font-mono text-[10px] tracking-widest text-slate-400 uppercase">메모</p>
+                <p className="mt-0.5 text-sm text-slate-900">{selected.memo}</p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     );
   }
 
   return (
+    <div className="bg-white min-h-full">
+      <p className="px-5 pb-2 pt-5 font-mono text-[11px] tracking-[0.2em] text-slate-400">연락처</p>
+      {contacts.length === 0 ? (
+        <p className="px-5 text-sm text-slate-400">연락처 없음</p>
+      ) : (
+        <div className="divide-y divide-slate-100">
+          {contacts.map((contact) => (
+            <button
+              key={contact.id}
+              className="flex w-full items-center gap-4 px-5 py-3.5 text-left"
+              onClick={() => setSelected(contact)}
+            >
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-slate-100">
+                <span className="text-[15px] text-slate-500">👤</span>
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="text-sm font-semibold text-slate-900">{contact.name}</p>
+                <p className="mt-0.5 font-mono text-[11px] text-slate-400">{contact.number}</p>
+              </div>
+              <span className="text-slate-300 text-sm">›</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function PhoneCallView({ calls, contacts }: { calls: PhoneCall[]; contacts: PhoneContact[] }) {
+  return (
     <div className="bg-white">
-      <p className="px-5 pb-2 pt-5 font-mono text-[11px] tracking-[0.2em] text-slate-400">최근 통화</p>
-      <div className="divide-y divide-slate-100">
-        {calls.map((call) => (
-          <div key={call.id} className="flex items-center gap-4 px-5 py-3.5">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-slate-100">
-              <span className="text-[15px] text-slate-500">👤</span>
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className={`text-sm font-semibold ${call.type === 'missed' ? 'text-red-500' : 'text-slate-900'}`}>
-                {call.name}
-              </p>
-              <p className="mt-0.5 font-mono text-[11px] text-slate-400">
-                {call.type === 'missed' ? '부재중' : call.type === 'incoming' ? '수신' : '발신'}
-                {call.date ? ` · ${call.date}` : ''}
-              </p>
-            </div>
-            <span className="font-mono text-[11px] text-slate-400">{call.time}</span>
+      {calls.length > 0 && (
+        <>
+          <p className="px-5 pb-2 pt-5 font-mono text-[11px] tracking-[0.2em] text-slate-400">최근 통화</p>
+          <div className="divide-y divide-slate-100">
+            {calls.map((call) => (
+              <div key={call.id} className="flex items-center gap-4 px-5 py-3.5">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-slate-100">
+                  <span className="text-[15px] text-slate-500">👤</span>
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className={`text-sm font-semibold ${call.type === 'missed' ? 'text-red-500' : 'text-slate-900'}`}>
+                    {call.name}
+                  </p>
+                  <p className="mt-0.5 font-mono text-[11px] text-slate-400">
+                    {call.type === 'missed' ? '부재중' : call.type === 'incoming' ? '수신' : '발신'}
+                    {call.date ? ` · ${call.date}` : ''}
+                    {call.duration ? ` · ${call.duration}` : ''}
+                  </p>
+                </div>
+                <span className="font-mono text-[11px] text-slate-400">{call.time}</span>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </>
+      )}
+      {contacts.length > 0 && (
+        <>
+          <p className="px-5 pb-2 pt-5 font-mono text-[11px] tracking-[0.2em] text-slate-400">연락처</p>
+          <div className="divide-y divide-slate-100">
+            {contacts.map((contact) => (
+              <div key={contact.id} className="flex items-center gap-4 px-5 py-3.5">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-slate-100">
+                  <span className="text-[15px] text-slate-500">👤</span>
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-semibold text-slate-900">{contact.name}</p>
+                  <p className="mt-0.5 font-mono text-[11px] text-slate-400">
+                    {contact.number}{contact.label ? ` · ${contact.label}` : ''}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+      {calls.length === 0 && contacts.length === 0 && (
+        <div className="p-5">
+          <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
+            <p className="font-mono text-[11px] tracking-[0.18em] text-slate-400">최근 통화</p>
+            <p className="mt-3 text-sm text-slate-400">통화 기록 없음</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -1111,6 +1449,141 @@ function getWallpaperClass(wallpaper: string) {
   }
 
   return 'bg-[radial-gradient(circle_at_top,_rgba(255,230,185,0.28),_transparent_34%),linear-gradient(180deg,_#53453f_0%,_#8a7667_34%,_#171717_100%)]';
+}
+
+function PlantDiaryView({ password, video, accessLogs }: { password: string; video: PhonePlantVideo | null; accessLogs: PhonePlantAccessLog[] }) {
+  const [input, setInput] = useState('');
+  const [error, setError] = useState(false);
+  const [unlocked, setUnlocked] = useState(false);
+
+  function handleKey(key: string) {
+    if (key === '←') {
+      setInput((prev) => prev.slice(0, -1));
+      setError(false);
+      return;
+    }
+    const next = input + key;
+    if (next.length > 4) return;
+    setInput(next);
+    if (next.length === 4) {
+      if (next === password) {
+        setUnlocked(true);
+      } else {
+        setError(true);
+        setTimeout(() => { setInput(''); setError(false); }, 600);
+      }
+    }
+  }
+
+  if (unlocked) {
+    return (
+      <div className="min-h-full bg-[#f4faf5] p-5 space-y-5">
+        <div className="rounded-2xl bg-white border border-green-100 shadow-sm overflow-hidden">
+          <div className="bg-green-50 px-4 py-3 border-b border-green-100 flex items-center gap-2">
+            <span className="text-base">🎬</span>
+            <p className="text-[12px] font-semibold tracking-widest text-green-700 uppercase">영상</p>
+          </div>
+          <div className="p-4 flex items-center gap-4">
+            <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-green-100">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4caf76" strokeWidth="2">
+                <polygon points="5 3 19 12 5 21 5 3" fill="#4caf76" stroke="none" />
+              </svg>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-[15px] font-semibold text-slate-800 truncate">{video?.title ?? ''}</p>
+              <p className="text-[12px] text-slate-400 mt-0.5">{video?.duration ?? ''}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="rounded-2xl bg-white border border-green-100 shadow-sm overflow-hidden">
+          <div className="bg-green-50 px-4 py-3 border-b border-green-100 flex items-center gap-2">
+            <span className="text-base">🔐</span>
+            <p className="text-[12px] font-semibold tracking-widest text-green-700 uppercase">최근 접속 기록</p>
+          </div>
+          <ul className="divide-y divide-slate-100">
+            {accessLogs.map((log, i) => (
+              <li key={i} className="flex items-center justify-between px-4 py-3 gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="h-8 w-8 flex-shrink-0 rounded-full flex items-center justify-center bg-green-100">
+                    {log.device === 'YN-Macbook' ? (
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4caf76" strokeWidth="2.2">
+                        <rect x="2" y="4" width="20" height="14" rx="2" />
+                        <path d="M2 20h20" />
+                      </svg>
+                    ) : (
+                      <svg width="12" height="14" viewBox="0 0 24 28" fill="none" stroke="#4caf76" strokeWidth="2.2">
+                        <rect x="4" y="1" width="16" height="22" rx="3" />
+                        <circle cx="12" cy="19" r="1.5" fill="#4caf76" stroke="none" />
+                      </svg>
+                    )}
+                  </div>
+                  <p className="text-[13px] font-medium text-slate-700">{log.device}</p>
+                </div>
+                <p className="text-[11px] text-slate-400 text-right flex-shrink-0">{log.time}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex h-full min-h-[480px] flex-col items-center justify-between bg-[#f4faf5] pb-8 pt-10">
+      <div className="flex flex-col items-center gap-3">
+        <div className="flex h-20 w-20 items-center justify-center rounded-[2rem] bg-white shadow-md shadow-green-200/60 border border-green-100">
+          <svg width="44" height="44" viewBox="0 0 36 36" fill="none">
+            <ellipse cx="18" cy="29" rx="7" ry="3.5" fill="#A0693A" fillOpacity="0.5" />
+            <rect x="14" y="23" width="8" height="6" rx="2" fill="#A0693A" />
+            <path d="M18 23 C18 17, 12 15, 10 10 C13 11, 16 14, 18 18 C18 12, 23 8, 26 6 C24 11, 20 15, 18 19" fill="#3da85a" />
+            <circle cx="18" cy="9" r="3.5" fill="#5ecb7a" />
+            <circle cx="12" cy="14" r="3" fill="#4bbf6b" />
+            <circle cx="24" cy="12" r="3" fill="#4bbf6b" />
+          </svg>
+        </div>
+        <p className="text-[18px] font-bold text-green-900">식물 기록</p>
+        <p className="text-[13px] text-green-600/70">비밀번호를 입력해 주세요</p>
+      </div>
+
+      <div className="flex flex-col items-center gap-6 w-full px-8">
+        <div className="flex gap-4">
+          {[0, 1, 2, 3].map((i) => (
+            <div
+              key={i}
+              className={`h-3.5 w-3.5 rounded-full border-2 transition-all duration-150 ${
+                error
+                  ? 'border-red-400 bg-red-400'
+                  : input.length > i
+                    ? 'border-green-500 bg-green-500'
+                    : 'border-green-300 bg-transparent'
+              }`}
+            />
+          ))}
+        </div>
+        {error && <p className="text-[12px] text-red-400 -mt-4">비밀번호가 틀렸어요</p>}
+
+        <div className="grid grid-cols-3 gap-3 w-full">
+          {['1','2','3','4','5','6','7','8','9','','0','←'].map((key) => (
+            <button
+              key={key}
+              type="button"
+              onClick={() => key !== '' && handleKey(key)}
+              disabled={key === ''}
+              className={`h-14 rounded-2xl text-[20px] font-semibold transition-all active:scale-95 ${
+                key === '' ? 'invisible' :
+                key === '←'
+                  ? 'bg-green-100 text-green-700 text-base'
+                  : 'bg-white text-green-900 shadow-sm shadow-green-100 border border-green-100 hover:bg-green-50'
+              }`}
+            >
+              {key}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function getPhotoTileStyle(index: number, src: string) {

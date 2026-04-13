@@ -1,0 +1,29 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="contactsBg" x1="18" y1="14" x2="110" y2="118" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A8D8FF"/>
+      <stop offset="1" stop-color="#3A8FE8"/>
+    </linearGradient>
+  </defs>
+  <!-- App background -->
+  <rect x="12" y="12" width="104" height="104" rx="30" fill="url(#contactsBg)"/>
+  <!-- Book spine (left strip) -->
+  <rect x="12" y="12" width="22" height="104" rx="30" fill="#2070C8"/>
+  <rect x="24" y="12" width="10" height="104" fill="#2070C8"/>
+  <!-- Spine rings -->
+  <rect x="19" y="36" width="16" height="7" rx="3.5" fill="#5AACFF"/>
+  <rect x="19" y="52" width="16" height="7" rx="3.5" fill="#5AACFF"/>
+  <rect x="19" y="68" width="16" height="7" rx="3.5" fill="#5AACFF"/>
+  <rect x="19" y="84" width="16" height="7" rx="3.5" fill="#5AACFF"/>
+  <!-- Page area -->
+  <rect x="34" y="22" width="78" height="84" rx="10" fill="#EEF6FF"/>
+  <!-- Avatar circle -->
+  <circle cx="64" cy="51" r="14" fill="#B8D8F8"/>
+  <circle cx="64" cy="46" r="7" fill="#3A8FE8"/>
+  <path d="M44 72c0-11.046 8.954-16 20-16s20 4.954 20 16" fill="#3A8FE8"/>
+  <!-- Name line -->
+  <rect x="44" y="78" width="36" height="6" rx="3" fill="#B0CCE8"/>
+  <!-- Detail lines -->
+  <rect x="44" y="90" width="52" height="5" rx="2.5" fill="#C8DFF0"/>
+  <rect x="44" y="99" width="40" height="5" rx="2.5" fill="#C8DFF0"/>
+</svg>

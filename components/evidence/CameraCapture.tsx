@@ -1,5 +1,3 @@
-'use client';
-
 import Image from 'next/image';
 import { useMemo, useRef, useState } from 'react';
 import Webcam from 'react-webcam';

@@ -22,6 +22,16 @@ export interface PhoneAppSectionContent {
   items: string[];
 }
 
+export interface PhoneFileSectionItem {
+  name: string;
+  content?: string;
+}
+
+export interface PhoneFileSection {
+  title: string;
+  items: (string | PhoneFileSectionItem)[];
+}
+
 export interface PhoneThread {
   name: string;
   time: string;
@@ -103,6 +113,31 @@ export interface PhoneCall {
   type: 'missed' | 'incoming' | 'outgoing';
   time: string;
   date?: string;
+  duration?: string;
+}
+
+export interface PhoneContact {
+  id: string;
+  name: string;
+  number: string;
+  label?: string;
+  memo?: string;
+}
+
+export interface PhoneProtectedAlbum {
+  title: string;
+  password: string;
+  photos: PhonePhoto[];
+}
+
+export interface PhonePlantVideo {
+  title: string;
+  duration: string;
+}
+
+export interface PhonePlantAccessLog {
+  device: string;
+  time: string;
 }
 
 export interface PhoneAppContent {
@@ -112,12 +147,18 @@ export interface PhoneAppContent {
   threads?: PhoneThread[];
   photos?: PhonePhoto[];
   deletedPhotos?: PhonePhoto[];
+  protectedAlbums?: PhoneProtectedAlbum[];
+  password?: string;
+  plantVideo?: PhonePlantVideo;
+  plantAccessLogs?: PhonePlantAccessLog[];
   mails?: PhoneMail[];
   voiceMemos?: PhoneVoiceMemo[];
   recentSearches?: PhoneSafariSearch[];
   calendarDays?: PhoneCalendarDay[];
   mapSearches?: PhoneMapSearch[];
   calls?: PhoneCall[];
+  contacts?: PhoneContact[];
+  fileSections?: PhoneFileSection[];
 }
 
 export interface PhoneApp {

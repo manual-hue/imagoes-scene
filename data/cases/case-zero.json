@@ -5,243 +5,7 @@
   "sessionId": "local-demo-session",
   "objects": [
     {
-      "id": "bedroom",
-      "type": "room",
-      "name": "침실",
-      "shortCode": "R03",
-      "order": 3,
-      "content": {
-        "description": "침대보가 한쪽으로 심하게 구겨져 있고 협탁 위 물건 배열이 흐트러져 있다. 가장 사적인 공간이지만 동시에 계획의 흔적이 가장 많이 남아 있는 장소다.",
-        "backgroundImage": {
-          "url": "/backgrounds/bedroom.svg",
-          "alt": "Bedroom crime scene background"
-        },
-        "isAccessible": true,
-        "visitCount": 0,
-        "clues": [
-          {
-            "id": "bed-01",
-            "roomId": "bedroom",
-            "title": "잠기지 않은 서랍",
-            "type": "text",
-            "content": "원래 잠겨 있어야 할 협탁 서랍이 열려 있고 안쪽 정리 상태가 뒤집혀 있다.",
-            "isHidden": false,
-            "displayOrder": 1,
-            "tags": [
-              "drawer",
-              "search"
-            ]
-          },
-          {
-            "id": "bed-02",
-            "roomId": "bedroom",
-            "title": "반쯤 탄 메모",
-            "type": "document",
-            "content": "라이터로 태우다 만 종이에서 계좌번호 일부와 이니셜 두 글자가 보인다.",
-            "isHidden": false,
-            "displayOrder": 2,
-            "tags": [
-              "memo",
-              "burn"
-            ]
-          },
-          {
-            "id": "bed-03",
-            "roomId": "bedroom",
-            "title": "침대 아래 운동화 자국",
-            "type": "image",
-            "content": "침대 프레임 아래 먼지가 쓸린 방향이 뚜렷하다. 누군가 숨거나 무언가를 밀어 넣었다.",
-            "isHidden": false,
-            "displayOrder": 3,
-            "tags": [
-              "shoeprint",
-              "bed"
-            ]
-          },
-          {
-            "id": "bed-04",
-            "roomId": "bedroom",
-            "title": "목걸이 잠금장치",
-            "type": "image",
-            "content": "카펫에서 끊어진 목걸이 잠금장치 하나가 발견되었다.",
-            "isHidden": false,
-            "displayOrder": 4,
-            "tags": [
-              "necklace",
-              "struggle"
-            ]
-          },
-          {
-            "id": "bed-05",
-            "roomId": "bedroom",
-            "title": "노트북 로그인 실패 기록",
-            "type": "document",
-            "content": "사건 시간 직전 5분 동안 비밀번호 실패 시도가 세 차례 기록되어 있다.",
-            "isHidden": false,
-            "displayOrder": 5,
-            "tags": [
-              "laptop",
-              "login"
-            ]
-          },
-          {
-            "id": "bed-06",
-            "roomId": "bedroom",
-            "title": "찢어진 영수증",
-            "type": "document",
-            "content": "고급 호텔 바 영수증 일부에 두 잔의 위스키와 늦은 밤 결제 시각이 남아 있다.",
-            "isHidden": false,
-            "displayOrder": 6,
-            "tags": [
-              "receipt",
-              "alibi"
-            ]
-          },
-          {
-            "id": "bed-07",
-            "roomId": "bedroom",
-            "title": "베개 안쪽 이어링",
-            "type": "image",
-            "content": "베개 커버 안쪽에서 짝이 맞지 않는 귀걸이 하나가 나왔다.",
-            "isHidden": false,
-            "displayOrder": 7,
-            "tags": [
-              "earring",
-              "bed"
-            ]
-          },
-          {
-            "id": "bed-08",
-            "roomId": "bedroom",
-            "title": "향초 그을음",
-            "type": "text",
-            "content": "향초가 과하게 오래 타면서 검은 그을음이 천장으로 길게 올라갔다.",
-            "isHidden": false,
-            "displayOrder": 8,
-            "tags": [
-              "candle",
-              "odor"
-            ]
-          },
-          {
-            "id": "bed-09",
-            "roomId": "bedroom",
-            "title": "침실 창틀 긁힘",
-            "type": "image",
-            "content": "창틀 안쪽 잠금부에 금속 도구로 비튼 듯한 자국이 남아 있다.",
-            "isHidden": false,
-            "displayOrder": 9,
-            "tags": [
-              "window",
-              "forced-entry"
-            ]
-          },
-          {
-            "id": "bed-10",
-            "roomId": "bedroom",
-            "title": "새벽 통화 녹음",
-            "type": "audio",
-            "content": "'비밀은 침실에 두지 말랬잖아'라는 말이 분명하게 들리는 12초 길이의 통화 녹음이다.",
-            "isHidden": false,
-            "displayOrder": 10,
-            "tags": [
-              "audio",
-              "call"
-            ]
-          }
-        ],
-        "scene": {
-          "roomId": "bedroom",
-          "clues": [
-            {
-              "id": "bed-drawer-search",
-              "title": "Forced drawer search",
-              "type": "text",
-              "content": "The top drawer is half-open and disturbed in a pattern that suggests a targeted search rather than panic.",
-              "thumbnailUrl": "/evidence/bedroom-clues.svg",
-              "tags": [
-                "drawer",
-                "search"
-              ]
-            },
-            {
-              "id": "bedframe-dust-trail",
-              "title": "Dust trail under bedframe",
-              "type": "image",
-              "content": "A fresh drag mark cuts through the dust under the bed, as if something was removed moments before the scene froze.",
-              "thumbnailUrl": "/evidence/bedroom-clues.svg",
-              "tags": [
-                "bed",
-                "drag"
-              ]
-            },
-            {
-              "id": "desk-login-log",
-              "title": "Laptop login failures",
-              "type": "document",
-              "content": "The desk laptop shows repeated failed password attempts shortly before the incident window.",
-              "thumbnailUrl": "/evidence/bedroom-clues.svg",
-              "tags": [
-                "desk",
-                "laptop",
-                "timeline"
-              ]
-            },
-            {
-              "id": "window-latch-scratch",
-              "title": "Window latch scratch",
-              "type": "image",
-              "content": "The latch has a fresh metal score, but there is no matching debris outside. The forced entry may be staged.",
-              "thumbnailUrl": "/evidence/bedroom-clues.svg",
-              "tags": [
-                "window",
-                "forced-entry"
-              ]
-            }
-          ],
-          "hotspots": [
-            {
-              "id": "bed-hotspot-1",
-              "clueId": "bed-drawer-search",
-              "label": "DRAWER",
-              "x": 63,
-              "y": 44,
-              "width": 16,
-              "height": 19
-            },
-            {
-              "id": "bed-hotspot-2",
-              "clueId": "bedframe-dust-trail",
-              "label": "BED",
-              "x": 25,
-              "y": 58,
-              "width": 28,
-              "height": 17
-            },
-            {
-              "id": "bed-hotspot-3",
-              "clueId": "desk-login-log",
-              "label": "DESK",
-              "x": 58,
-              "y": 23,
-              "width": 20,
-              "height": 17
-            },
-            {
-              "id": "bed-hotspot-4",
-              "clueId": "window-latch-scratch",
-              "label": "WINDOW",
-              "x": 16,
-              "y": 19,
-              "width": 15,
-              "height": 24
-            }
-          ]
-        }
-      }
-    },
-    {
-      "id": "phone-kim-soyeon",
+      "id": "phone-yoon-no",
       "type": "phone",
       "name": "윤노의 핸드폰",
       "shortCode": "P01",
@@ -249,7 +13,19 @@
       "content": {
         "owner": "윤노",
         "device": "iPhone 15 Pro",
-        "phoneDataId": "phone-kim-soyeon"
+        "phoneDataId": "phone-yoon-no"
+      }
+    },
+    {
+      "id": "phone-yoon-no-sub",
+      "type": "phone",
+      "name": "윤노의 서브폰",
+      "shortCode": "P08",
+      "order": 5,
+      "content": {
+        "owner": "윤노",
+        "device": "iPhone 15 Pro",
+        "phoneDataId": "phone-yoon-no-sub"
       }
     },
     {
@@ -257,7 +33,7 @@
       "type": "phone",
       "name": "마오의 핸드폰",
       "shortCode": "P02",
-      "order": 5,
+      "order": 6,
       "content": {
         "owner": "마오",
         "device": "iPhone 14",
@@ -269,7 +45,7 @@
       "type": "phone",
       "name": "정과의 핸드폰",
       "shortCode": "P03",
-      "order": 6,
+      "order": 7,
       "content": {
         "owner": "정과",
         "device": "iPhone 15",
@@ -281,7 +57,7 @@
       "type": "phone",
       "name": "만경의 핸드폰",
       "shortCode": "P04",
-      "order": 7,
+      "order": 8,
       "content": {
         "owner": "만경",
         "device": "iPhone 15",
@@ -293,7 +69,7 @@
       "type": "phone",
       "name": "모웨잉의 핸드폰",
       "shortCode": "P05",
-      "order": 8,
+      "order": 9,
       "content": {
         "owner": "모웨잉",
         "device": "iPhone 15",
@@ -305,7 +81,7 @@
       "type": "phone",
       "name": "심안의 핸드폰",
       "shortCode": "P06",
-      "order": 9,
+      "order": 10,
       "content": {
         "owner": "심안",
         "device": "iPhone 15",
@@ -317,7 +93,7 @@
       "type": "phone",
       "name": "핑크공주의 핸드폰",
       "shortCode": "P07",
-      "order": 10,
+      "order": 11,
       "content": {
         "owner": "핑크공주",
         "device": "iPhone 15",
