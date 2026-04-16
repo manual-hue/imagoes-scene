@@ -16,19 +16,6 @@
   z-index: 9990;
 }
 
-/* 비네트 효과 */
-.crtOverlay::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(
-    ellipse at center,
-    transparent 60%,
-    rgba(0,0,0,0.4) 100%
-  );
-  pointer-events: none;
-  z-index: 9989;
-}
 
 /* 노이즈 텍스처 (SVG 인라인) */
 .noiseLayer {

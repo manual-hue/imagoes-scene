@@ -52,6 +52,7 @@ export interface PhoneThreadMessage {
 export interface PhonePhoto {
   title: string;
   stamp: string;
+  url?: string;
 }
 
 export interface PhoneMail {

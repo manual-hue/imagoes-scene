@@ -157,7 +157,7 @@
               ]
             },
             {
-              "name": "작새",
+              "name": "♡",
               "time": "21:25",
               "unread": false,
               "preview": "다 보인다. 다 보여. 혼자 헛짓거리 하지 말고 이따 저택에서 보 ㅏ",
@@ -900,7 +900,7 @@
             },
             {
               "id": "yunno-contact-3",
-              "name": "작새",
+              "name": "♡",
               "number": "010-9027-4413",
               "label": "개인"
             },
@@ -1020,7 +1020,24 @@
         "icon": "bubble",
         "theme": "green",
         "content": {
-          "threads": []
+          "threads": [
+            {
+              "id": "thread-park-daegi",
+              "name": "디스패치 박대기 기자",
+              "preview": "대표님 기사 초안 나와서 메일 드렸습니다.",
+              "time": "4월 3일",
+              "unread": false,
+              "messages": [
+                {
+                  "id": "msg-park-1",
+                  "from": "디스패치 박대기 기자",
+                  "text": "대표님 기사 초안 나와서 메일 드렸습니다. 확인 부탁드립니다.",
+                  "timestamp": "2025-04-03T14:22:00",
+                  "isMine": false
+                }
+              ]
+            }
+          ]
         }
       },
       {
@@ -1032,7 +1049,8 @@
           "photos": [
             {
               "title": "거실 거울 셀카",
-              "stamp": "21:03"
+              "stamp": "21:03",
+              "url": ""
             },
             {
               "title": "와인잔 클로즈업",
@@ -1147,7 +1165,13 @@
             {
               "id": "note-1",
               "title": "메모 제목",
-              "body": "원본\n패널\n1점",
+              "body": "원본\n패널",
+              "updatedAt": "어제 21:14"
+            },
+            {
+              "id": "note-2",
+              "title": "메모 제목",
+              "body": "폴더\n마무리\n동생/기사\n마오",
               "updatedAt": "어제 21:14"
             }
           ]
@@ -1324,424 +1348,6 @@
         "theme": "gray",
         "content": {
           "note": "최근 촬영본 보기"
-        }
-      }
-    ]
-  },
-  {
-    "id": "phone-hong-seyoung",
-    "name": "마오의 핸드폰",
-    "owner": "마오",
-    "device": "iPhone 14",
-    "screen": {
-      "time": "22:16",
-      "date": "4월 25일 토요일",
-      "carrier": "KT",
-      "battery": 12,
-      "wallpaper": "deep-blue-noise",
-      "lockState": "unlocked",
-      "notifications": [
-        {
-          "app": "메세지",
-          "sender": "윤노",
-          "preview": "아직 집 안이야. 문자로 해.",
-          "time": "21:40"
-        },
-        {
-          "app": "Gmail",
-          "sender": "calendar-notify@google.com",
-          "preview": "10:30 PM - private meeting",
-          "time": "20:00"
-        }
-      ],
-      "homeApps": [
-        "files",
-        "messages",
-        "gallery",
-        "gmail",
-        "maps",
-        "notes",
-        "calendar",
-        "settings"
-      ],
-      "dockApps": [
-        "phone",
-        "gmail",
-        "messages",
-        "camera"
-      ]
-    },
-    "apps": [
-      {
-        "id": "files",
-        "label": "내 파일",
-        "icon": "folder",
-        "theme": "amber",
-        "content": {
-          "sections": [
-            {
-              "title": "최근 항목",
-              "items": [
-                "대화요약.docx",
-                "택시영수증.jpg",
-                "위치기록.csv"
-              ]
-            },
-            {
-              "title": "공유 폴더",
-              "items": [
-                "행사 자료",
-                "임시 백업",
-                "삭제 예정",
-                "개인 메모"
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "id": "messages",
-        "label": "메세지",
-        "icon": "bubble",
-        "theme": "green",
-        "content": {
-          "threads": [
-            {
-              "name": "윤노",
-              "time": "21:40",
-              "unread": true,
-              "preview": "아직 집 안이야. 문자로 해.",
-              "messages": [
-                {
-                  "id": "seyoung-soyeon-1",
-                  "sender": "me",
-                  "text": "지금 어디야? 전화 좀 받아.",
-                  "time": "21:40"
-                },
-                {
-                  "id": "seyoung-soyeon-2",
-                  "sender": "them",
-                  "text": "아직 집 안이야. 문자로 해.",
-                  "time": "21:40"
-                }
-              ]
-            },
-            {
-              "name": "Unknown",
-              "time": "21:11",
-              "unread": false,
-              "preview": "들어가기 전에 다시 연락.",
-              "messages": [
-                {
-                  "id": "seyoung-unknown-1",
-                  "sender": "them",
-                  "text": "준비 다 됐어?",
-                  "time": "20:55"
-                },
-                {
-                  "id": "seyoung-unknown-2",
-                  "sender": "them",
-                  "text": "들어가기 전에 다시 연락.",
-                  "time": "21:11"
-                }
-              ]
-            },
-            {
-              "name": "회사 팀방",
-              "time": "18:25",
-              "unread": false,
-              "preview": "내일 회의 자료 업로드 부탁드립니다.",
-              "messages": [
-                {
-                  "id": "seyoung-team-1",
-                  "sender": "them",
-                  "text": "내일 오전 회의 참석자 확인 부탁드립니다.",
-                  "time": "17:50"
-                },
-                {
-                  "id": "seyoung-team-2",
-                  "sender": "me",
-                  "text": "확인했습니다.",
-                  "time": "18:10"
-                },
-                {
-                  "id": "seyoung-team-3",
-                  "sender": "them",
-                  "text": "내일 회의 자료 업로드 부탁드립니다.",
-                  "time": "18:25"
-                }
-              ]
-            },
-            {
-              "name": "기사님",
-              "time": "17:42",
-              "unread": false,
-              "preview": "도착 3분 전입니다.",
-              "messages": [
-                {
-                  "id": "seyoung-driver-1",
-                  "sender": "them",
-                  "text": "배차 완료되었습니다. 잠시만 기다려 주세요.",
-                  "time": "17:30"
-                },
-                {
-                  "id": "seyoung-driver-2",
-                  "sender": "them",
-                  "text": "도착 3분 전입니다.",
-                  "time": "17:42"
-                }
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "id": "gallery",
-        "label": "갤러리",
-        "icon": "photos",
-        "theme": "pink",
-        "content": {
-          "photos": [
-            {
-              "title": "엘리베이터 거울",
-              "stamp": "21:40"
-            },
-            {
-              "title": "문 앞 복도",
-              "stamp": "21:37"
-            },
-            {
-              "title": "회의실 셀카",
-              "stamp": "20:08"
-            },
-            {
-              "title": "명함 사진",
-              "stamp": "19:59"
-            },
-            {
-              "title": "차량 번호판",
-              "stamp": "19:16"
-            },
-            {
-              "title": "택시 뒷좌석",
-              "stamp": "18:43"
-            },
-            {
-              "title": "핸드백 내부",
-              "stamp": "18:19"
-            },
-            {
-              "title": "건물 로비",
-              "stamp": "17:55"
-            }
-          ]
-        }
-      },
-      {
-        "id": "gmail",
-        "label": "Gmail",
-        "icon": "mail",
-        "theme": "red",
-        "content": {
-          "mails": [
-            {
-              "from": "kim.sy@personal.me",
-              "subject": "도착하면 알려줘",
-              "snippet": "정문 말고 뒤쪽으로 들어와. 사람들 많아.",
-              "body": [
-                "정문 말고 뒤쪽으로 들어와. 사람들 많아.",
-                "주차는 지하 2층에 하고, 엘리베이터 타고 올라와.",
-                "도착하면 바로 문자 줘."
-              ],
-              "time": "21:28",
-              "unread": true
-            },
-            {
-              "from": "calendar-notify@google.com",
-              "subject": "Reminder: private meeting",
-              "snippet": "10:30 PM 일정이 곧 시작됩니다.",
-              "body": [
-                "예정된 일정을 알려드립니다.",
-                "private meeting — 10:30 PM",
-                "Google Calendar에서 자동 전송된 알림입니다."
-              ],
-              "time": "20:00",
-              "unread": false
-            },
-            {
-              "from": "taxi.receipt@ride.kr",
-              "subject": "이용 내역",
-              "snippet": "4월 3일 18:41 하차 완료",
-              "body": [
-                "탑승 내역을 안내드립니다.",
-                "출발: 강남역 3번 출구 / 도착: 성수동 / 하차: 18:41 / 요금: 12,400원",
-                "이용해 주셔서 감사합니다."
-              ],
-              "time": "18:44",
-              "unread": false
-            }
-          ]
-        }
-      },
-      {
-        "id": "maps",
-        "label": "지도",
-        "icon": "map",
-        "theme": "blue",
-        "content": {
-          "note": "최근 목적지 3건",
-          "mapSearches": [
-            {
-              "id": "sy-map-1",
-              "name": "성수동 카페거리",
-              "address": "서울특별시 성동구 성수이로 12길 21",
-              "timestamp": "오늘 18:30"
-            },
-            {
-              "id": "sy-map-2",
-              "name": "Urban Mall",
-              "address": "서울특별시 강남구 테헤란로 152",
-              "timestamp": "오늘 17:45"
-            },
-            {
-              "id": "sy-map-3",
-              "name": "강남역 3번 출구",
-              "address": "서울특별시 강남구 강남대로 396",
-              "timestamp": "오늘 17:20"
-            },
-            {
-              "id": "sy-map-4",
-              "name": "한강공원 주차장",
-              "address": "서울특별시 영등포구 여의동로 330",
-              "timestamp": "어제"
-            },
-            {
-              "id": "sy-map-5",
-              "name": "서울경찰청",
-              "address": "서울특별시 종로구 사직로8길 31",
-              "timestamp": "4월 1일"
-            }
-          ]
-        }
-      },
-      {
-        "id": "notes",
-        "label": "메모",
-        "icon": "notes",
-        "theme": "yellow",
-        "content": {
-          "note": "윤노과 시간차 두고 이동."
-        }
-      },
-      {
-        "id": "calendar",
-        "label": "캘린더",
-        "icon": "calendar",
-        "theme": "white",
-        "content": {
-          "note": "22:30 private meeting",
-          "calendarDays": [
-            {
-              "date": "2026-04-03",
-              "dayOfWeek": "목",
-              "events": [
-                {
-                  "id": "hs-cal-1",
-                  "title": "오전 회의",
-                  "time": "09:00",
-                  "endTime": "10:00",
-                  "location": "본사 3층",
-                  "color": "#4285f4"
-                },
-                {
-                  "id": "hs-cal-2",
-                  "title": "택시 예약",
-                  "time": "17:20",
-                  "color": "#f4b400"
-                },
-                {
-                  "id": "hs-cal-3",
-                  "title": "private meeting",
-                  "time": "22:30",
-                  "color": "#db4437"
-                }
-              ]
-            },
-            {
-              "date": "2026-04-02",
-              "dayOfWeek": "수",
-              "events": [
-                {
-                  "id": "hs-cal-4",
-                  "title": "거래처 미팅",
-                  "time": "14:00",
-                  "endTime": "16:00",
-                  "location": "강남 오피스",
-                  "color": "#0f9d58"
-                },
-                {
-                  "id": "hs-cal-5",
-                  "title": "저녁 (소연)",
-                  "time": "19:00",
-                  "endTime": "21:00",
-                  "location": "이태원",
-                  "color": "#ab47bc"
-                }
-              ]
-            },
-            {
-              "date": "2026-04-01",
-              "dayOfWeek": "화",
-              "events": [
-                {
-                  "id": "hs-cal-6",
-                  "title": "분기 보고",
-                  "time": "11:00",
-                  "endTime": "12:00",
-                  "color": "#4285f4"
-                }
-              ]
-            },
-            {
-              "date": "2026-06-17",
-              "dayOfWeek": "화",
-              "events": [
-                {
-                  "id": "hs-cal-7",
-                  "title": "생일",
-                  "time": "",
-                  "color": "#e91e63"
-                }
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "id": "settings",
-        "label": "설정",
-        "icon": "gear",
-        "theme": "gray",
-        "content": {
-          "note": "저전력 모드 켜짐"
-        }
-      },
-      {
-        "id": "phone",
-        "label": "전화",
-        "icon": "phone",
-        "theme": "green",
-        "content": {
-          "note": "부재중 2건"
-        }
-      },
-      {
-        "id": "camera",
-        "label": "카메라",
-        "icon": "camera",
-        "theme": "gray",
-        "content": {
-          "note": "인물 사진 모드"
         }
       }
     ]

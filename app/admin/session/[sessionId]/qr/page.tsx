@@ -41,6 +41,12 @@ export default async function QRPrintPage({ params }: QRPrintPageProps) {
     headerStore.get('x-forwarded-host') ?? headerStore.get('host'),
     headerStore.get('x-forwarded-proto'),
   );
+  const normalizedBase = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
+  const objects = payload.objects.map((obj) => ({
+    ...obj,
+    url: `${normalizedBase}/o/${payload.sessionCode}/${obj.shortCode}`,
+    directUrl: `${normalizedBase}/object/${payload.sessionId}/${obj.id}`,
+  }));
 
   return (
     <main className={styles.page}>
@@ -55,11 +61,7 @@ export default async function QRPrintPage({ params }: QRPrintPageProps) {
         </div>
       </header>
 
-      <QRGenerator
-        baseUrl={baseUrl}
-        sessionCode={payload.sessionCode}
-        objects={payload.objects}
-      />
+      <QRGenerator objects={objects} />
     </main>
   );
 }

@@ -2,10 +2,10 @@ import { QRCodeSVG } from 'qrcode.react';
 import type { QRPrintableObject } from '@/lib/firebase/rooms';
 import styles from '@/app/admin/session/[sessionId]/qr/page.module.css';
 
+type QRObject = QRPrintableObject & { url: string; directUrl: string };
+
 interface QRGeneratorProps {
-  baseUrl: string;
-  sessionCode: string;
-  objects: QRPrintableObject[];
+  objects: QRObject[];
 }
 
 const TYPE_COLORS: Record<string, string> = {
@@ -15,16 +15,11 @@ const TYPE_COLORS: Record<string, string> = {
   document: '#f87171',
 };
 
-function buildObjectUrl(baseUrl: string, sessionCode: string, objectCode: string): string {
-  const normalizedBaseUrl = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
-  return `${normalizedBaseUrl}/o/${sessionCode}/${objectCode}`;
-}
-
-export function QRGenerator({ baseUrl, sessionCode, objects }: QRGeneratorProps) {
+export function QRGenerator({ objects }: QRGeneratorProps) {
   return (
     <div className={styles.sheet}>
       {objects.map((item) => {
-        const url = buildObjectUrl(baseUrl, sessionCode, item.shortCode);
+        const { url } = item;
         const accentColor = TYPE_COLORS[item.type ?? 'room'] ?? '#22d3ee';
 
         return (
@@ -50,6 +45,7 @@ export function QRGenerator({ baseUrl, sessionCode, objects }: QRGeneratorProps)
             </div>
 
             <p className={styles.cardUrl}>{url}</p>
+            <p className={styles.cardUrlDirect}>{item.directUrl}</p>
           </article>
         );
       })}

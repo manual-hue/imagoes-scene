@@ -71,7 +71,7 @@ export function PhoneDevice({ phone }: PhoneDeviceProps) {
               <StatusBar phone={phone} />
 
               <div className="absolute inset-0 overflow-hidden">
-                <div className="h-full overflow-y-auto px-5 pb-32 pt-16">
+                <div className="scrollbar-hide h-full overflow-y-auto px-5 pb-32 pt-16">
                   <HomeWidgets phone={phone} />
 
                   <div className="mt-5 grid grid-cols-4 gap-x-3 gap-y-5">
@@ -130,7 +130,7 @@ function Battery({ battery }: { battery: number }) {
 function HomeWidgets({ phone }: { phone: MockPhone }) {
   return (
     <div className="space-y-4">
-      <div className="rounded-[2rem] border border-white/14 bg-black/20 p-4 backdrop-blur-xl">
+      {/*<div className="rounded-[2rem] border border-white/14 bg-black/20 p-4 backdrop-blur-xl">
         <p className="font-mono text-[11px] tracking-[0.24em] text-white/45">{phone.screen.date}</p>
         <div className="mt-2 flex items-end justify-between gap-4">
           <div>
@@ -142,7 +142,7 @@ function HomeWidgets({ phone }: { phone: MockPhone }) {
             <p className="mt-1 text-sm font-medium text-white">{phone.screen.lockState === 'unlocked' ? 'Unlocked' : 'Locked'}</p>
           </div>
         </div>
-      </div>
+      </div>*/}
 
       <div className="grid grid-cols-2 gap-3">
         {phone.screen.notifications.map((notification) => (
@@ -242,7 +242,7 @@ function AppWindow({ app, phone, onClose }: { app: PhoneApp; phone: MockPhone; o
           <span className="w-[52px]" />
         </div>
 
-        <div className="min-h-0 flex-1 overflow-y-auto">
+        <div className="scrollbar-hide min-h-0 flex-1 overflow-y-auto">
           <AppContent app={app} phone={phone} />
         </div>
       </div>
@@ -393,7 +393,7 @@ function MessagesView({ threads }: { threads: PhoneThread[] }) {
           <span className="w-[52px] text-right font-mono text-[11px] text-slate-400">{selectedThread.time}</span>
         </div>
 
-        <div className="min-h-0 flex-1 overflow-y-auto px-3 py-4">
+        <div className="scrollbar-hide min-h-0 flex-1 overflow-y-auto px-3 py-4">
           <div className="space-y-3">
             {messages.map((message, idx) => {
               const prevMessage = idx > 0 ? messages[idx - 1] : null;
@@ -477,13 +477,13 @@ function GalleryView({ photos, deletedPhotos, protectedAlbums, phoneId }: { phot
   const galleryPhotos = photos.map((p, index) => ({
     title: p.title,
     stamp: p.stamp,
-    src: `https://picsum.photos/seed/${phoneId}-gallery-${index + 1}/1200/1200`,
+    src: p.url ?? `https://picsum.photos/seed/${phoneId}-gallery-${index + 1}/1200/1200`,
   }));
 
   const deletedPhotoList = deletedPhotos.map((p, index) => ({
     title: p.title,
     stamp: p.stamp,
-    src: `https://picsum.photos/seed/${phoneId}-deleted-${index + 1}/1200/1200`,
+    src: p.url ?? `https://picsum.photos/seed/${phoneId}-deleted-${index + 1}/1200/1200`,
   }));
 
   const visibleProtectedAlbums = protectedAlbums.filter((a) => a.photos.length > 0);
@@ -495,7 +495,7 @@ function GalleryView({ photos, deletedPhotos, protectedAlbums, phoneId }: { phot
         ? protectedAlbums[selectedAlbum].photos.map((p, index) => ({
             title: p.title,
             stamp: p.stamp,
-            src: `https://picsum.photos/seed/${phoneId}-protected-${selectedAlbum}-${index + 1}/1200/1200`,
+            src: p.url ?? `https://picsum.photos/seed/${phoneId}-protected-${selectedAlbum}-${index + 1}/1200/1200`,
           }))
         : galleryPhotos;
 
@@ -600,7 +600,7 @@ function GalleryView({ photos, deletedPhotos, protectedAlbums, phoneId }: { phot
           <p className="text-center text-[15px] font-semibold tracking-[-0.01em] text-white">앨범</p>
         </div>
 
-        <div className="min-h-0 flex-1 overflow-y-auto px-4 py-4">
+        <div className="scrollbar-hide min-h-0 flex-1 overflow-y-auto px-4 py-4">
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-white/40">내 앨범</p>
           <div className="grid grid-cols-2 gap-3">
             {[
@@ -681,7 +681,7 @@ function GalleryView({ photos, deletedPhotos, protectedAlbums, phoneId }: { phot
         <p className="text-center text-[15px] font-semibold tracking-[-0.01em] text-white">{albumTitle}</p>
       </div>
 
-      <div className="min-h-0 flex-1 overflow-y-auto px-0 pb-0 pt-0">
+      <div className="scrollbar-hide min-h-0 flex-1 overflow-y-auto px-0 pb-0 pt-0">
         <div className="grid grid-cols-3 gap-0">
           {activePhotos.map((photo, index) => (
             <button
@@ -742,7 +742,7 @@ function GmailView({ mails }: { mails: PhoneMail[] }) {
           <span className="w-[52px]" />
         </div>
 
-        <article className="min-h-0 flex-1 overflow-y-auto px-5 pb-8 pt-5">
+        <article className="scrollbar-hide min-h-0 flex-1 overflow-y-auto px-5 pb-8 pt-5">
           <p className="text-[22px] font-semibold leading-tight text-slate-950">{selectedMail.subject}</p>
           <div className="mt-4 rounded-3xl bg-slate-50 px-4 py-4">
             <p className="text-sm font-medium text-slate-900">{selectedMail.from}</p>
@@ -1217,7 +1217,7 @@ function MapsView({ searches }: { searches: PhoneMapSearch[] }) {
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto px-4 py-4">
+          <div className="scrollbar-hide flex-1 overflow-y-auto px-4 py-4">
             <div className="flex items-center justify-between">
               <p className="text-sm font-semibold text-slate-900">최근 검색</p>
               <button type="button" className="text-xs text-[#4285f4]">모두 지우기</button>
@@ -1279,7 +1279,7 @@ function NotesView({ notes, fallback }: { notes: PhoneNote[]; fallback?: string 
           <p className="flex-1 truncate text-center text-sm font-semibold text-slate-900">{selected.title}</p>
           <span className="w-16" />
         </div>
-        <div className="flex-1 overflow-y-auto px-5 py-4">
+        <div className="scrollbar-hide flex-1 overflow-y-auto px-5 py-4">
           <p className="mb-3 font-mono text-[10px] tracking-[0.18em] text-slate-400">{selected.updatedAt}</p>
           <h2 className="mb-3 text-xl font-bold text-slate-900">{selected.title}</h2>
           {Array.isArray(selected.body)
@@ -1606,5 +1606,4 @@ function getPhotoTexture(index: number) {
 
   return textures[index % textures.length];
 }
-
 
