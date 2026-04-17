@@ -19,22 +19,23 @@ export function QRScanner({ onClose }: QRScannerProps) {
         const url = new URL(decodedText);
         // Match /o/{sessionCode}/{objectCode}
         const match = url.pathname.match(/^\/o\/([^/]+)\/([^/]+)$/);
-        if (match) {
-          // Stop scanner before navigating
+        const legacyMatch = !match ? url.pathname.match(/^\/r\/([^/]+)\/([^/]+)$/) : null;
+
+        const targetPath = match
+          ? url.pathname
+          : legacyMatch
+            ? `/o/${legacyMatch[1]}/${legacyMatch[2]}`
+            : null;
+
+        if (targetPath) {
           const scanner = html5QrRef.current as { stop?: () => Promise<void> } | null;
-          scanner?.stop?.();
-          router.push(url.pathname);
-          onClose();
-          return;
-        }
-        // Also match legacy /r/{sessionCode}/{roomCode}
-        const legacyMatch = url.pathname.match(/^\/r\/([^/]+)\/([^/]+)$/);
-        if (legacyMatch) {
-          const scanner = html5QrRef.current as { stop?: () => Promise<void> } | null;
-          scanner?.stop?.();
-          router.push(`/o/${legacyMatch[1]}/${legacyMatch[2]}`);
-          onClose();
-          return;
+          const stopPromise = scanner?.stop?.() ?? Promise.resolve();
+          stopPromise
+            .catch(() => {})
+            .finally(() => {
+              router.push(targetPath);
+              onClose();
+            });
         }
       } catch {
         // Not a valid URL — ignore
