@@ -9,14 +9,30 @@ interface QRScannerProps {
   onClose: () => void;
 }
 
+type Html5QrcodeScanner = { stop?: () => Promise<void> };
+
+function safeStop(scanner: Html5QrcodeScanner | null): Promise<void> {
+  // html5-qrcode throws synchronously (not a rejected Promise) when already stopped.
+  // Wrap in try/catch so cleanup never propagates an error into React.
+  try {
+    return scanner?.stop?.() ?? Promise.resolve();
+  } catch {
+    return Promise.resolve();
+  }
+}
+
 export function QRScanner({ onClose }: QRScannerProps) {
   const router = useRouter();
   const scannerRef = useRef<HTMLDivElement>(null);
-  const html5QrRef = useRef<unknown>(null);
+  const html5QrRef = useRef<Html5QrcodeScanner | null>(null);
+  const navigatingRef = useRef(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleScan = useCallback(
     (decodedText: string) => {
+      // Prevent firing multiple times for the same scan
+      if (navigatingRef.current) return;
+
       try {
         const url = new URL(decodedText);
         const match =
@@ -25,12 +41,14 @@ export function QRScanner({ onClose }: QRScannerProps) {
 
         if (!match) return;
 
+        navigatingRef.current = true;
         const objectCode = match[2];
-        const scanner = html5QrRef.current as { stop?: () => Promise<void> } | null;
 
-        const stopPromise = scanner?.stop?.() ?? Promise.resolve();
-        stopPromise
-          .catch(() => {})
+        // Null out ref before stopping so cleanup is a no-op
+        const scanner = html5QrRef.current;
+        html5QrRef.current = null;
+
+        safeStop(scanner)
           .finally(async () => {
             try {
               const caseData = await loadCase('case-zero');
@@ -39,7 +57,6 @@ export function QRScanner({ onClose }: QRScannerProps) {
                 onClose();
                 router.push(`/object/${caseData.sessionId}/${obj.id}`);
               } else {
-                // fallback: object not found in local case
                 window.location.href = url.pathname;
               }
             } catch {
@@ -47,7 +64,7 @@ export function QRScanner({ onClose }: QRScannerProps) {
             }
           });
       } catch {
-        // Not a valid URL — ignore
+        navigatingRef.current = false;
       }
     },
     [router, onClose],
@@ -84,8 +101,9 @@ export function QRScanner({ onClose }: QRScannerProps) {
 
     return () => {
       mounted = false;
-      const scanner = html5QrRef.current as { stop?: () => Promise<void> } | null;
-      scanner?.stop?.().catch(() => {});
+      // safeStop is a no-op if ref was already nulled out in handleScan
+      safeStop(html5QrRef.current);
+      html5QrRef.current = null;
     };
   }, [handleScan]);
 
