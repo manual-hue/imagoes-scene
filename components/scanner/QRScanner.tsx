@@ -1,14 +1,12 @@
 'use client';
 
 import { useEffect, useRef, useState, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
 
 interface QRScannerProps {
   onClose: () => void;
 }
 
 export function QRScanner({ onClose }: QRScannerProps) {
-  const router = useRouter();
   const scannerRef = useRef<HTMLDivElement>(null);
   const html5QrRef = useRef<unknown>(null);
   const [error, setError] = useState<string | null>(null);
@@ -33,15 +31,15 @@ export function QRScanner({ onClose }: QRScannerProps) {
           stopPromise
             .catch(() => {})
             .finally(() => {
-              router.push(targetPath);
-              onClose();
+              // Full page load to avoid client-side nav issues with server redirect
+              window.location.href = targetPath;
             });
         }
       } catch {
         // Not a valid URL — ignore
       }
     },
-    [router, onClose],
+    [],
   );
 
   useEffect(() => {
