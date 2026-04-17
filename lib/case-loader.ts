@@ -17,7 +17,7 @@ export async function loadCase(
 
   // For local/demo: dynamic import from bundled JSON
   const mod = await import('@/data/cases/case-zero.json');
-  const raw = mod.default as CaseData;
+  const raw = mod.default as unknown as CaseData;
 
   onProgress?.(60, 'parsing');
 

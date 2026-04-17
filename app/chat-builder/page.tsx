@@ -144,7 +144,7 @@ function Avatar({ participant, size = 32, showPhoto = true }: { participant: Par
 interface IMessageChatProps {
   messages: Message[];
   isDark: boolean;
-  scrollRef: React.RefObject<HTMLDivElement | null>;
+  scrollRef: React.RefObject<HTMLDivElement>;
   profileImage?: string;
   contactName: string;
 }
@@ -236,7 +236,7 @@ function IMessageChat({ messages, isDark, scrollRef, contactName: _cn, profileIm
 interface KakaoChatProps {
   messages: Message[];
   isDark: boolean;
-  scrollRef: React.RefObject<HTMLDivElement | null>;
+  scrollRef: React.RefObject<HTMLDivElement>;
   participants: Participant[];
   noticeText: string;
 }
@@ -427,7 +427,7 @@ export default function ChatBuilderPage() {
   const [kakaoNoticeInput, setKakaoNoticeInput] = useState('');
 
   const phoneRef = useRef<HTMLDivElement>(null);
-  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -470,7 +470,7 @@ export default function ChatBuilderPage() {
         role: kakaoInputType === 'system' ? 'receiver' : (selectedSenderId === 'me' ? 'sender' : 'receiver'),
         senderId: kakaoInputType === 'system' ? 'system' : selectedSenderId,
         timestamp: iso,
-        readers: kakaoInputType === 'system' ? [] : [...pendingReaders],
+        readers: kakaoInputType === 'system' ? [] : Array.from(pendingReaders),
         type: kakaoInputType,
       }]);
     } else {
@@ -793,7 +793,7 @@ export default function ChatBuilderPage() {
                           if (!isPotential) return msg;
                           const newReaders = isRead
                             ? (msg.readers ?? []).filter((r) => r !== id)
-                            : [...new Set([...(msg.readers ?? []), id])];
+                            : Array.from(new Set([...(msg.readers ?? []), id]));
                           return { ...msg, readers: newReaders };
                         }));
                       }} />
