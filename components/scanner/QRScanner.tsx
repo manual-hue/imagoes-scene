@@ -1,12 +1,16 @@
 'use client';
 
 import { useEffect, useRef, useState, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
+import { loadCase } from '@/lib/case-loader';
+import { getObjectByCode } from '@/lib/case-cache';
 
 interface QRScannerProps {
   onClose: () => void;
 }
 
 export function QRScanner({ onClose }: QRScannerProps) {
+  const router = useRouter();
   const scannerRef = useRef<HTMLDivElement>(null);
   const html5QrRef = useRef<unknown>(null);
   const [error, setError] = useState<string | null>(null);
@@ -15,31 +19,38 @@ export function QRScanner({ onClose }: QRScannerProps) {
     (decodedText: string) => {
       try {
         const url = new URL(decodedText);
-        // Match /o/{sessionCode}/{objectCode}
-        const match = url.pathname.match(/^\/o\/([^/]+)\/([^/]+)$/);
-        const legacyMatch = !match ? url.pathname.match(/^\/r\/([^/]+)\/([^/]+)$/) : null;
+        const match =
+          url.pathname.match(/^\/o\/([^/]+)\/([^/]+)$/) ??
+          url.pathname.match(/^\/r\/([^/]+)\/([^/]+)$/);
 
-        const targetPath = match
-          ? url.pathname
-          : legacyMatch
-            ? `/o/${legacyMatch[1]}/${legacyMatch[2]}`
-            : null;
+        if (!match) return;
 
-        if (targetPath) {
-          const scanner = html5QrRef.current as { stop?: () => Promise<void> } | null;
-          const stopPromise = scanner?.stop?.() ?? Promise.resolve();
-          stopPromise
-            .catch(() => {})
-            .finally(() => {
-              // Full page load to avoid client-side nav issues with server redirect
-              window.location.href = targetPath;
-            });
-        }
+        const objectCode = match[2];
+        const scanner = html5QrRef.current as { stop?: () => Promise<void> } | null;
+
+        const stopPromise = scanner?.stop?.() ?? Promise.resolve();
+        stopPromise
+          .catch(() => {})
+          .finally(async () => {
+            try {
+              const caseData = await loadCase('case-zero');
+              const obj = getObjectByCode('case-zero', objectCode);
+              if (obj) {
+                onClose();
+                router.push(`/object/${caseData.sessionId}/${obj.id}`);
+              } else {
+                // fallback: object not found in local case
+                window.location.href = url.pathname;
+              }
+            } catch {
+              window.location.href = url.pathname;
+            }
+          });
       } catch {
         // Not a valid URL — ignore
       }
     },
-    [],
+    [router, onClose],
   );
 
   useEffect(() => {
