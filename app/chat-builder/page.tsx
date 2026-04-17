@@ -150,7 +150,7 @@ interface IMessageChatProps {
   contactName: string;
 }
 
-function IMessageChat({ messages, isDark, scrollRef, contactName: _cn, profileImage: _pi }: IMessageChatProps) {
+function IMessageChat({ messages, isDark, scrollRef }: IMessageChatProps) {
   const chatBg = isDark ? '#000' : '#f2f2f7';
   const timeColor = isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)';
   const receiverBubble = isDark ? '#3a3a3c' : '#e5e5ea';
@@ -785,7 +785,7 @@ export default function ChatBuilderPage() {
                     <label key={id} className={`flex cursor-pointer items-center gap-2 rounded-xl border px-3 py-2 text-xs transition ${isRead ? 'border-[#f7c300]/40 bg-[#f7c300]/10 text-[#f7c300]' : ctrl.inactiveRadio}`}>
                       <input type="checkbox" className="sr-only" checked={isRead} onChange={() => {
                         const next = new Set(pendingReaders);
-                        isRead ? next.delete(id) : next.add(id);
+                        if (isRead) { next.delete(id); } else { next.add(id); }
                         setPendingReaders(next);
                         // 기존 메시지 전체에도 반영
                         setMessages((prev) => prev.map((msg) => {

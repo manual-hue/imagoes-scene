@@ -638,7 +638,7 @@ function GalleryView({ photos, deletedPhotos, protectedAlbums, phoneId }: { phot
             <>
               <p className="mb-3 mt-6 text-xs font-semibold uppercase tracking-widest text-white/40">보호된 앨범</p>
               <div className="grid grid-cols-2 gap-3">
-                {visibleProtectedAlbums.map((album, i) => {
+                {visibleProtectedAlbums.map((album) => {
                   const originalIdx = protectedAlbums.indexOf(album);
                   return (
                     <button
