@@ -137,3 +137,8 @@ body {
   overflow: hidden;
   background-color: var(--bg-primary);
 }
+
+@keyframes screenshot-flash {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}

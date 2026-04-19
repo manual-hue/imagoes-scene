@@ -40,9 +40,12 @@
             {
               "title": "최근 항목",
               "items": [
-                "통화녹음_편집본.m4a",
-                "영수증_주차장.pdf",
-                "미팅메모_0403.txt"
+                "프로젝트_헤일메리.mp4",
+                "금선탈각 시즌1-15 한글자막.zip",
+                "애들아금탈뉴짤좀다오.jpg",
+                "굶고있어요.jpg",
+                "여긴별거없어.jpg",
+                "영수증_주차장.pdf"
               ]
             }
           ]
@@ -117,28 +120,28 @@
                   "sender": "me",
                   "text": "1차 판매 대금이 나왔습니다. 정산 하셔야죠?",
                   "time": "15:02",
-                  "date": "4월 25일"
+                  "date": "4월 19일"
                 },
                 {
                   "id": "mowing-yunno-2",
                   "sender": "them",
                   "text": "제 배분이 어떻게 될지 궁금하네요.",
                   "time": "15:04",
-                  "date": "4월 25일"
+                  "date": "4월 19일"
                 },
                 {
                   "id": "mowing-yunno-3",
                   "sender": "me",
                   "text": "다들 그거부터 물어보시네요ㅋㅋㅋ 당연히 공정하게 가야죠~",
                   "time": "15:05",
-                  "date": "4월 25일"
+                  "date": "4월 19일"
                 },
                 {
                   "id": "mowing-yunno-4",
                   "sender": "me",
                   "text": "참, 어제 늦게까지 동생분이랑 마셨는데 잘 들어가셨나요?",
                   "time": "15:06",
-                  "date": "4월 25일"
+                  "date": "4월 19일"
                 }
               ]
             },
@@ -165,203 +168,49 @@
                 {
                   "id": "yunno-siman-1",
                   "sender": "me",
-                  "text": "여보",
+                  "text": "세상에서 가장 소중한 것...",
                   "time": "21:10",
                   "date": "3월 14일"
                 },
                 {
                   "id": "yunno-siman-2",
                   "sender": "them",
-                  "text": "왜",
+                  "text": "뭐",
                   "time": "21:11",
                   "date": "3월 14일"
                 },
                 {
                   "id": "yunno-siman-3",
                   "sender": "me",
-                  "text": "보고 싶다ㅠ",
+                  "text": "소금... 황금... 너와 함께하는 바로 지금...",
                   "time": "21:11",
                   "date": "3월 14일"
                 },
                 {
                   "id": "yunno-siman-4",
                   "sender": "them",
-                  "text": "갑자기?",
+                  "text": "아 뭐야 ♥",
                   "time": "21:12",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "yunno-siman-5",
-                  "sender": "me",
-                  "text": "갑자기가 어딨어. 항상 보고 싶었지",
-                  "time": "21:12",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "yunno-siman-6",
-                  "sender": "them",
-                  "text": "...",
-                  "time": "21:13",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "yunno-siman-7",
-                  "sender": "them",
-                  "text": "언제 오는데",
-                  "time": "21:13",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "yunno-siman-8",
-                  "sender": "me",
-                  "text": "왜ㅋㅋ 보고 싶어?",
-                  "time": "21:14",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "yunno-siman-9",
-                  "sender": "them",
-                  "text": "됐어. 안 물어봤다",
-                  "time": "21:14",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "yunno-siman-10",
-                  "sender": "me",
-                  "text": "ㅋㅋㅋㅋ 나도 보고 싶어. 내일 볼 수 있을 것 같아",
-                  "time": "21:15",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "yunno-siman-11",
-                  "sender": "them",
-                  "text": "진짜 왜 이렇게 말 안 통해",
-                  "time": "21:16",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "yunno-siman-12",
-                  "sender": "me",
-                  "text": "이뻐서ㅎ",
-                  "time": "21:16",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "yunno-siman-13",
-                  "sender": "them",
-                  "text": "...",
-                  "time": "21:17",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "yunno-siman-14",
-                  "sender": "them",
-                  "text": "...빨리 와",
-                  "time": "21:18",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "yunno-siman-15",
-                  "sender": "me",
-                  "text": "아ㅠㅠ 심안이 먼저 옴ㅠㅠ 심장 어떡해",
-                  "time": "21:18",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "yunno-siman-16",
-                  "sender": "them",
-                  "text": "아 진짜 미쳤나 이 사람",
-                  "time": "21:19",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "yunno-siman-17",
-                  "sender": "me",
-                  "text": "나 좋아하잖아ㅋㅋ 눈에 다 써 있어",
-                  "time": "21:19",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "yunno-siman-18",
-                  "sender": "them",
-                  "text": "안 좋아해",
-                  "time": "21:20",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "yunno-siman-19",
-                  "sender": "me",
-                  "text": "ㅋㅋㅋㅋ 그래그래",
-                  "time": "21:20",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "yunno-siman-20",
-                  "sender": "them",
-                  "text": "...",
-                  "time": "21:21",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "yunno-siman-22",
-                  "sender": "me",
-                  "text": "ㅠㅠㅠㅠ 진짜야?",
-                  "time": "21:22",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "yunno-siman-23",
-                  "sender": "them",
-                  "text": "한 번만 더 물어보면 취소야",
-                  "time": "21:23",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "yunno-siman-24",
-                  "sender": "me",
-                  "text": "알겠어ㅠㅠ 나도 좋아해 심안아",
-                  "time": "21:23",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "yunno-siman-25",
-                  "sender": "them",
-                  "text": "됐어",
-                  "time": "21:24",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "yunno-siman-26",
-                  "sender": "me",
-                  "text": "ㅋㅋㅋㅋ 귀여워 죽겠네",
-                  "time": "21:24",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "yunno-siman-27",
-                  "sender": "them",
-                  "text": "한 번 더 하면 진짜 안 봐",
-                  "time": "21:25",
                   "date": "3월 14일"
                 },
                 {
                   "id": "yunno-siman-28",
                   "sender": "me",
-                  "text": "귀... 귀귀귀...ㅇ...",
+                  "text": "잘 자 심안아 ♥",
                   "time": "21:25",
                   "date": "3월 14일"
                 },
                 {
                   "id": "yunno-siman-29",
                   "sender": "them",
-                  "text": "이거 차단임",
+                  "text": "하트 빼",
                   "time": "21:26",
                   "date": "3월 14일"
                 },
                 {
                   "id": "yunno-siman-30",
                   "sender": "me",
-                  "text": "아니 잠깐만ㅋㅋㅋㅋㅋ 안 해 안 해",
+                  "text": "♥♥♥",
                   "time": "21:26",
                   "date": "3월 14일"
                 },
@@ -463,70 +312,14 @@
         "content": {
           "photos": [
             {
-              "title": "거실 거울 셀카",
-              "stamp": "21:03"
+              "title": "즐거운 한때^^",
+              "stamp": "18:51",
+              "url": "/phone-assets/mo/club.jpg"
             },
             {
-              "title": "와인잔 클로즈업",
-              "stamp": "20:41"
-            },
-            {
-              "title": "복도 전신샷",
-              "stamp": "20:12"
-            },
-            {
-              "title": "주차장 출입구",
-              "stamp": "19:56"
-            },
-            {
-              "title": "테이블 메모",
-              "stamp": "19:44"
-            },
-            {
-              "title": "차 안 대시보드",
-              "stamp": "18:51"
-            },
-            {
-              "title": "엘리베이터 반사",
-              "stamp": "18:22"
-            },
-            {
-              "title": "출입문 손잡이",
-              "stamp": "17:58"
-            }
-          ]
-        }
-      },
-      {
-        "id": "gmail",
-        "label": "Gmail",
-        "icon": "mail",
-        "theme": "red",
-        "content": {
-          "mails": [
-            {
-              "from": "parking@urbanmall.kr",
-              "subject": "주차 정산 완료",
-              "snippet": "4월 3일 21:06, B2 출차 확인",
-              "body": [
-                "주차 정산이 완료되었습니다.",
-                "일시: 2024년 4월 3일 21:06 / 구역: B2 / 요금: 4,800원 (카드 결제)",
-                "Urban Mall 주차 관리 시스템"
-              ],
-              "time": "21:07",
-              "unread": false
-            },
-            {
-              "from": "calendar-notify@google.com",
-              "subject": "Reminder: private meeting",
-              "snippet": "10:30 PM 일정이 곧 시작됩니다.",
-              "body": [
-                "예정된 일정을 알려드립니다.",
-                "private meeting — 10:30 PM",
-                "Google Calendar에서 자동 전송된 알림입니다."
-              ],
-              "time": "20:00",
-              "unread": false
+              "title": "옛날",
+              "stamp": "18:51",
+              "url": "/phone-assets/yoon/friend.jpg"
             }
           ]
         }
@@ -598,6 +391,19 @@
                   "endTime": "15:00",
                   "location": "서울치과의원",
                   "color": "#0f9d58"
+                }
+              ]
+            },
+            {
+              "date": "2026-06-17",
+              "dayOfWeek": "수",
+              "events": [
+                {
+                  "id": "yunno-cal-birthday",
+                  "title": "내 생일",
+                  "time": "00:00",
+                  "isAllDay": true,
+                  "color": "#f4b400"
                 }
               ]
             }
@@ -911,6 +717,13 @@
               "label": "개인"
             },
             {
+              "id": "yunno-contact-7",
+              "name": "모배우",
+              "number": "010-1818-1818",
+              "label": "개인",
+              "memo": "모웨잉 동생^^"
+            },
+            {
               "id": "yunno-contact-5",
               "name": "핑크공주",
               "number": "010-2298-0064",
@@ -1006,9 +819,10 @@
                   "name": "모배우_기사초안.txt",
                   "content": "[기사 초안 — 미발행]\n\n제목: 모배우, 마약 파티 의혹... 강남 비공개 파티서 투약 정황 포착\n\n엔터테인먼트 전문 매체 디스패치는 배우 모배우(38)가 서울 강남구 소재 비공개 파티에서 마약류를 투약했다는 의혹을 단독 입수했다. 지난 3월 중순부터 4월 초까지 총 3차례에 걸쳐 심야 파티 참석이 확인됐다.\n\n파티는 매번 새벽 1시 이후 시작된 것으로 알려졌으며, 참석자 중 일부는 향정신성 의약품 관련 전과가 있는 인물로 파악됐다. 본지가 입수한 내부 제보 및 현장 사진에는 의심스러운 분말 형태의 물질과 흡입 도구로 추정되는 기구가 포착됐다.\n\n복수의 관계자는 \"모배우가 해당 모임의 단순 참석자가 아니라 주최 측과 긴밀히 연계돼 있었다\"고 전했다. 소속사 측은 현재까지 공식 입장을 내놓지 않고 있다.\n\n본지는 관련 당사자들에게 사실 확인을 요청했으나 기사 작성 시점까지 별도의 답변을 받지 못했다.\n\n— 취재 : 박대기 기자\n— 발행 보류 (법무팀 검토 중 / 추가 물증 확보 필요)"
                 },
-                "통화녹음_편집본.m4a",
-                "영수증_주차장.pdf",
-                "미팅메모_0403.txt"
+                {
+                  "name": "초안.txt",
+                  "content": "마오 씨 사망 사건에 대해 알고 있는 것들\n\n이 글을 쓰는 게 맞는 건지 아직도 모르겠습니다. 그날 밤 일이 자꾸 머릿속에 걸려서, 이대로 묻어두면 안 될 것 같아서 씁니다.\n\n\n마오 씨가 저택에 온 경위\n\n마오 씨는 보험사에서 파견된 외부 조사관이었습니다. 저택 내 유물 관련 사고에 대한 정식 현장 조사 목적이었고, 절차에 따라 들어온 분이었습니다. 특별히 누군가를 겨냥하거나 위험한 상황을 만들 사람이 아니었습니다. 그냥 자기 일을 하러 온 거였어요.\n\n조사 당일 마오 씨는 저택 곳곳을 살피며 여러 공간을 둘러봤습니다. 저는 마오 씨가 특별히 누구를 의심하거나 추궁하는 분위기는 아니었다고 기억합니다. 그냥 꼼꼼하게 일하는 사람이었습니다.\n\n\n문제는 핑크공주 씨였습니다.\n\n마오 씨가 저택 내부를 돌아보는 내내, 핑크공주 씨의 상태가 심상치 않았습니다. 눈에 띄게 불안해했고, 마오 씨의 동선을 계속 신경 쓰는 게 보였습니다. 왜 그렇게 긴장하는지 저는 그때 정확히 이유를 몰랐습니다.\n\n나중에 생각해보니, 핑크공주 씨가 저택 안에서 직접 손댄 무언가가 있었던 것 같습니다. 복제 작업과 관련된 흔적 같은 것들이요. 마오 씨가 그쪽을 살피게 되면 자기한테 직접 불똥이 튀는 상황이 되니까, 그게 두려웠던 것 같습니다. 지금 돌이켜보면 그렇게 읽힙니다.\n\n\n4월 15일 밤, 서비스 계단에서 있었던 일\n\n그날 밤 늦게 저택 뒤편 서비스 계단 쪽에서 소리가 났습니다.\n\n달려갔을 때는 이미 마오 씨가 쓰러져 있었고, 핑크공주 씨가 그 옆에 있었습니다. 핑크공주 씨의 얼굴이 하얗게 질려 있었고, 손이 떨리고 있었습니다. 무슨 일이 있었냐고 물었더니 마오 씨가 발을 헛디뎌 넘어졌다고 했습니다.\n\n그 말을 믿었습니다. 믿을 수밖에 없었습니다. 그 자리에서 다른 가능성을 생각할 정신이 없었으니까요.\n\n그런데 시간이 지나면서 그날 밤을 다시 떠올려보면, 핑크공주 씨가 우리한테 달려오기 직전까지 저 혼자 들은 소리가 있었습니다. 쿵 하는 충격음 이전에, 언성이 높아지는 소리가 먼저 있었습니다. 발을 헛디뎌 혼자 넘어진 사람 옆에서 날 수 있는 소리가 아니었습니다.\n\n그날 이후 이상하다고 느낀 것들이 하나씩 쌓였습니다.\n\n**핑크공주 씨의 손과 소매**\n\n사건 직후 복도에서 핑크공주 씨를 봤을 때, 손을 급하게 닦고 있었고 소매에 얼룩이 있었습니다. 쓰러진 사람을 발견하고 달려온 사람치고는 이상한 상태였습니다.\n\n**음성 메모**\n\n사건 8일 뒤인 4월 23일 새벽 1시 16분에 핑크공주 씨가 직접 녹음한 파일이 있습니다. 잠을 못 자고 혼자 중얼거린 것 같았는데, \"이제 되돌릴 수 없다\"는 취지의 말이 담겨 있었습니다. 사고를 목격한 사람이 8일 뒤 새벽에 혼자 그런 말을 되뇐다는 게 이해가 되지 않았습니다.\n\n**검색 기록**\n\n사건 직후 시기에 핑크공주 씨가 휴대폰으로 계속 뭘 찾고 있었습니다. 슬쩍 보니 \"계단 낙상 치사 법적 책임\", \"목격자 과실치사 성립 요건\", \"신고 지연 처벌\" 같은 검색어들이었습니다. 핑크공주 씨가 화를 내며 저를 밀쳐서 그 아래로는 보지 못 했는데, 정말로 사고를 목격한 사람이 찾아볼 내용들이 아닙니다.\n\n\n제가 결론을 내리게 된 것\n\n발을 헛디뎌 혼자 넘어진 게 아니었습니다.\n\n그날 밤 서비스 계단에서 핑크공주 씨와 마오 씨 사이에 실랑이가 있었고, 핑크공주 씨가 마오 씨를 밀었습니다. 마오 씨는 계단과 난간 모서리에 세게 부딪혔고, 그게 치명상이 됐습니다.\n\n핑크공주 씨가 왜 그랬는지는 제가 단정하기 어렵습니다. 다만 마오 씨가 저택 안을 돌아보는 내내 유독 핑크공주 씨만 그렇게 예민하게 굴었고, 자기 손이 닿은 흔적이 들킬까봐 두려워했다는 건 분명히 봤습니다. 그게 그날 밤 그 계단으로 이어진 것 같습니다.\n\n우리는 그 자리에서 사고라는 말을 들었고, 핑크공주 씨의 살인자가 되기 싫으면 현장을 묻어야 한다는 말에 너무 무서워 수습을 했습니다. 정말 죄송합니다. 당시의 저는 너무 혼란스러웠습니다.  핑크공주 씨가 직접 손을 댔다는 걸 알았다면 그냥 두지 않았을 겁니다.\n\n마오 씨는 그냥 일하러 왔다가 집에 못 돌아간 사람입니다. 그 책임이 어디 있는지는 분명합니다. 핑크공주 씨의 음성녹음과 검색기록은 제가 확보하지 못 했지만, 사건 당일 핑크공주 씨 동선 관련 정리와 저택 CCTV는 가지고 있습니다. "
+                }
               ]
             }
           ]
@@ -1036,6 +850,124 @@
                   "isMine": false
                 }
               ]
+            },
+            {
+              "id": "thread-nts-park",
+              "name": "국세청 박조사관",
+              "preview": "다음 달 감사 일정 미리 알려드릴게요.",
+              "time": "4월 17일",
+              "unread": false,
+              "platform": "kakao",
+              "messages": [
+                {
+                  "id": "nts-1",
+                  "sender": "them",
+                  "text": "대표님, 오랜만입니다. 잘 지내셨죠?",
+                  "time": "18:02",
+                  "date": "4월 16일"
+                },
+                {
+                  "id": "nts-2",
+                  "sender": "me",
+                  "text": "덕분에요. 요즘 어떠세요?",
+                  "time": "18:15",
+                  "date": "4월 16일"
+                },
+                {
+                  "id": "nts-3",
+                  "sender": "them",
+                  "text": "바쁘죠 뭐. 다름이 아니라 다음 달 감사 일정 미리 알려드릴게요.",
+                  "time": "18:17",
+                  "date": "4월 16일"
+                },
+                {
+                  "id": "nts-4",
+                  "sender": "me",
+                  "text": "아, 감사합니다. 정말요.",
+                  "time": "18:20",
+                  "date": "4월 16일"
+                },
+                {
+                  "id": "nts-5",
+                  "sender": "them",
+                  "text": "지난번처럼 준비해두시면 될 것 같아요. 저도 최대한 도울게요.",
+                  "time": "18:22",
+                  "date": "4월 16일"
+                },
+                {
+                  "id": "nts-6",
+                  "sender": "me",
+                  "text": "늘 감사드려요. 이번에도 잘 부탁드립니다.",
+                  "time": "18:25",
+                  "date": "4월 16일"
+                },
+                {
+                  "id": "nts-7",
+                  "sender": "them",
+                  "text": "편하게 연락 주세요.",
+                  "time": "18:26",
+                  "date": "4월 16일"
+                }
+              ]
+            },
+            {
+              "id": "thread-sung-ceo",
+              "name": "성진기획 박대표",
+              "preview": "감사합니다. 그리고 영수증은 따로 끊지 마시고요~",
+              "time": "4월 20일",
+              "unread": true,
+              "platform": "kakao",
+              "messages": [
+                {
+                  "id": "sc-1",
+                  "sender": "them",
+                  "text": "대표님, 저번 건 마무리됐습니다.",
+                  "time": "14:07",
+                  "date": "4월 19일"
+                },
+                {
+                  "id": "sc-2",
+                  "sender": "me",
+                  "text": "수고했어요. 이번 달 거는?",
+                  "time": "14:22",
+                  "date": "4월 19일"
+                },
+                {
+                  "id": "sc-3",
+                  "sender": "them",
+                  "text": "준비 중인데요, 이번엔 좀 더 넣어줘요. 저도 챙겨야 하는 데가 있어서.",
+                  "time": "14:25",
+                  "date": "4월 19일"
+                },
+                {
+                  "id": "sc-4",
+                  "sender": "me",
+                  "text": "지난번이랑 루트 같아요?",
+                  "time": "14:31",
+                  "date": "4월 19일"
+                },
+                {
+                  "id": "sc-5",
+                  "sender": "them",
+                  "text": "네. 법인 두 개 경유하면 깔끔해요.",
+                  "time": "14:33",
+                  "date": "4월 19일"
+                },
+                {
+                  "id": "sc-6",
+                  "sender": "me",
+                  "text": "알겠어요. 다음 주 전으로 처리할게요.",
+                  "time": "14:40",
+                  "date": "4월 19일"
+                },
+                {
+                  "id": "sc-7",
+                  "sender": "them",
+                  "text": "감사합니다. 그리고 영수증은 따로 끊지 마시고요~",
+                  "time": "14:41",
+                  "date": "4월 19일"
+                }
+              ]
             }
           ]
         }
@@ -1048,13 +980,9 @@
         "content": {
           "photos": [
             {
-              "title": "거실 거울 셀카",
+              "title": "모배우",
               "stamp": "21:03",
-              "url": ""
-            },
-            {
-              "title": "와인잔 클로즈업",
-              "stamp": "20:41"
+              "url": "/phone-assets/mo/club.jpg"
             }
           ]
         }
@@ -1088,67 +1016,16 @@
         "icon": "calendar",
         "theme": "white",
         "content": {
-          "note": "22:30 private meeting",
           "calendarDays": [
             {
-              "date": "2026-04-03",
+              "date": "2026-04-30",
               "dayOfWeek": "목",
               "events": [
                 {
-                  "id": "sub-sy-cal-1",
-                  "title": "팀 미팅",
-                  "time": "10:00",
-                  "endTime": "11:00",
-                  "location": "회의실 A",
-                  "color": "#4285f4"
-                },
-                {
-                  "id": "sub-sy-cal-2",
-                  "title": "점심 약속 (민재)",
-                  "time": "12:30",
-                  "endTime": "13:30",
-                  "location": "성수동 파스타집",
-                  "color": "#0f9d58"
-                },
-                {
-                  "id": "sub-sy-cal-3",
-                  "title": "private meeting",
-                  "time": "22:30",
+                  "id": "sub-cal-출국",
+                  "title": "출국",
+                  "time": "09:00",
                   "color": "#db4437"
-                }
-              ]
-            },
-            {
-              "date": "2026-04-02",
-              "dayOfWeek": "수",
-              "events": [
-                {
-                  "id": "sub-sy-cal-4",
-                  "title": "헬스장",
-                  "time": "07:00",
-                  "endTime": "08:00",
-                  "color": "#f4b400"
-                },
-                {
-                  "id": "sub-sy-cal-5",
-                  "title": "프로젝트 마감",
-                  "time": "18:00",
-                  "color": "#4285f4",
-                  "isAllDay": false
-                }
-              ]
-            },
-            {
-              "date": "2026-04-01",
-              "dayOfWeek": "화",
-              "events": [
-                {
-                  "id": "sub-sy-cal-6",
-                  "title": "치과 예약",
-                  "time": "14:00",
-                  "endTime": "15:00",
-                  "location": "서울치과의원",
-                  "color": "#0f9d58"
                 }
               ]
             }
@@ -1171,33 +1048,8 @@
             {
               "id": "note-2",
               "title": "메모 제목",
-              "body": "폴더\n마무리\n동생/기사\n마오",
+              "body": "심안-폴더\n정과-마무리\n모웨잉-동생/기사\n핑크공주-마오",
               "updatedAt": "어제 21:14"
-            }
-          ]
-        }
-      },
-      {
-        "id": "voice-memos",
-        "label": "음성 메모",
-        "icon": "wave",
-        "theme": "black",
-        "content": {
-          "note": "새 녹음 2개",
-          "voiceMemos": [
-            {
-              "id": "sub-soyeon-vm-1",
-              "title": "녹음 04/03 #1",
-              "duration": "0:03",
-              "recordedAt": "오늘 21:14",
-              "src": "https://samplelib.com/mp3/sample-3s.mp3"
-            },
-            {
-              "id": "sub-soyeon-vm-2",
-              "title": "녹음 04/03 #2",
-              "duration": "0:06",
-              "recordedAt": "오늘 20:41",
-              "src": "https://samplelib.com/mp3/sample-6s.mp3"
             }
           ]
         }
@@ -1479,6 +1331,42 @@
                   "date": "4월 25일"
                 }
               ]
+            },{
+              "name": "모웨잉",
+              "time": "23:18",
+              "unread": false,
+              "preview": "돈 얘기 아닌데.",
+              "platform": "sms",
+              "messages": [
+                {
+                  "id": "mowing-jeongwa-1",
+                  "sender": "them",
+                  "text": "기술 담당 하나만 남기면 그림이 어떻게 될까?",
+                  "time": "23:11",
+                  "date": "4월 24일"
+                },
+                {
+                  "id": "mowing-jeongwa-2",
+                  "sender": "me",
+                  "text": "가능 여부보다 대가가 문제죠.",
+                  "time": "23:15",
+                  "date": "4월 24일"
+                },
+                {
+                  "id": "mowing-jeongwa-3",
+                  "sender": "them",
+                  "text": "돈은 문제가 아냐.",
+                  "time": "23:16",
+                  "date": "4월 24일"
+                },
+                {
+                  "id": "mowing-jeongwa-4",
+                  "sender": "me",
+                  "text": "돈 얘기 아닌데.",
+                  "time": "23:18",
+                  "date": "4월 24일"
+                }
+              ]
             }
           ]
         }
@@ -1499,15 +1387,18 @@
           "deletedPhotos": [
             {
               "title": "삭제된 사진 1",
-              "stamp": "21:03"
+              "stamp": "21:03",
+              "url": "/phone-assets/jung/bottom.jpg"
             },
             {
               "title": "삭제된 사진 2",
-              "stamp": "21:05"
+              "stamp": "21:05",
+              "url": "/phone-assets/jung/glass.jpg"
             },
             {
               "title": "삭제된 사진 3",
-              "stamp": "21:07"
+              "stamp": "21:07",
+              "url": "/phone-assets/jung/attorney.jpg"
             }
           ]
         }
@@ -1708,7 +1599,8 @@
               "photos": [
                 {
                   "title": "사진 1",
-                  "stamp": "2026. 4. 3. 22:14"
+                  "stamp": "2026. 4. 3. 22:14",
+                  "url": "/phone-assets/man/lover.png"
                 }
               ]
             }
@@ -1722,15 +1614,6 @@
         "theme": "red",
         "content": {
           "mails": []
-        }
-      },
-      {
-        "id": "calendar",
-        "label": "캘린더",
-        "icon": "calendar",
-        "theme": "white",
-        "content": {
-          "days": []
         }
       },
       {
@@ -1748,7 +1631,16 @@
         "icon": "wave",
         "theme": "black",
         "content": {
-          "recordings": []
+          "recordings": [],
+          "voiceMemos": [
+            {
+              "id": "man-vm-call-0416",
+              "title": "CALL_0416_2214_mao.m4a",
+              "duration": "0:26",
+              "recordedAt": "4월 16일 22:14",
+              "src": "/phone-assets/man/CALL_0416_2214_mao.m4a.mp3"
+            }
+          ]
         }
       },
       {
@@ -1758,24 +1650,6 @@
         "theme": "blue",
         "content": {
           "searches": []
-        }
-      },
-      {
-        "id": "maps",
-        "label": "지도",
-        "icon": "map",
-        "theme": "green",
-        "content": {
-          "searches": []
-        }
-      },
-      {
-        "id": "settings",
-        "label": "설정",
-        "icon": "gear",
-        "theme": "gray",
-        "content": {
-          "note": ""
         }
       },
       {
@@ -1866,28 +1740,28 @@
                   "sender": "them",
                   "text": "1차 판매 대금이 나왔습니다. 정산 하셔야죠?",
                   "time": "15:02",
-                  "date": "4월 25일"
+                  "date": "4월 19일"
                 },
                 {
                   "id": "mowing-yunno-2",
                   "sender": "me",
                   "text": "제 배분이 어떻게 될지 궁금하네요.",
                   "time": "15:04",
-                  "date": "4월 25일"
+                  "date": "4월 19일"
                 },
                 {
                   "id": "mowing-yunno-3",
                   "sender": "them",
                   "text": "다들 그거부터 물어보시네요ㅋㅋㅋ 당연히 공정하게 가야죠~",
                   "time": "15:05",
-                  "date": "4월 25일"
+                  "date": "4월 19일"
                 },
                 {
                   "id": "mowing-yunno-4",
                   "sender": "them",
                   "text": "참, 어제 늦게까지 동생분이랑 마셨는데 잘 들어가셨나요?",
                   "time": "15:06",
-                  "date": "4월 25일"
+                  "date": "4월 19일"
                 }
               ]
             },
@@ -1937,6 +1811,24 @@
         "icon": "photos",
         "theme": "blue",
         "content": {
+          "photos": [],
+          "deletedPhotos": [
+            {
+              "title": "옥상",
+              "stamp": "21:03",
+              "url": "/phone-assets/mo/rooftop.jpg"
+            },
+            {
+              "title": "클럽",
+              "stamp": "21:03",
+              "url": "/phone-assets/mo/club.jpg"
+            },
+            {
+              "title": "오래된 사진",
+              "stamp": "21:03",
+              "url": "/phone-assets/mo/man.png"
+            }
+          ],
           "albums": [
             {
               "title": "최근 항목",
@@ -1986,7 +1878,16 @@
         "icon": "wave",
         "theme": "black",
         "content": {
-          "recordings": []
+          "recordings": [],
+          "voiceMemos": [
+            {
+              "id": "mo-vm-noise-0416",
+              "title": "녹음_0416_2346.m4a",
+              "duration": "0:08",
+              "recordedAt": "4월 16일 23:46",
+              "transcript": "(거친 숨소리 — 남) (낮고 격앙된 여자 목소리, 불명확) (금속성 충격음 — 날카롭게 한 번) (짧은 여자 비명 — 즉시 끊김) [녹음 중단됨]"
+            }
+          ]
         }
       },
       {
@@ -2082,24 +1983,6 @@
     },
     "apps": [
       {
-        "id": "files",
-        "label": "내 파일",
-        "icon": "folder",
-        "theme": "amber",
-        "content": {
-          "sections": [
-            {
-              "title": "최근 항목",
-              "items": []
-            },
-            {
-              "title": "폴더",
-              "items": []
-            }
-          ]
-        }
-      },
-      {
         "id": "messages",
         "label": "메세지",
         "icon": "bubble",
@@ -2115,203 +1998,49 @@
                 {
                   "id": "siman-yunno-r1",
                   "sender": "them",
-                  "text": "여보",
+                  "text": "세상에서 가장 소중한 것...",
                   "time": "21:10",
                   "date": "3월 14일"
                 },
                 {
                   "id": "siman-yunno-r2",
                   "sender": "me",
-                  "text": "왜",
+                  "text": "뭐",
                   "time": "21:11",
                   "date": "3월 14일"
                 },
                 {
                   "id": "siman-yunno-r3",
                   "sender": "them",
-                  "text": "보고 싶다ㅠ",
+                  "text": "소금... 황금... 너와 함께하는 바로 지금...",
                   "time": "21:11",
                   "date": "3월 14일"
                 },
                 {
                   "id": "siman-yunno-r4",
                   "sender": "me",
-                  "text": "갑자기?",
+                  "text": "아 뭐야 ♥",
                   "time": "21:12",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "siman-yunno-r5",
-                  "sender": "them",
-                  "text": "갑자기가 어딨어. 항상 보고 싶었지",
-                  "time": "21:12",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "siman-yunno-r6",
-                  "sender": "me",
-                  "text": "...",
-                  "time": "21:13",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "siman-yunno-r7",
-                  "sender": "me",
-                  "text": "언제 오는데",
-                  "time": "21:13",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "siman-yunno-r8",
-                  "sender": "them",
-                  "text": "왜ㅋㅋ 보고 싶어?",
-                  "time": "21:14",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "siman-yunno-r9",
-                  "sender": "me",
-                  "text": "됐어. 안 물어봤다",
-                  "time": "21:14",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "siman-yunno-r10",
-                  "sender": "them",
-                  "text": "ㅋㅋㅋㅋ 나도 보고 싶어. 내일 볼 수 있을 것 같아",
-                  "time": "21:15",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "siman-yunno-r11",
-                  "sender": "me",
-                  "text": "진짜 왜 이렇게 말 안 통해",
-                  "time": "21:16",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "siman-yunno-r12",
-                  "sender": "them",
-                  "text": "이뻐서ㅎ",
-                  "time": "21:16",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "siman-yunno-r13",
-                  "sender": "me",
-                  "text": "...",
-                  "time": "21:17",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "siman-yunno-r14",
-                  "sender": "me",
-                  "text": "...빨리 와",
-                  "time": "21:18",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "siman-yunno-r15",
-                  "sender": "them",
-                  "text": "아ㅠㅠ 심안이 먼저 옴ㅠㅠ 심장 어떡해",
-                  "time": "21:18",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "siman-yunno-r16",
-                  "sender": "me",
-                  "text": "아 진짜 미쳤나 이 사람",
-                  "time": "21:19",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "siman-yunno-r17",
-                  "sender": "them",
-                  "text": "나 좋아하잖아ㅋㅋ 눈에 다 써 있어",
-                  "time": "21:19",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "siman-yunno-r18",
-                  "sender": "me",
-                  "text": "안 좋아해",
-                  "time": "21:20",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "siman-yunno-r19",
-                  "sender": "them",
-                  "text": "ㅋㅋㅋㅋ 그래그래",
-                  "time": "21:20",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "siman-yunno-r20",
-                  "sender": "me",
-                  "text": "...",
-                  "time": "21:21",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "siman-yunno-r22",
-                  "sender": "them",
-                  "text": "ㅠㅠㅠㅠ 진짜야?",
-                  "time": "21:22",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "siman-yunno-r23",
-                  "sender": "me",
-                  "text": "한 번만 더 물어보면 취소야",
-                  "time": "21:23",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "siman-yunno-r24",
-                  "sender": "them",
-                  "text": "알겠어ㅠㅠ 나도 좋아해 심안아",
-                  "time": "21:23",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "siman-yunno-r25",
-                  "sender": "me",
-                  "text": "됐어",
-                  "time": "21:24",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "siman-yunno-r26",
-                  "sender": "them",
-                  "text": "ㅋㅋㅋㅋ 귀여워 죽겠네",
-                  "time": "21:24",
-                  "date": "3월 14일"
-                },
-                {
-                  "id": "siman-yunno-r27",
-                  "sender": "me",
-                  "text": "한 번 더 하면 진짜 안 봐",
-                  "time": "21:25",
                   "date": "3월 14일"
                 },
                 {
                   "id": "siman-yunno-r28",
                   "sender": "them",
-                  "text": "귀... 귀귀귀...ㅇ...",
+                  "text": "잘 자 심안아 ♥",
                   "time": "21:25",
                   "date": "3월 14일"
                 },
                 {
                   "id": "siman-yunno-r29",
                   "sender": "me",
-                  "text": "이거 차단임",
+                  "text": "하트 빼",
                   "time": "21:26",
                   "date": "3월 14일"
                 },
                 {
                   "id": "siman-yunno-r30",
                   "sender": "them",
-                  "text": "아니 잠깐만ㅋㅋㅋㅋㅋ 안 해 안 해",
+                  "text": "♥♥♥",
                   "time": "21:26",
                   "date": "3월 14일"
                 },
@@ -2393,15 +2122,6 @@
         }
       },
       {
-        "id": "gmail",
-        "label": "Gmail",
-        "icon": "mail",
-        "theme": "red",
-        "content": {
-          "mails": []
-        }
-      },
-      {
         "id": "calendar",
         "label": "캘린더",
         "icon": "calendar",
@@ -2438,7 +2158,17 @@
         "icon": "wave",
         "theme": "black",
         "content": {
-          "recordings": []
+          "recordings": [],
+          "voiceMemos": [
+            {
+              "id": "siman-vm-call-unknown",
+              "title": "CALL_0423_2311_UNKNOWN.m4a",
+              "duration": "0:47",
+              "recordedAt": "4월 23일 23:11",
+              "src": "",
+              "transcript": " 누군가: \"메인 금액은 윤노 씨 라인으로 갑니다.\"\n\n당신: \"내 몫은?\"\n\n누군가: \"별도 계좌로 처리됐습니다. 약속한 수수료만.\"\n\n당신: \"윤노는 이 금액 모르는 거지?\"\n\n누군가: \"그건 당신들끼리 정리하시죠.\""
+            }
+          ]
         }
       },
       {
@@ -2468,24 +2198,6 @@
         }
       },
       {
-        "id": "maps",
-        "label": "지도",
-        "icon": "map",
-        "theme": "green",
-        "content": {
-          "searches": []
-        }
-      },
-      {
-        "id": "settings",
-        "label": "설정",
-        "icon": "gear",
-        "theme": "gray",
-        "content": {
-          "note": ""
-        }
-      },
-      {
         "id": "phone",
         "label": "전화",
         "icon": "phone",
@@ -2510,25 +2222,24 @@
         }
       },
       {
-        "id": "camera",
-        "label": "카메라",
-        "icon": "camera",
-        "theme": "gray",
-        "content": {
-          "note": ""
-        }
-      },
-      {
         "id": "plant-diary",
         "label": "식물 기록",
         "icon": "plant",
         "theme": "plant",
         "content": {
           "password": "0617",
-          "plantVideo": {
-            "title": "🐱 2025. 9. 22",
-            "duration": "1:03"
-          },
+          "plantVideos": [
+            {
+              "title": "🐱 2025. 9. 22",
+              "duration": "0:15",
+              "src": "/phone-assets/sim/sim_an_1.mp4"
+            },
+            {
+              "title": "🌿 2025. 11. 04",
+              "duration": "0:17",
+              "src": "/phone-assets/sim/sim_an_2.mp4"
+            }
+          ],
           "plantAccessLogs": [
             {
               "device": "YN-Macbook",

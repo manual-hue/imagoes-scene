@@ -296,10 +296,11 @@ function AppContent({ app, phone }: { app: PhoneApp; phone: MockPhone }) {
   }
 
   if (app.id === 'plant-diary') {
+    const videos = app.content.plantVideos ?? (app.content.plantVideo ? [app.content.plantVideo] : []);
     return (
       <PlantDiaryView
         password={app.content.password ?? ''}
-        video={app.content.plantVideo ?? null}
+        videos={videos}
         accessLogs={app.content.plantAccessLogs ?? []}
       />
     );
@@ -604,8 +605,8 @@ function GalleryView({ photos, deletedPhotos, protectedAlbums, phoneId }: { phot
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-white/40">내 앨범</p>
           <div className="grid grid-cols-2 gap-3">
             {[
-              { id: 'default' as const, label: '기본 앨범', count: galleryPhotos.length, seed: `${phoneId}-gallery-1` },
-              { id: 'deleted' as const, label: '삭제된 사진', count: deletedPhotoList.length, seed: `${phoneId}-deleted-1` },
+              { id: 'default' as const, label: '기본 앨범', count: galleryPhotos.length, preview: galleryPhotos[0]?.src ?? `https://picsum.photos/seed/${phoneId}-gallery-1/400/400` },
+              { id: 'deleted' as const, label: '삭제된 사진', count: deletedPhotoList.length, preview: deletedPhotoList[0]?.src ?? `https://picsum.photos/seed/${phoneId}-deleted-1/400/400` },
             ].map((album) => (
               <button
                 key={album.id}
@@ -625,7 +626,7 @@ function GalleryView({ photos, deletedPhotos, protectedAlbums, phoneId }: { phot
                 ) : (
                   <div
                     className="aspect-square w-full rounded-xl bg-neutral-800"
-                    style={{ backgroundImage: `url(https://picsum.photos/seed/${album.seed}/400/400)`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+                    style={{ backgroundImage: `url(${album.preview})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
                   />
                 )}
                 <p className="mt-1.5 text-[13px] font-medium text-white">{album.label}</p>
@@ -805,20 +806,34 @@ function VoiceMemosView({ app }: { app: PhoneApp }) {
           <span className="w-[52px]" />
         </div>
 
-        <div className="flex min-h-0 flex-1 flex-col items-center justify-center px-5 py-8 text-center">
-          <div className="flex h-28 w-28 items-center justify-center rounded-full bg-[radial-gradient(circle_at_30%_30%,_rgba(255,255,255,0.24),_rgba(255,149,0,0.78)_55%,_rgba(145,77,0,0.96)_100%)] shadow-[0_22px_60px_rgba(255,149,0,0.25)]">
-            <span className="font-mono text-sm tracking-[0.18em] text-white/92">REC</span>
+        {selectedMemo.transcript ? (
+          <div className="flex min-h-0 flex-1 flex-col items-center justify-center px-5 py-6">
+            <p className="mb-3 break-all text-center text-2xl font-semibold text-white">{selectedMemo.title}</p>
+            <p className="mb-4 text-center font-mono text-sm tracking-[0.14em] text-white/48">{selectedMemo.duration}</p>
+            <div className="scrollbar-hide w-full overflow-y-auto rounded-[1.6rem] border border-white/8 bg-white/[0.04] p-5">
+              {selectedMemo.transcript.split('\n').map((line, i) => (
+                <p key={i} className={`text-sm leading-relaxed text-white/80 ${line === '' ? 'mt-3' : ''}`}>
+                  {line}
+                </p>
+              ))}
+            </div>
           </div>
+        ) : (
+          <div className="flex min-h-0 flex-1 flex-col items-center justify-center px-5 py-8 text-center">
+            <div className="flex h-28 w-28 items-center justify-center rounded-full bg-[radial-gradient(circle_at_30%_30%,_rgba(255,255,255,0.24),_rgba(255,149,0,0.78)_55%,_rgba(145,77,0,0.96)_100%)] shadow-[0_22px_60px_rgba(255,149,0,0.25)]">
+              <span className="font-mono text-sm tracking-[0.18em] text-white/92">REC</span>
+            </div>
 
-          <p className="mt-8 text-2xl font-semibold text-white">{selectedMemo.title}</p>
-          <p className="mt-2 font-mono text-sm tracking-[0.14em] text-white/48">{selectedMemo.duration}</p>
+            <p className="mt-8 break-all text-center text-2xl font-semibold text-white">{selectedMemo.title}</p>
+            <p className="mt-2 font-mono text-sm tracking-[0.14em] text-white/48">{selectedMemo.duration}</p>
 
-          <div className="mt-8 w-full max-w-[320px] rounded-[2rem] border border-white/8 bg-white/[0.04] p-4">
-            <audio controls preload="none" className="w-full">
-              <source src={selectedMemo.src} type="audio/mpeg" />
-            </audio>
+            <div className="mt-8 w-full max-w-[320px] rounded-[2rem] border border-white/8 bg-white/[0.04] p-4">
+              <audio controls preload="none" className="w-full">
+                <source src={selectedMemo.src} type="audio/mpeg" />
+              </audio>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     );
   }
@@ -839,7 +854,7 @@ function VoiceMemosView({ app }: { app: PhoneApp }) {
             className="flex w-full items-center justify-between rounded-[1.6rem] border border-white/8 bg-white/[0.04] px-4 py-4 text-left"
           >
             <div className="min-w-0">
-              <p className="truncate text-base font-medium text-white">{memo.title}</p>
+              <p className="break-all text-base font-medium text-white">{memo.title}</p>
               <p className="mt-1 text-xs text-white/42">{memo.recordedAt}</p>
             </div>
             <div className="shrink-0 text-right">
@@ -919,13 +934,12 @@ function SafariView({ recentSearches }: { recentSearches: PhoneSafariSearch[] })
             <div className="flex items-center gap-3 rounded-full border-[2px] border-[#03c75a] bg-white px-4 py-3">
               <span className="text-lg font-black text-[#03c75a]">N</span>
               <input
-                autoFocus
                 readOnly
                 value=""
                 placeholder="최근 검색어"
                 className="w-full bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
               />
-              <button type="button" onClick={() => setIsSearchFocused(false)} className="text-sm text-slate-500">
+              <button type="button" onClick={() => setIsSearchFocused(false)} className="shrink-0 whitespace-nowrap text-sm text-slate-500">
                 취소
               </button>
             </div>
@@ -1451,10 +1465,11 @@ function getWallpaperClass(wallpaper: string) {
   return 'bg-[radial-gradient(circle_at_top,_rgba(255,230,185,0.28),_transparent_34%),linear-gradient(180deg,_#53453f_0%,_#8a7667_34%,_#171717_100%)]';
 }
 
-function PlantDiaryView({ password, video, accessLogs }: { password: string; video: PhonePlantVideo | null; accessLogs: PhonePlantAccessLog[] }) {
+function PlantDiaryView({ password, videos, accessLogs }: { password: string; videos: PhonePlantVideo[]; accessLogs: PhonePlantAccessLog[] }) {
   const [input, setInput] = useState('');
   const [error, setError] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
+  const [playingVideo, setPlayingVideo] = useState<PhonePlantVideo | null>(null);
 
   function handleKey(key: string) {
     if (key === '←') {
@@ -1478,24 +1493,41 @@ function PlantDiaryView({ password, video, accessLogs }: { password: string; vid
   if (unlocked) {
     return (
       <div className="min-h-full bg-[#f4faf5] p-5 space-y-5">
+        {/* 영상 목록 */}
         <div className="rounded-2xl bg-white border border-green-100 shadow-sm overflow-hidden">
           <div className="bg-green-50 px-4 py-3 border-b border-green-100 flex items-center gap-2">
             <span className="text-base">🎬</span>
             <p className="text-[12px] font-semibold tracking-widest text-green-700 uppercase">영상</p>
           </div>
-          <div className="p-4 flex items-center gap-4">
-            <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-green-100">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4caf76" strokeWidth="2">
-                <polygon points="5 3 19 12 5 21 5 3" fill="#4caf76" stroke="none" />
-              </svg>
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-[15px] font-semibold text-slate-800 truncate">{video?.title ?? ''}</p>
-              <p className="text-[12px] text-slate-400 mt-0.5">{video?.duration ?? ''}</p>
-            </div>
-          </div>
+          <ul className="divide-y divide-green-50">
+            {videos.map((v, i) => (
+              <li key={i}>
+                <button
+                  type="button"
+                  onClick={() => v.src && setPlayingVideo(v)}
+                  className="w-full p-4 flex items-center gap-4 text-left active:bg-green-50 transition-colors"
+                >
+                  <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-green-100">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4caf76" strokeWidth="2">
+                      <polygon points="5 3 19 12 5 21 5 3" fill="#4caf76" stroke="none" />
+                    </svg>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[15px] font-semibold text-slate-800 truncate">{v.title}</p>
+                    <p className="text-[12px] text-slate-400 mt-0.5">{v.duration}</p>
+                  </div>
+                  {v.src && (
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2">
+                      <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                  )}
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
 
+        {/* 접속 기록 */}
         <div className="rounded-2xl bg-white border border-green-100 shadow-sm overflow-hidden">
           <div className="bg-green-50 px-4 py-3 border-b border-green-100 flex items-center gap-2">
             <span className="text-base">🔐</span>
@@ -1525,6 +1557,33 @@ function PlantDiaryView({ password, video, accessLogs }: { password: string; vid
             ))}
           </ul>
         </div>
+
+        {/* 영상 재생 모달 */}
+        {playingVideo && (
+          <div className="absolute inset-0 z-50 flex flex-col bg-black text-white">
+            <div className="flex items-center justify-between px-4 pb-3 pt-12">
+              <button
+                type="button"
+                onClick={() => setPlayingVideo(null)}
+                className="rounded-full border border-white/16 px-3 py-1.5 text-sm text-white/88"
+              >
+                닫기
+              </button>
+              <p className="text-sm font-medium text-white/88">{playingVideo.title}</p>
+              <span className="w-[52px]" />
+            </div>
+            <div className="flex min-h-0 flex-1 items-center justify-center">
+              {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+              <video
+                src={playingVideo.src}
+                controls
+                autoPlay
+                playsInline
+                className="max-h-full max-w-full"
+              />
+            </div>
+          </div>
+        )}
       </div>
     );
   }

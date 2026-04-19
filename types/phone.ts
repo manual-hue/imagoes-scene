@@ -70,6 +70,7 @@ export interface PhoneVoiceMemo {
   duration: string;
   recordedAt: string;
   src: string;
+  transcript?: string;
 }
 
 export interface PhoneSafariSearch {
@@ -134,6 +135,7 @@ export interface PhoneProtectedAlbum {
 export interface PhonePlantVideo {
   title: string;
   duration: string;
+  src?: string;
 }
 
 export interface PhonePlantAccessLog {
@@ -151,6 +153,7 @@ export interface PhoneAppContent {
   protectedAlbums?: PhoneProtectedAlbum[];
   password?: string;
   plantVideo?: PhonePlantVideo;
+  plantVideos?: PhonePlantVideo[];
   plantAccessLogs?: PhonePlantAccessLog[];
   mails?: PhoneMail[];
   voiceMemos?: PhoneVoiceMemo[];

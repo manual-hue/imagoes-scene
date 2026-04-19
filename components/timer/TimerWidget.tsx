@@ -31,7 +31,7 @@ export function TimerWidget({ sessionId }: TimerWidgetProps) {
       : formatRemaining(remaining);
 
   return (
-    <aside className="pointer-events-auto absolute right-3 top-3 z-40" aria-live="polite">
+    <aside className="pointer-events-auto" aria-live="polite">
       <div className="overflow-hidden rounded-2xl border border-white/15 bg-black/72 shadow-lg backdrop-blur-md">
         <button
           type="button"
