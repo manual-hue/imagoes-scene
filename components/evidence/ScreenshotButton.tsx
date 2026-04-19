@@ -23,20 +23,12 @@ export function ScreenshotButton({ sessionId, objectId }: ScreenshotButtonProps)
 
     try {
       const html2canvas = (await import('html2canvas')).default;
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const canvas = await html2canvas(document.body, {
+      const target =
+        (document.querySelector('[data-capture-target]') as HTMLElement) ?? document.body;
+      const canvas = await html2canvas(target, {
         useCORS: true,
         allowTaint: true,
         scale: window.devicePixelRatio,
-        width: vw,
-        height: vh,
-        windowWidth: vw,
-        windowHeight: vh,
-        x: 0,
-        y: 0,
-        scrollX: 0,
-        scrollY: 0,
         logging: false,
       });
 

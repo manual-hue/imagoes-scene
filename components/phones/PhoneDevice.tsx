@@ -63,7 +63,7 @@ export function PhoneDevice({ phone }: PhoneDeviceProps) {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(120,119,198,0.12),_transparent_26%),radial-gradient(circle_at_bottom,_rgba(34,211,238,0.08),_transparent_22%)]" />
 
       <div className="relative mx-auto flex min-h-[100dvh] w-full max-w-[430px] items-center justify-center p-0 md:px-4 md:py-6">
-        <div className="relative h-[100dvh] w-full overflow-hidden bg-[#050608] shadow-[0_40px_120px_rgba(0,0,0,0.55)] md:h-[min(920px,96dvh)] md:rounded-[2.9rem] md:border md:border-white/10 md:p-2">
+        <div data-capture-target className="relative h-[100dvh] w-full overflow-hidden bg-[#050608] shadow-[0_40px_120px_rgba(0,0,0,0.55)] md:h-[min(920px,96dvh)] md:rounded-[2.9rem] md:border md:border-white/10 md:p-2">
           <div className="relative h-full overflow-hidden bg-black md:rounded-[2.45rem]">
             <div className="pointer-events-none absolute left-1/2 top-2 z-30 h-7 w-36 -translate-x-1/2 rounded-full bg-black/92" />
 
