@@ -83,7 +83,7 @@ export function NewSessionForm({ adminEmail, defaultAccessCode, createAction }: 
           </div>
         </section>
 
-        {/* Section 2: Game Settings */}
+        {/* Section 2: 게임 세팅 */}
         <section className="border border-black/12">
           <div className="border-b border-black/8 px-5 py-3">
             <h2 className="font-mono text-[11px] tracking-[0.2em] text-black/40 uppercase">
