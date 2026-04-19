@@ -66,21 +66,15 @@ export function useEvidencePhotos(sessionId: string): UseEvidencePhotosResult {
 
   useEffect(() => {
     void loadPhotos();
-    void syncPendingPhotos(sessionId).then(loadPhotos);
 
     const handleChange = () => {
       void loadPhotos();
     };
-    const handleOnline = () => {
-      void syncPendingPhotos(sessionId).then(loadPhotos);
-    };
 
     window.addEventListener(EVIDENCE_EVENT, handleChange as EventListener);
-    window.addEventListener('online', handleOnline);
 
     return () => {
       window.removeEventListener(EVIDENCE_EVENT, handleChange as EventListener);
-      window.removeEventListener('online', handleOnline);
       setPhotos((previous) => {
         revokeUrls(previous);
         return [];

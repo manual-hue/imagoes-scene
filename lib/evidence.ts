@@ -217,7 +217,6 @@ export async function savePhoto({
   await setPhotoMeta(photo);
   await set(blobKey(id), blob, evidenceStore);
   emitEvidenceChange();
-  void syncPhoto(id);
 
   return photo;
 }

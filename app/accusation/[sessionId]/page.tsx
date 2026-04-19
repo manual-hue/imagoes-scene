@@ -5,12 +5,19 @@ import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { BottomTabBar } from '@/components/navigation/BottomTabBar';
 import { useEvidencePhotos, type EvidencePhotoView } from '@/hooks/useEvidencePhotos';
+import { hasFirebaseClientConfig } from '@/lib/firebase/index';
+import {
+  submitBoardCard,
+  deleteBoardCard,
+  clearBoardCards,
+  subscribeBoardCards,
+  type BoardCard,
+} from '@/lib/firebase/board';
 
-interface SubmittedCard {
+interface LocalCard {
   id: string;
-  sessionId: string;
   photoId: string;
-  imageDataUrl: string;
+  imageUrl: string;
   memo: string;
   roomName: string;
   submittedBy: string;
@@ -21,43 +28,50 @@ const LS_NAME_KEY = 'csz_player_name';
 const LS_SUSPECT_KEY = (sid: string) => `csz_suspect_${sid}`;
 const LS_BOARD_KEY = (sid: string) => `csz_board_${sid}`;
 
-function loadBoard(sessionId: string): SubmittedCard[] {
+function loadLocalBoard(sessionId: string): LocalCard[] {
   if (typeof window === 'undefined') return [];
   try {
     const raw = localStorage.getItem(LS_BOARD_KEY(sessionId));
-    return raw ? (JSON.parse(raw) as SubmittedCard[]) : [];
+    return raw ? (JSON.parse(raw) as LocalCard[]) : [];
   } catch {
     return [];
   }
 }
 
-function saveBoard(sessionId: string, cards: SubmittedCard[]) {
+function saveLocalBoard(sessionId: string, cards: LocalCard[]) {
   localStorage.setItem(LS_BOARD_KEY(sessionId), JSON.stringify(cards));
 }
 
-async function blobToDataUrl(url: string): Promise<string> {
+async function blobUrlToBlob(url: string): Promise<Blob> {
   const res = await fetch(url);
-  const blob = await res.blob();
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onloadend = () => resolve(reader.result as string);
-    reader.onerror = reject;
-    reader.readAsDataURL(blob);
-  });
+  return res.blob();
+}
+
+function boardCardToLocal(card: BoardCard): LocalCard {
+  return {
+    id: card.id,
+    photoId: card.photoId,
+    imageUrl: card.imageUrl,
+    memo: card.memo,
+    roomName: card.roomName,
+    submittedBy: card.submittedBy,
+    submittedAt: card.submittedAt,
+  };
 }
 
 export default function AccusationPage() {
   const params = useParams<{ sessionId: string }>();
   const sessionId = params.sessionId;
   const { photos, loading } = useEvidencePhotos(sessionId);
+  const isOnline = hasFirebaseClientConfig();
 
   const [playerName, setPlayerName] = useState('');
   const [suspect, setSuspect] = useState('');
-  const [board, setBoard] = useState<SubmittedCard[]>([]);
+  const [board, setBoard] = useState<LocalCard[]>([]);
   const [picker, setPicker] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [lightbox, setLightbox] = useState<SubmittedCard | null>(null);
+  const [lightbox, setLightbox] = useState<LocalCard | null>(null);
 
   useEffect(() => {
     if (!lightbox) return;
@@ -75,22 +89,25 @@ export default function AccusationPage() {
       .catch(() => setIsAdmin(false));
   }, []);
 
-  const handleClearBoard = () => {
-    if (board.length === 0) return;
-    if (!window.confirm('공유 보드의 모든 사진을 삭제할까요? 되돌릴 수 없습니다.')) return;
-    setBoard([]);
-    saveBoard(sessionId, []);
-  };
-
   useEffect(() => {
     setPlayerName(localStorage.getItem(LS_NAME_KEY) ?? '');
     setSuspect(localStorage.getItem(LS_SUSPECT_KEY(sessionId)) ?? '');
-    setBoard(loadBoard(sessionId));
-
-    const sync = () => setBoard(loadBoard(sessionId));
-    window.addEventListener('storage', sync);
-    return () => window.removeEventListener('storage', sync);
   }, [sessionId]);
+
+  // 보드 구독 — Firebase 있으면 실시간, 없으면 localStorage
+  useEffect(() => {
+    if (isOnline) {
+      const unsub = subscribeBoardCards(sessionId, (cards) => {
+        setBoard(cards.map(boardCardToLocal));
+      });
+      return unsub;
+    } else {
+      setBoard(loadLocalBoard(sessionId));
+      const sync = () => setBoard(loadLocalBoard(sessionId));
+      window.addEventListener('storage', sync);
+      return () => window.removeEventListener('storage', sync);
+    }
+  }, [sessionId, isOnline]);
 
   const saveSuspect = (value: string) => {
     setSuspect(value);
@@ -111,34 +128,70 @@ export default function AccusationPage() {
       if (!photo.imageUrl) return;
       setSubmitting(true);
       try {
-        const dataUrl = await blobToDataUrl(photo.imageUrl);
-        const card: SubmittedCard = {
-          id: `${photo.id}_${playerName}`,
-          sessionId,
-          photoId: photo.id,
-          imageDataUrl: dataUrl,
-          memo: photo.memo ?? '',
-          roomName: photo.roomName,
-          submittedBy: playerName.trim(),
-          submittedAt: Date.now(),
-        };
-        const next = [...board.filter((c) => c.id !== card.id), card].sort(
-          (a, b) => b.submittedAt - a.submittedAt,
-        );
-        setBoard(next);
-        saveBoard(sessionId, next);
+        if (isOnline) {
+          const blob = await blobUrlToBlob(photo.imageUrl);
+          await submitBoardCard(sessionId, photo.id, blob, {
+            memo: photo.memo ?? '',
+            roomName: photo.roomName,
+            submittedBy: playerName.trim(),
+          });
+          // board는 onSnapshot이 자동 업데이트
+        } else {
+          const res = await fetch(photo.imageUrl);
+          const blob = await res.blob();
+          const dataUrl = await new Promise<string>((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result as string);
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+          });
+          const cardId = `${photo.id}_${playerName}`;
+          const card: LocalCard = {
+            id: cardId,
+            photoId: photo.id,
+            imageUrl: dataUrl,
+            memo: photo.memo ?? '',
+            roomName: photo.roomName,
+            submittedBy: playerName.trim(),
+            submittedAt: Date.now(),
+          };
+          const next = [...board.filter((c) => c.id !== cardId), card].sort(
+            (a, b) => b.submittedAt - a.submittedAt,
+          );
+          setBoard(next);
+          saveLocalBoard(sessionId, next);
+        }
       } finally {
         setSubmitting(false);
       }
     },
-    [board, playerName, sessionId],
+    [board, isOnline, playerName, sessionId],
   );
 
-  const handleRemoveCard = (cardId: string) => {
-    const next = board.filter((c) => c.id !== cardId);
-    setBoard(next);
-    saveBoard(sessionId, next);
-  };
+  const handleRemoveCard = useCallback(
+    async (cardId: string) => {
+      if (isOnline) {
+        await deleteBoardCard(sessionId, cardId).catch(() => undefined);
+        // onSnapshot이 자동 반영
+      } else {
+        const next = board.filter((c) => c.id !== cardId);
+        setBoard(next);
+        saveLocalBoard(sessionId, next);
+      }
+    },
+    [board, isOnline, sessionId],
+  );
+
+  const handleClearBoard = useCallback(async () => {
+    if (board.length === 0) return;
+    if (!window.confirm('공유 보드의 모든 사진을 삭제할까요? 되돌릴 수 없습니다.')) return;
+    if (isOnline) {
+      await clearBoardCards(sessionId).catch(() => undefined);
+    } else {
+      setBoard([]);
+      saveLocalBoard(sessionId, []);
+    }
+  }, [board.length, isOnline, sessionId]);
 
   return (
     <main className="full-screen flex flex-col bg-[var(--bg-primary)]">
@@ -172,7 +225,7 @@ export default function AccusationPage() {
               {isAdmin && board.length > 0 && (
                 <button
                   type="button"
-                  onClick={handleClearBoard}
+                  onClick={() => void handleClearBoard()}
                   className="font-mono text-[10px] tracking-[0.2em] text-[var(--accent-red)]"
                 >
                   전체 삭제
@@ -230,6 +283,11 @@ export default function AccusationPage() {
                             SUBMITTED
                           </span>
                         )}
+                        {submitting && (
+                          <span className="absolute inset-0 flex items-center justify-center bg-black/60 font-mono text-[9px] tracking-[0.18em] text-white/60">
+                            UPLOADING...
+                          </span>
+                        )}
                       </button>
                     );
                   })}
@@ -259,7 +317,7 @@ export default function AccusationPage() {
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={card.imageDataUrl}
+                      src={card.imageUrl}
                       alt={card.memo || card.roomName}
                       className="h-full w-full object-cover"
                     />
@@ -271,7 +329,7 @@ export default function AccusationPage() {
                     {card.submittedBy === playerName && (
                       <button
                         type="button"
-                        onClick={() => handleRemoveCard(card.id)}
+                        onClick={() => void handleRemoveCard(card.id)}
                         className="mt-1 self-end font-mono text-[9px] tracking-[0.18em] text-[var(--accent-red)]"
                       >
                         삭제
@@ -312,7 +370,6 @@ export default function AccusationPage() {
             className="relative flex max-h-full w-full max-w-md flex-col border-2 border-white bg-[var(--bg-primary)] shadow-[0_0_0_1px_rgba(255,255,255,0.15),0_24px_60px_rgba(0,0,0,0.8)]"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* 헤더 — EVIDENCE 라벨 */}
             <div className="flex items-center justify-between border-b border-white/80 bg-black px-3 py-2">
               <div className="flex items-center gap-2">
                 <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-[var(--accent-red)]" />
@@ -322,11 +379,10 @@ export default function AccusationPage() {
               </div>
             </div>
 
-            {/* 폴라로이드 */}
             <div className="bg-white px-4 pt-4 pb-6 text-black shadow-inner">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={lightbox.imageDataUrl}
+                src={lightbox.imageUrl}
                 alt={lightbox.memo || lightbox.roomName}
                 className="block max-h-[50vh] w-full object-contain bg-black"
               />
